@@ -12,6 +12,7 @@
 		848509BF1E7FCC4F00A9770B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848509BD1E7FCC4F00A9770B /* Main.storyboard */; };
 		848509C11E7FCC4F00A9770B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848509C01E7FCC4F00A9770B /* Assets.xcassets */; };
 		848509C41E7FCC4F00A9770B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848509C21E7FCC4F00A9770B /* LaunchScreen.storyboard */; };
+		848509CD1E7FFF7E00A9770B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */; };
 		F57526EE0E48334EBDA6EFD6 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7890F73A3897EF95423CE777 /* Pods_____.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		848509C01E7FCC4F00A9770B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848509C31E7FCC4F00A9770B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848509C51E7FCC4F00A9770B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93A59B7A40731FBBE3F116C9 /* Pods-口袋名單.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.debug.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 				848509C01E7FCC4F00A9770B /* Assets.xcassets */,
 				848509C21E7FCC4F00A9770B /* LaunchScreen.storyboard */,
 				848509C51E7FCC4F00A9770B /* Info.plist */,
+				848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */,
 			);
 			path = "口袋名單";
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			files = (
 				848509C41E7FCC4F00A9770B /* LaunchScreen.storyboard in Resources */,
 				848509C11E7FCC4F00A9770B /* Assets.xcassets in Resources */,
+				848509CD1E7FFF7E00A9770B /* GoogleService-Info.plist in Resources */,
 				848509BF1E7FCC4F00A9770B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,9 +354,10 @@
 			baseConfigurationReference = 93A59B7A40731FBBE3F116C9 /* Pods-口袋名單.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "口袋名單/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "appworks.----";
+				PRODUCT_BUNDLE_IDENTIFIER = "appworks.Pocket-List";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -363,9 +368,10 @@
 			baseConfigurationReference = 25098106847774A39FDBF6B0 /* Pods-口袋名單.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "口袋名單/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "appworks.----";
+				PRODUCT_BUNDLE_IDENTIFIER = "appworks.Pocket-List";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
