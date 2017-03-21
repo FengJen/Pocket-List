@@ -7,5 +7,7 @@ target '口袋名單' do
 
   # Pods for 口袋名單
     pod 'SwiftLint'
+    pod 'Firebase/Auth'
     pod 'Firebase/Core'
+    pod 'Firebase/Database'
 end

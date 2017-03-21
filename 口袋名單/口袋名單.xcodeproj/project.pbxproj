@@ -7,26 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84331CB01E812BBA0060CB74 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84331CAF1E812BBA0060CB74 /* LoginViewController.swift */; };
 		848509BA1E7FCC4F00A9770B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509B91E7FCC4F00A9770B /* AppDelegate.swift */; };
-		848509BC1E7FCC4F00A9770B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509BB1E7FCC4F00A9770B /* ViewController.swift */; };
+		848509BC1E7FCC4F00A9770B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509BB1E7FCC4F00A9770B /* SignUpViewController.swift */; };
 		848509BF1E7FCC4F00A9770B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848509BD1E7FCC4F00A9770B /* Main.storyboard */; };
 		848509C11E7FCC4F00A9770B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848509C01E7FCC4F00A9770B /* Assets.xcassets */; };
 		848509C41E7FCC4F00A9770B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848509C21E7FCC4F00A9770B /* LaunchScreen.storyboard */; };
 		848509CD1E7FFF7E00A9770B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */; };
+		848509D21E8116C300A9770B /* ItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509D01E8116C300A9770B /* ItemsTableViewController.swift */; };
+		848509D31E8116C300A9770B /* ItemsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848509D11E8116C300A9770B /* ItemsTableViewController.xib */; };
 		F57526EE0E48334EBDA6EFD6 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7890F73A3897EF95423CE777 /* Pods_____.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		25098106847774A39FDBF6B0 /* Pods-口袋名單.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.release.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.release.xcconfig"; sourceTree = "<group>"; };
 		7890F73A3897EF95423CE777 /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84331CAF1E812BBA0060CB74 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		848509B61E7FCC4F00A9770B /* 口袋名單.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "口袋名單.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848509B91E7FCC4F00A9770B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		848509BB1E7FCC4F00A9770B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		848509BB1E7FCC4F00A9770B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		848509BE1E7FCC4F00A9770B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		848509C01E7FCC4F00A9770B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848509C31E7FCC4F00A9770B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848509C51E7FCC4F00A9770B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		848509D01E8116C300A9770B /* ItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsTableViewController.swift; sourceTree = "<group>"; };
+		848509D11E8116C300A9770B /* ItemsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemsTableViewController.xib; sourceTree = "<group>"; };
 		93A59B7A40731FBBE3F116C9 /* Pods-口袋名單.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.debug.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,12 +70,15 @@
 			isa = PBXGroup;
 			children = (
 				848509B91E7FCC4F00A9770B /* AppDelegate.swift */,
-				848509BB1E7FCC4F00A9770B /* ViewController.swift */,
+				84331CAF1E812BBA0060CB74 /* LoginViewController.swift */,
+				848509BB1E7FCC4F00A9770B /* SignUpViewController.swift */,
 				848509BD1E7FCC4F00A9770B /* Main.storyboard */,
 				848509C01E7FCC4F00A9770B /* Assets.xcassets */,
 				848509C21E7FCC4F00A9770B /* LaunchScreen.storyboard */,
 				848509C51E7FCC4F00A9770B /* Info.plist */,
 				848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */,
+				848509D01E8116C300A9770B /* ItemsTableViewController.swift */,
+				848509D11E8116C300A9770B /* ItemsTableViewController.xib */,
 			);
 			path = "口袋名單";
 			sourceTree = "<group>";
@@ -156,6 +165,7 @@
 			files = (
 				848509C41E7FCC4F00A9770B /* LaunchScreen.storyboard in Resources */,
 				848509C11E7FCC4F00A9770B /* Assets.xcassets in Resources */,
+				848509D31E8116C300A9770B /* ItemsTableViewController.xib in Resources */,
 				848509CD1E7FFF7E00A9770B /* GoogleService-Info.plist in Resources */,
 				848509BF1E7FCC4F00A9770B /* Main.storyboard in Resources */,
 			);
@@ -166,14 +176,14 @@
 /* Begin PBXShellScriptBuildPhase section */
 		848509CB1E7FD60700A9770B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
@@ -229,8 +239,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				848509BC1E7FCC4F00A9770B /* ViewController.swift in Sources */,
+				84331CB01E812BBA0060CB74 /* LoginViewController.swift in Sources */,
+				848509BC1E7FCC4F00A9770B /* SignUpViewController.swift in Sources */,
 				848509BA1E7FCC4F00A9770B /* AppDelegate.swift in Sources */,
+				848509D21E8116C300A9770B /* ItemsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
