@@ -38,8 +38,8 @@ class SignUpViewController: UIViewController {
                         })
                         print("user created")
                         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                        let itemTableViewController = storyBoard.instantiateViewController(withIdentifier: "ItemsTableViewController") 
-                        UIApplication.shared.keyWindow?.rootViewController = itemTableViewController
+                        let tabBarController = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
+                        UIApplication.shared.keyWindow?.rootViewController = tabBarController
                     } else {
                         let alerController = UIAlertController(title: "error", message: error?.localizedDescription, preferredStyle: .alert)
                         let action = UIAlertAction(title: "ok", style: .cancel, handler: nil)
