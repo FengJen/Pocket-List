@@ -19,13 +19,8 @@ class ItemsTableViewController: UITableViewController, UINavigationControllerDel
     }
     
     func newButton() {
-        let newButton = UIButton(type: .custom)
-        newButton.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
-        newButton.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
-        newButton.addTarget(self, action: #selector(pressPlusButton), for: .touchUpInside)
-        let leftButton = UIBarButtonItem(customView: newButton)
-        
-        self.navigationItem.setLeftBarButton(leftButton, animated: true)
+        let newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(pressPlusButton))
+        self.navigationItem.setLeftBarButton(newButton, animated: true)
     }
     
     func pressPlusButton() {

@@ -16,7 +16,7 @@ class StepsViewController: UIPageViewController, UIPageViewControllerDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
-        
+        navigationController?.navigationBar.isTranslucent = false
         if let firstVC = viewcontrollerList.first {
             self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
@@ -36,4 +36,10 @@ class StepsViewController: UIPageViewController, UIPageViewControllerDataSource 
         guard viewcontrollerList.count >  nextIndex else { return nil }
         return viewcontrollerList[nextIndex]
     }
+//    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+//        return 3
+//    }
+//    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+//        if let pageContentViewController = storyboard
+//    }
 }

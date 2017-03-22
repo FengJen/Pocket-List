@@ -161,10 +161,10 @@
             </objects>
             <point key="canvasLocation" x="4242.3999999999996" y="-554.57271364317842"/>
         </scene>
-        <!--View Controller-->
+        <!--Step1 View Controller-->
         <scene sceneID="kHL-7Q-F0F">
             <objects>
-                <viewController storyboardIdentifier="step1" id="l9T-AL-T9n" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="step1" id="l9T-AL-T9n" customClass="Step1ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UGQ-f8-C5z"/>
                         <viewControllerLayoutGuide type="bottom" id="y1p-EN-DaC"/>
@@ -188,14 +188,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssp-wE-g0i">
+                                <rect key="frame" x="279" y="593" width="60" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Jh3-xR-Cqt"/>
+                                    <constraint firstAttribute="width" constant="60" id="LPL-hm-60R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="toPage2Button:" destination="l9T-AL-T9n" eventType="touchUpInside" id="r34-ja-TP0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="VvN-ys-GTb" firstAttribute="centerX" secondItem="rdT-1Z-wCp" secondAttribute="centerX" id="6fx-sG-DhW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ugF-nI-NH2" secondAttribute="trailing" constant="80" id="D44-kW-q41"/>
                             <constraint firstItem="VvN-ys-GTb" firstAttribute="top" secondItem="ugF-nI-NH2" secondAttribute="bottom" constant="30" id="MdK-1r-tCJ"/>
+                            <constraint firstItem="y1p-EN-DaC" firstAttribute="top" secondItem="ssp-wE-g0i" secondAttribute="bottom" constant="30" id="Ufl-Vo-CSR"/>
                             <constraint firstItem="ugF-nI-NH2" firstAttribute="leading" secondItem="rdT-1Z-wCp" secondAttribute="leadingMargin" constant="80" id="f7m-RH-oIy"/>
                             <constraint firstItem="ugF-nI-NH2" firstAttribute="top" secondItem="UGQ-f8-C5z" secondAttribute="bottom" constant="100" id="mz5-PF-ajl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ssp-wE-g0i" secondAttribute="trailing" constant="20" id="q0H-NL-viD"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -203,10 +217,10 @@
             </objects>
             <point key="canvasLocation" x="4999.1999999999998" y="-547.37631184407803"/>
         </scene>
-        <!--View Controller-->
+        <!--Step2 View Controller-->
         <scene sceneID="Bdu-Vo-rgy">
             <objects>
-                <viewController storyboardIdentifier="step2" id="Uci-mE-zsa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="step2" id="Uci-mE-zsa" customClass="Step2ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vL9-4z-zFy"/>
                         <viewControllerLayoutGuide type="bottom" id="2eZ-gR-rpG"/>
@@ -230,13 +244,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfM-0c-km4">
+                                <rect key="frame" x="279" y="593" width="60" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7eV-tx-MuO"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Buc-Xo-opG"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="NVR-Km-xx0"/>
+                                    <constraint firstAttribute="width" constant="60" id="clF-yG-vgK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="toPage3Button:" destination="Uci-mE-zsa" eventType="touchUpInside" id="Xou-mL-dbH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="HfM-0c-km4" secondAttribute="trailing" constant="20" id="1CM-6Q-3Dr"/>
                             <constraint firstItem="sd5-4k-1VL" firstAttribute="top" secondItem="8lt-Gy-vBt" secondAttribute="bottom" constant="30" id="3dP-QE-hoh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8lt-Gy-vBt" secondAttribute="trailing" constant="80" id="Flu-jj-5Vl"/>
                             <constraint firstItem="8lt-Gy-vBt" firstAttribute="top" secondItem="vL9-4z-zFy" secondAttribute="bottom" constant="100" id="Oh5-sm-Dex"/>
                             <constraint firstItem="sd5-4k-1VL" firstAttribute="centerX" secondItem="pZx-M9-cfH" secondAttribute="centerX" id="Wwg-UA-4pt"/>
+                            <constraint firstItem="2eZ-gR-rpG" firstAttribute="top" secondItem="HfM-0c-km4" secondAttribute="bottom" constant="30" id="iAl-Ln-uie"/>
                             <constraint firstItem="8lt-Gy-vBt" firstAttribute="leading" secondItem="pZx-M9-cfH" secondAttribute="leadingMargin" constant="80" id="tZg-H6-Ccj"/>
                         </constraints>
                     </view>
@@ -245,10 +275,10 @@
             </objects>
             <point key="canvasLocation" x="5692" y="-547.37631184407803"/>
         </scene>
-        <!--View Controller-->
+        <!--Step3 View Controller-->
         <scene sceneID="ZzX-i9-aT0">
             <objects>
-                <viewController storyboardIdentifier="step3" id="qOm-uI-gId" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="step3" id="qOm-uI-gId" customClass="Step3ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FLJ-Au-7ZU"/>
                         <viewControllerLayoutGuide type="bottom" id="2We-aX-9FE"/>
@@ -272,14 +302,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6I-t6-bXH">
+                                <rect key="frame" x="279" y="593" width="60" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="cUz-JO-bx7"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="kSp-1Y-thz"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="q02-7h-1CU"/>
+                                    <constraint firstAttribute="height" constant="44" id="wNg-6z-kwK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Done"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="s6I-t6-bXH" secondAttribute="trailing" constant="20" id="Sbl-qF-pQT"/>
                             <constraint firstItem="4mq-eR-c4h" firstAttribute="top" secondItem="FLJ-Au-7ZU" secondAttribute="bottom" constant="100" id="TyZ-bl-Us3"/>
                             <constraint firstItem="4mq-eR-c4h" firstAttribute="leading" secondItem="AY4-RP-gs0" secondAttribute="leadingMargin" constant="80" id="Wxx-Hx-7zF"/>
                             <constraint firstItem="kI3-LU-stk" firstAttribute="top" secondItem="4mq-eR-c4h" secondAttribute="bottom" constant="30" id="YNk-Rk-8Tm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4mq-eR-c4h" secondAttribute="trailing" constant="80" id="oha-E2-Aj9"/>
                             <constraint firstItem="kI3-LU-stk" firstAttribute="centerX" secondItem="AY4-RP-gs0" secondAttribute="centerX" id="pNc-Ug-piU"/>
+                            <constraint firstItem="2We-aX-9FE" firstAttribute="top" secondItem="s6I-t6-bXH" secondAttribute="bottom" constant="30" id="qra-Og-WTl"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -300,7 +343,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h4g-Pj-0CZ" id="ZzF-jx-IDx">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
