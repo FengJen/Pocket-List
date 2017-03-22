@@ -1,6 +1,6 @@
 import UIKit
 
-class Step1ViewController: UIPageViewController, UIPageViewControllerDataSource {
+class StepsViewController: UIPageViewController, UIPageViewControllerDataSource {
     lazy var viewcontrollerList: [UIViewController] = {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let step1VC = storyBoard.instantiateViewController(withIdentifier: "step1")

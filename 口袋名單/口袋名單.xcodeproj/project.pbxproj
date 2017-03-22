@@ -19,7 +19,7 @@
 		8489AEA01E814EE6007D88D9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489AE9F1E814EE6007D88D9 /* TabBarController.swift */; };
 		8489AEA21E815259007D88D9 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489AEA11E815259007D88D9 /* ShareViewController.swift */; };
 		84A5D5B31E821E5300B05B22 /* ItemsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */; };
-		84A5D5B51E821EA500B05B22 /* Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5D5B41E821EA500B05B22 /* Step1ViewController.swift */; };
+		84A5D5B51E821EA500B05B22 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5D5B41E821EA500B05B22 /* StepsViewController.swift */; };
 		F57526EE0E48334EBDA6EFD6 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7890F73A3897EF95423CE777 /* Pods_____.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 		8489AE9F1E814EE6007D88D9 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8489AEA11E815259007D88D9 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsNavigationController.swift; sourceTree = "<group>"; };
-		84A5D5B41E821EA500B05B22 /* Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step1ViewController.swift; sourceTree = "<group>"; };
+		84A5D5B41E821EA500B05B22 /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		93A59B7A40731FBBE3F116C9 /* Pods-口袋名單.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.debug.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +95,7 @@
 		84A5D5B71E822B3100B05B22 /* createCell */ = {
 			isa = PBXGroup;
 			children = (
-				84A5D5B41E821EA500B05B22 /* Step1ViewController.swift */,
+				84A5D5B41E821EA500B05B22 /* StepsViewController.swift */,
 			);
 			name = createCell;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84A5D5B51E821EA500B05B22 /* Step1ViewController.swift in Sources */,
+				84A5D5B51E821EA500B05B22 /* StepsViewController.swift in Sources */,
 				8489AEA21E815259007D88D9 /* ShareViewController.swift in Sources */,
 				8489AEA01E814EE6007D88D9 /* TabBarController.swift in Sources */,
 				84331CB01E812BBA0060CB74 /* LoginViewController.swift in Sources */,
