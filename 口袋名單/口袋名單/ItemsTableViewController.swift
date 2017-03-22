@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemsTableViewController: UITableViewController {
+class ItemsTableViewController: UITableViewController, UINavigationControllerDelegate {
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,8 @@ class ItemsTableViewController: UITableViewController {
     }
     
     func pressPlusButton() {
-        print(123)
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Step1ViewController")
+            self.present(vc, animated: true, completion: nil)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
