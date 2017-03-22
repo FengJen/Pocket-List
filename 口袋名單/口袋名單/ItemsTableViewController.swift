@@ -12,9 +12,25 @@ class ItemsTableViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUp()
     }
-
+    func setUp() {
+        newButton()
+    }
+    
+    func newButton() {
+        let newButton = UIButton(type: .custom)
+        newButton.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
+        newButton.frame = CGRect(x: 5, y: 5, width: 30, height: 30)
+        newButton.addTarget(self, action: #selector(pressPlusButton), for: .touchUpInside)
+        let leftButton = UIBarButtonItem(customView: newButton)
+        
+        self.navigationItem.setLeftBarButton(leftButton, animated: true)
+    }
+    
+    func pressPlusButton() {
+        print(123)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
