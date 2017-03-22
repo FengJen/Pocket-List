@@ -30,7 +30,7 @@ class ItemsTableViewController: UITableViewController, UINavigationControllerDel
     
     func pressPlusButton() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Step1ViewController")
-            self.present(vc, animated: true, completion: nil)
+            navigationController?.pushViewController(vc, animated: true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -150,10 +150,12 @@
         <!--Step1 View Controller-->
         <scene sceneID="YL7-oJ-hZi">
             <objects>
-                <pageViewController storyboardIdentifier="Step1ViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Ky6-S0-L3l" customClass="Step1ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="Step1ViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Ky6-S0-L3l" customClass="Step1ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="p2l-KI-IwA"/>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Eb-M4-pOV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3304" y="-554"/>
+            <point key="canvasLocation" x="4242.3999999999996" y="-554.57271364317842"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="kHL-7Q-F0F">
@@ -171,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v39-vy-HB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4060" y="-547"/>
+            <point key="canvasLocation" x="4999.1999999999998" y="-547.37631184407803"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Bdu-Vo-rgy">
@@ -189,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7V-IQ-dqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4753" y="-547"/>
+            <point key="canvasLocation" x="5692" y="-547.37631184407803"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ZzX-i9-aT0">
@@ -207,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBo-b7-Hic" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5439" y="-547"/>
+            <point key="canvasLocation" x="6376.8000000000002" y="-547.37631184407803"/>
         </scene>
         <!--Items Table View Controller-->
         <scene sceneID="fGa-om-QVN">
@@ -327,6 +329,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bk-Vc-fJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2494" y="859"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GVG-so-dH0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gN7-qw-mIJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WNB-8V-QUl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ky6-S0-L3l" kind="relationship" relationship="rootViewController" id="Adx-Ag-epx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bih-gH-s4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3303.1999999999998" y="-554.57271364317842"/>
         </scene>
     </scenes>
 </document>

@@ -6,9 +6,12 @@ class Step1ViewController: UIPageViewController, UIPageViewControllerDataSource 
         let step1VC = storyBoard.instantiateViewController(withIdentifier: "step1")
         let step2VC = storyBoard.instantiateViewController(withIdentifier: "step2")
         let step3VC = storyBoard.instantiateViewController(withIdentifier: "step3")
-        return [step1VC, step1VC, step1VC]
+        return [step1VC, step2VC, step3VC]
     }()
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
