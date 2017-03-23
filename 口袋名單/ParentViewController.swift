@@ -36,7 +36,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         }
     }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let child1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemsTableiewController")
+        let child1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodTableiewController")
         let child2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesTableiewController")
         return [child1, child2]
     }

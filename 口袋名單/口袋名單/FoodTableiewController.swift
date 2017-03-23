@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class ItemsTableiewController: UITableViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
+class FoodTableiewController: UITableViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
         
     override func viewDidLoad() {
         super.viewDidLoad()

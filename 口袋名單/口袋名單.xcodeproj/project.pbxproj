@@ -14,7 +14,7 @@
 		848509C11E7FCC4F00A9770B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848509C01E7FCC4F00A9770B /* Assets.xcassets */; };
 		848509C41E7FCC4F00A9770B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848509C21E7FCC4F00A9770B /* LaunchScreen.storyboard */; };
 		848509CD1E7FFF7E00A9770B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */; };
-		848509D21E8116C300A9770B /* ItemsTableiewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509D01E8116C300A9770B /* ItemsTableiewController.swift */; };
+		848509D21E8116C300A9770B /* FoodTableiewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509D01E8116C300A9770B /* FoodTableiewController.swift */; };
 		848509D31E8116C300A9770B /* ItemsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848509D11E8116C300A9770B /* ItemsTableViewController.xib */; };
 		8489AEA01E814EE6007D88D9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489AE9F1E814EE6007D88D9 /* TabBarController.swift */; };
 		8489AEA21E815259007D88D9 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489AEA11E815259007D88D9 /* ShareViewController.swift */; };
@@ -41,7 +41,7 @@
 		848509C31E7FCC4F00A9770B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848509C51E7FCC4F00A9770B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		848509D01E8116C300A9770B /* ItemsTableiewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsTableiewController.swift; sourceTree = "<group>"; };
+		848509D01E8116C300A9770B /* FoodTableiewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTableiewController.swift; sourceTree = "<group>"; };
 		848509D11E8116C300A9770B /* ItemsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemsTableViewController.xib; sourceTree = "<group>"; };
 		8489AE9F1E814EE6007D88D9 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8489AEA11E815259007D88D9 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				84C1245F1E82BACD00B48360 /* ParentViewController.swift */,
-				848509D01E8116C300A9770B /* ItemsTableiewController.swift */,
+				848509D01E8116C300A9770B /* FoodTableiewController.swift */,
 				84C124641E83B89C00B48360 /* SitesTableiewController.swift */,
 				84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */,
 				8489AE9F1E814EE6007D88D9 /* TabBarController.swift */,
@@ -313,7 +313,7 @@
 				84C124621E83799900B48360 /* Constant.swift in Sources */,
 				84A5D5B31E821E5300B05B22 /* ItemsNavigationController.swift in Sources */,
 				848509BA1E7FCC4F00A9770B /* AppDelegate.swift in Sources */,
-				848509D21E8116C300A9770B /* ItemsTableiewController.swift in Sources */,
+				848509D21E8116C300A9770B /* FoodTableiewController.swift in Sources */,
 				84C124651E83B89C00B48360 /* SitesTableiewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

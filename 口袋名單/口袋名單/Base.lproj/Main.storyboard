@@ -359,10 +359,10 @@
             </objects>
             <point key="canvasLocation" x="6376.8000000000002" y="-547.37631184407803"/>
         </scene>
-        <!--Items Tableiew Controller-->
+        <!--Food Tableiew Controller-->
         <scene sceneID="fGa-om-QVN">
             <objects>
-                <tableViewController storyboardIdentifier="ItemsTableiewController" id="Re1-PW-aZ1" customClass="ItemsTableiewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FoodTableiewController" id="Re1-PW-aZ1" customClass="FoodTableiewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Yz-cu-7St">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
