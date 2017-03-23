@@ -188,30 +188,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssp-wE-g0i">
-                                <rect key="frame" x="279" y="593" width="60" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Jh3-xR-Cqt"/>
-                                    <constraint firstAttribute="width" constant="60" id="LPL-hm-60R"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhp-ve-cCQ">
+                                <rect key="frame" x="297" y="601" width="42" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <action selector="tostep2:" destination="l9T-AL-T9n" eventType="touchUpInside" id="R3e-NX-NMx"/>
+                                    <action selector="nextPage:" destination="l9T-AL-T9n" eventType="touchUpInside" id="el4-gr-V1X"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jhp-ve-cCQ" secondAttribute="trailing" constant="20" id="3C8-wc-9jJ"/>
                             <constraint firstItem="VvN-ys-GTb" firstAttribute="centerX" secondItem="rdT-1Z-wCp" secondAttribute="centerX" id="6fx-sG-DhW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ugF-nI-NH2" secondAttribute="trailing" constant="80" id="D44-kW-q41"/>
                             <constraint firstItem="VvN-ys-GTb" firstAttribute="top" secondItem="ugF-nI-NH2" secondAttribute="bottom" constant="30" id="MdK-1r-tCJ"/>
-                            <constraint firstItem="y1p-EN-DaC" firstAttribute="top" secondItem="ssp-wE-g0i" secondAttribute="bottom" constant="30" id="Ufl-Vo-CSR"/>
+                            <constraint firstItem="y1p-EN-DaC" firstAttribute="top" secondItem="Jhp-ve-cCQ" secondAttribute="bottom" constant="30" id="WZQ-1q-BFe"/>
                             <constraint firstItem="ugF-nI-NH2" firstAttribute="leading" secondItem="rdT-1Z-wCp" secondAttribute="leadingMargin" constant="80" id="f7m-RH-oIy"/>
                             <constraint firstItem="ugF-nI-NH2" firstAttribute="top" secondItem="UGQ-f8-C5z" secondAttribute="bottom" constant="100" id="mz5-PF-ajl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ssp-wE-g0i" secondAttribute="trailing" constant="20" id="q0H-NL-viD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="Jhp-ve-cCQ" id="0GN-w4-7Ih"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v39-vy-HB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -256,7 +255,6 @@
                                 <state key="normal" title="Next"/>
                                 <connections>
                                     <action selector="toPage3Button:" destination="Uci-mE-zsa" eventType="touchUpInside" id="Xou-mL-dbH"/>
-                                    <action selector="uploadTitle:" destination="Uci-mE-zsa" eventType="touchUpInside" id="MOD-WG-sLy"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZpR-Yr-0zm">
@@ -284,6 +282,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="button" destination="HfM-0c-km4" id="Xg4-R4-AL1"/>
                         <outlet property="placeTitle" destination="ZpR-Yr-0zm" id="MRc-Y3-A2D"/>
                         <outlet property="title" destination="ZpR-Yr-0zm" id="CJw-uT-Fby"/>
                     </connections>

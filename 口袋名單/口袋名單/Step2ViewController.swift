@@ -11,7 +11,8 @@ import Firebase
 import FirebaseDatabase
 
 class Step2ViewController: UIViewController {
-    weak var button = UIButton()
+    
+    @IBOutlet weak var button: UIButton!
     
     @IBOutlet weak var placeTitle: UITextField!
 
@@ -22,20 +23,17 @@ class Step2ViewController: UIViewController {
     }
   
     @IBAction func toPage3Button(_ sender: UIButton) {
-        if placeTitle.text != "" {
-        sender.addTarget(self, action: #selector(presentStep3), for: .touchUpInside)
-        }
-    }
-    @IBAction func uploadTitle(_ sender: Any) {
-        if let button = sender as? UIButton {
-            button.addTarget(self, action: #selector(uploadData), for: .touchUpInside)
+        if placeTitle.text == "" {
+            uploadData()
+        } else {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: "step3")
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     func presentStep3() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "step3")
-        navigationController?.pushViewController(vc, animated: true)
+       
     }
     
     override func didReceiveMemoryWarning() {
