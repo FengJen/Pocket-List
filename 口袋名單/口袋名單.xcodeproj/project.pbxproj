@@ -14,7 +14,7 @@
 		848509C11E7FCC4F00A9770B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848509C01E7FCC4F00A9770B /* Assets.xcassets */; };
 		848509C41E7FCC4F00A9770B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848509C21E7FCC4F00A9770B /* LaunchScreen.storyboard */; };
 		848509CD1E7FFF7E00A9770B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */; };
-		848509D21E8116C300A9770B /* ItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509D01E8116C300A9770B /* ItemsTableViewController.swift */; };
+		848509D21E8116C300A9770B /* ItemsTableiewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509D01E8116C300A9770B /* ItemsTableiewController.swift */; };
 		848509D31E8116C300A9770B /* ItemsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848509D11E8116C300A9770B /* ItemsTableViewController.xib */; };
 		8489AEA01E814EE6007D88D9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489AE9F1E814EE6007D88D9 /* TabBarController.swift */; };
 		8489AEA21E815259007D88D9 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489AEA11E815259007D88D9 /* ShareViewController.swift */; };
@@ -25,6 +25,7 @@
 		84C1245A1E82901700B48360 /* Step3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124591E82901700B48360 /* Step3ViewController.swift */; };
 		84C124601E82BACD00B48360 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1245F1E82BACD00B48360 /* ParentViewController.swift */; };
 		84C124621E83799900B48360 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124611E83799900B48360 /* Constant.swift */; };
+		84C124651E83B89C00B48360 /* SitesTableiewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124641E83B89C00B48360 /* SitesTableiewController.swift */; };
 		F57526EE0E48334EBDA6EFD6 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7890F73A3897EF95423CE777 /* Pods_____.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +41,7 @@
 		848509C31E7FCC4F00A9770B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848509C51E7FCC4F00A9770B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		848509D01E8116C300A9770B /* ItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsTableViewController.swift; sourceTree = "<group>"; };
+		848509D01E8116C300A9770B /* ItemsTableiewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsTableiewController.swift; sourceTree = "<group>"; };
 		848509D11E8116C300A9770B /* ItemsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemsTableViewController.xib; sourceTree = "<group>"; };
 		8489AE9F1E814EE6007D88D9 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8489AEA11E815259007D88D9 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		84C124591E82901700B48360 /* Step3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step3ViewController.swift; sourceTree = "<group>"; };
 		84C1245F1E82BACD00B48360 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentViewController.swift; path = ../ParentViewController.swift; sourceTree = "<group>"; };
 		84C124611E83799900B48360 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		84C124641E83B89C00B48360 /* SitesTableiewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SitesTableiewController.swift; sourceTree = "<group>"; };
 		93A59B7A40731FBBE3F116C9 /* Pods-口袋名單.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.debug.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,10 +127,11 @@
 		84A5D5B91E822B7700B05B22 /* mainPage */ = {
 			isa = PBXGroup;
 			children = (
-				848509D01E8116C300A9770B /* ItemsTableViewController.swift */,
+				84C1245F1E82BACD00B48360 /* ParentViewController.swift */,
+				848509D01E8116C300A9770B /* ItemsTableiewController.swift */,
+				84C124641E83B89C00B48360 /* SitesTableiewController.swift */,
 				84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */,
 				8489AE9F1E814EE6007D88D9 /* TabBarController.swift */,
-				84C1245F1E82BACD00B48360 /* ParentViewController.swift */,
 			);
 			name = mainPage;
 			sourceTree = "<group>";
@@ -310,7 +313,8 @@
 				84C124621E83799900B48360 /* Constant.swift in Sources */,
 				84A5D5B31E821E5300B05B22 /* ItemsNavigationController.swift in Sources */,
 				848509BA1E7FCC4F00A9770B /* AppDelegate.swift in Sources */,
-				848509D21E8116C300A9770B /* ItemsTableViewController.swift in Sources */,
+				848509D21E8116C300A9770B /* ItemsTableiewController.swift in Sources */,
+				84C124651E83B89C00B48360 /* SitesTableiewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

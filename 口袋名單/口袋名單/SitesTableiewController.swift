@@ -1,35 +1,29 @@
 //
-//  ItemsTableViewController.swift
+//  SitesTableiewControllerTableViewController.swift
 //  口袋名單
 //
-//  Created by 謝豐任 on 2017/3/21.
+//  Created by 謝豐任 on 2017/3/23.
 //  Copyright © 2017年 appworks. All rights reserved.
 //
 
 import UIKit
 import XLPagerTabStrip
 
-class ItemsTableViewController: UITableViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
-        
+class SitesTableiewController: UITableViewController, IndicatorInfoProvider {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
-    }
-    func setUp() {
-        newButton()
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "ItemsTableViewController")
-    }
-    func newButton() {
-        let newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(pressPlusButton))
-        self.navigationItem.setLeftBarButton(newButton, animated: true)
+        return IndicatorInfo(title: "Sites")
     }
     
-    func pressPlusButton() {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StepsViewController")
-            navigationController?.pushViewController(vc, animated: true)
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -101,5 +95,5 @@ class ItemsTableViewController: UITableViewController, UINavigationControllerDel
         // Pass the selected object to the new view controller.
     }
     */
-    
+
 }

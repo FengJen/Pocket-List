@@ -8,9 +8,8 @@
 
 import UIKit
 import Firebase
-import XLPagerTabStrip
 
-class ShareViewController: UIViewController, IndicatorInfoProvider {
+class ShareViewController: UIViewController {
 
     @IBAction func logOut(_ sender: Any) {
         if FIRAuth.auth()?.currentUser != nil {
@@ -28,9 +27,7 @@ class ShareViewController: UIViewController, IndicatorInfoProvider {
 
         // Do any additional setup after loading the view.
     }
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "ShareViewController")
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
