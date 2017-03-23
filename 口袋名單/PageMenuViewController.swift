@@ -1,5 +1,5 @@
 //
-//  Step1ViewController.swift
+//  PageMenuViewController.swift
 //  口袋名單
 //
 //  Created by 謝豐任 on 2017/3/22.
@@ -8,23 +8,11 @@
 
 import UIKit
 
-class Step1ViewController: UIViewController {
-
+class PageMenuViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-    @IBAction func toPage2Button(_ sender: Any) {
-        if let button = sender as? UIButton {
-        button.addTarget(self, action: #selector(presentStep2), for: .touchUpInside)
-        }
-    }
-    func presentStep2() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "step2")
-        UIApplication.shared.keyWindow?.rootViewController = vc
+        //var pageMenu: CAPSPageMenu?
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class Step2ViewController: UIViewController {
+    weak var button = UIButton()
+    
+    @IBOutlet weak var placeTitle: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,18 +24,28 @@ class Step2ViewController: UIViewController {
     @IBAction func toPage3Button(_ sender: UIButton) {
         sender.addTarget(self, action: #selector(presentStep2), for: .touchUpInside)
     }
+    @IBAction func uploadTitle(_ sender: Any) {
+        if let button = sender as? UIButton {
+            button.addTarget(self, action: #selector(uploadData), for: .touchUpInside)
+        }
+    }
     
     func presentStep2() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "step3")
-        navigationController?.pushViewController(vc, animated: true)
+        UIApplication.shared.keyWindow?.rootViewController = vc
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func uploadData() {
+        if let uid = constants.uid, let title = placeTitle.text {
+        let ref = FIRDatabase.database().reference()
+            ref.child("user").child(uid).child("cell").setValue(title)
+        }
+    }
 
     /*
     // MARK: - Navigation
