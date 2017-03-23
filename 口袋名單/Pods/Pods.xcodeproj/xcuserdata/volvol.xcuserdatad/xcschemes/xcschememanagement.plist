@@ -14,12 +14,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>PageMenu.xcscheme</key>
+		<key>Pods-口袋名單.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-口袋名單.xcscheme</key>
+		<key>XLPagerTabStrip-XLPagerTabStrip.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>XLPagerTabStrip.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,12 +37,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>709483D302BDE9AF40051D9B9978592D</key>
+		<key>29B62416540079AC18848DCAA3FE54FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>748D6F942CE2FCBF404F5C2E476BEC4A</key>
+		<key>5EE32653937448ADEEE4EA195AB921C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F82C50A0AF2D6684E6E9E0628AB77B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

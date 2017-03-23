@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '748D6F942CE2FCBF404F5C2E476BEC4A'
-               BlueprintName = 'PageMenu'
+               BlueprintIdentifier = '9F82C50A0AF2D6684E6E9E0628AB77B6'
+               BlueprintName = 'XLPagerTabStrip-XLPagerTabStrip'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'PageMenu.framework'>
+               BuildableName = 'XLPagerTabStrip.bundle'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

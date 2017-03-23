@@ -10,5 +10,5 @@ target '口袋名單' do
     pod 'Firebase/Auth'
     pod 'Firebase/Core'
     pod 'Firebase/Database'
-    pod 'PageMenu'
+    pod 'XLPagerTabStrip', '~> 7.0'
 end

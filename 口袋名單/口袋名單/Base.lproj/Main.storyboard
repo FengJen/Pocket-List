@@ -197,7 +197,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <action selector="toPage2Button:" destination="l9T-AL-T9n" eventType="touchUpInside" id="r34-ja-TP0"/>
+                                    <action selector="tostep2:" destination="l9T-AL-T9n" eventType="touchUpInside" id="R3e-NX-NMx"/>
                                 </connections>
                             </button>
                         </subviews>

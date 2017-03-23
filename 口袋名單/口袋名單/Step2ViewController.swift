@@ -22,7 +22,7 @@ class Step2ViewController: UIViewController {
     }
   
     @IBAction func toPage3Button(_ sender: UIButton) {
-        sender.addTarget(self, action: #selector(presentStep2), for: .touchUpInside)
+        sender.addTarget(self, action: #selector(presentStep3), for: .touchUpInside)
     }
     @IBAction func uploadTitle(_ sender: Any) {
         if let button = sender as? UIButton {
@@ -30,10 +30,10 @@ class Step2ViewController: UIViewController {
         }
     }
     
-    func presentStep2() {
+    func presentStep3() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "step3")
-        UIApplication.shared.keyWindow?.rootViewController = vc
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,7 +43,7 @@ class Step2ViewController: UIViewController {
     func uploadData() {
         if let uid = constants.uid, let title = placeTitle.text {
         let ref = FIRDatabase.database().reference()
-            ref.child("user").child(uid).child("cell").setValue(title)
+            ref.child("user").child(uid).child("cell").childByAutoId().child(title).setValue(title)
         }
     }
 
