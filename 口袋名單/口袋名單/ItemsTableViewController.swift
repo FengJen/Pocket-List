@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import XLPagerTabStrip
 
-class ItemsTableViewController: UITableViewController, UINavigationControllerDelegate {
+class ItemsTableViewController: UITableViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +18,9 @@ class ItemsTableViewController: UITableViewController, UINavigationControllerDel
     func setUp() {
         newButton()
     }
-    
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "ItemsTableViewController")
+    }
     func newButton() {
         let newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(pressPlusButton))
         self.navigationItem.setLeftBarButton(newButton, animated: true)
