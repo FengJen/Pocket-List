@@ -22,7 +22,9 @@ class Step2ViewController: UIViewController {
     }
   
     @IBAction func toPage3Button(_ sender: UIButton) {
+        if placeTitle.text != "" {
         sender.addTarget(self, action: #selector(presentStep3), for: .touchUpInside)
+        }
     }
     @IBAction func uploadTitle(_ sender: Any) {
         if let button = sender as? UIButton {
@@ -42,8 +44,15 @@ class Step2ViewController: UIViewController {
     }
     func uploadData() {
         if let uid = constants.uid, let title = placeTitle.text {
+            if title == "" {
+                let allert = UIAlertController(title: "您還未輸入標題", message: "請輸入新增項目的標題", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                allert.addAction(action)
+                self.present(allert, animated: true, completion: nil)
+            } else {
         let ref = FIRDatabase.database().reference()
-            ref.child("user").child(uid).child("cell").childByAutoId().child(title).setValue(title)
+            ref.child("user").child(uid).child("cell").childByAutoId().child("title").setValue(title)
+            }
         }
     }
 

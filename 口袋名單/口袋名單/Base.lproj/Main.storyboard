@@ -354,6 +354,9 @@
                             <constraint firstItem="2We-aX-9FE" firstAttribute="top" secondItem="s6I-t6-bXH" secondAttribute="bottom" constant="30" id="qra-Og-WTl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="website" destination="kjx-gf-TkN" id="eE6-mt-oZf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBo-b7-Hic" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

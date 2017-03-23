@@ -13,8 +13,9 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     override func viewDidLoad() {
         setUp()
-        super.viewDidLoad()
         
+        super.viewDidLoad()
+        newButton()
     }
 
     func setUp() {
@@ -34,6 +35,15 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
             oldCell?.label.textColor = .black
             newCell?.label.textColor = UIColor(red: 0.13, green: 0.03, blue: 0.25, alpha: 1.0)
         }
+    }
+    func newButton() {
+        let newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(pressPlusButton))
+        self.navigationItem.setLeftBarButton(newButton, animated: true)
+    }
+    
+    func pressPlusButton() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StepsViewController")
+        navigationController?.pushViewController(vc, animated: true)
     }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let child1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodTableiewController")

@@ -16,20 +16,11 @@ class FoodTableiewController: UITableViewController, UINavigationControllerDeleg
         setUp()
     }
     func setUp() {
-        newButton()
     }
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Food")
     }
-    func newButton() {
-        let newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(pressPlusButton))
-        self.navigationItem.setLeftBarButton(newButton, animated: true)
-    }
-    
-    func pressPlusButton() {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StepsViewController")
-            navigationController?.pushViewController(vc, animated: true)
-    }
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
