@@ -5,19 +5,15 @@ import FirebaseDatabase
 class Step3ViewController: UIViewController {
     @IBOutlet weak var website: UITextField!
 
+    @IBAction func doneFillingInfo(_ sender: Any) {
+        
+            uploadData()
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
+            self.present(vc, animated: true, completion: nil)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        storeData()
-    }
-    
-    //test button
-    func storeData() {
-        let button = UIButton(frame: CGRect(x: 20, y: 550, width: 40, height: 40))
-        view.addSubview(button)
-        button.backgroundColor = UIColor.red
-        button.addTarget(self, action: #selector(uploadData), for: .touchUpInside)
-        button.titleLabel?.text = "test"
-        
     }
     
     func uploadData() {
@@ -28,10 +24,11 @@ class Step3ViewController: UIViewController {
                 allert.addAction(action)
                 self.present(allert, animated: true, completion: nil)
             } else {
-                let ref = FIRDatabase.database().reference()
-                ref.child("user").child(uid).child("cell").childByAutoId().child("url").setValue(url)
+                let ref = FIRDatabase.database().reference().child("user").child(uid)
+                let refKey = ref.key
+                let data = [refKey: ["url": url]]
+                ref.setValue(data)
             }
         }
     }
-    
 }

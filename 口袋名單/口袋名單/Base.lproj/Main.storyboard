@@ -188,29 +188,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhp-ve-cCQ">
-                                <rect key="frame" x="297" y="601" width="42" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="nextPage:" destination="l9T-AL-T9n" eventType="touchUpInside" id="el4-gr-V1X"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Jhp-ve-cCQ" secondAttribute="trailing" constant="20" id="3C8-wc-9jJ"/>
                             <constraint firstItem="VvN-ys-GTb" firstAttribute="centerX" secondItem="rdT-1Z-wCp" secondAttribute="centerX" id="6fx-sG-DhW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ugF-nI-NH2" secondAttribute="trailing" constant="80" id="D44-kW-q41"/>
                             <constraint firstItem="VvN-ys-GTb" firstAttribute="top" secondItem="ugF-nI-NH2" secondAttribute="bottom" constant="30" id="MdK-1r-tCJ"/>
-                            <constraint firstItem="y1p-EN-DaC" firstAttribute="top" secondItem="Jhp-ve-cCQ" secondAttribute="bottom" constant="30" id="WZQ-1q-BFe"/>
                             <constraint firstItem="ugF-nI-NH2" firstAttribute="leading" secondItem="rdT-1Z-wCp" secondAttribute="leadingMargin" constant="80" id="f7m-RH-oIy"/>
                             <constraint firstItem="ugF-nI-NH2" firstAttribute="top" secondItem="UGQ-f8-C5z" secondAttribute="bottom" constant="100" id="mz5-PF-ajl"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="button" destination="Jhp-ve-cCQ" id="0GN-w4-7Ih"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v39-vy-HB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -243,20 +230,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfM-0c-km4">
-                                <rect key="frame" x="279" y="593" width="60" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="7eV-tx-MuO"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Buc-Xo-opG"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="NVR-Km-xx0"/>
-                                    <constraint firstAttribute="width" constant="60" id="clF-yG-vgK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="toPage3Button:" destination="Uci-mE-zsa" eventType="touchUpInside" id="Xou-mL-dbH"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZpR-Yr-0zm">
                                 <rect key="frame" x="46" y="281.5" width="283" height="30"/>
                                 <constraints>
@@ -266,17 +239,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfM-0c-km4">
+                                <rect key="frame" x="36" y="583" width="60" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7eV-tx-MuO"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Buc-Xo-opG"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="NVR-Km-xx0"/>
+                                    <constraint firstAttribute="width" constant="60" id="clF-yG-vgK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="test"/>
+                                <connections>
+                                    <action selector="toPage3Button:" destination="Uci-mE-zsa" eventType="touchUpInside" id="Xou-mL-dbH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="HfM-0c-km4" secondAttribute="trailing" constant="20" id="1CM-6Q-3Dr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HfM-0c-km4" secondAttribute="trailing" constant="263" id="1CM-6Q-3Dr"/>
                             <constraint firstItem="sd5-4k-1VL" firstAttribute="top" secondItem="8lt-Gy-vBt" secondAttribute="bottom" constant="30" id="3dP-QE-hoh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZpR-Yr-0zm" secondAttribute="trailing" constant="30" id="Ef6-M8-ASx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8lt-Gy-vBt" secondAttribute="trailing" constant="80" id="Flu-jj-5Vl"/>
                             <constraint firstItem="8lt-Gy-vBt" firstAttribute="top" secondItem="vL9-4z-zFy" secondAttribute="bottom" constant="100" id="Oh5-sm-Dex"/>
                             <constraint firstItem="sd5-4k-1VL" firstAttribute="centerX" secondItem="pZx-M9-cfH" secondAttribute="centerX" id="Wwg-UA-4pt"/>
                             <constraint firstItem="ZpR-Yr-0zm" firstAttribute="top" secondItem="sd5-4k-1VL" secondAttribute="bottom" constant="50" id="aD5-FT-qcc"/>
-                            <constraint firstItem="2eZ-gR-rpG" firstAttribute="top" secondItem="HfM-0c-km4" secondAttribute="bottom" constant="30" id="iAl-Ln-uie"/>
+                            <constraint firstItem="2eZ-gR-rpG" firstAttribute="top" secondItem="HfM-0c-km4" secondAttribute="bottom" constant="40" id="iAl-Ln-uie"/>
                             <constraint firstItem="8lt-Gy-vBt" firstAttribute="leading" secondItem="pZx-M9-cfH" secondAttribute="leadingMargin" constant="80" id="tZg-H6-Ccj"/>
                             <constraint firstItem="ZpR-Yr-0zm" firstAttribute="leading" secondItem="pZx-M9-cfH" secondAttribute="leadingMargin" constant="30" id="wgi-xg-a4y"/>
                         </constraints>
@@ -328,6 +315,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneFillingInfo:" destination="qOm-uI-gId" eventType="touchUpInside" id="vCw-lR-zml"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kjx-gf-TkN">
                                 <rect key="frame" x="46" y="281.5" width="283" height="30"/>
