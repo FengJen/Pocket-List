@@ -283,7 +283,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="貼上想儲存的網址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kI3-LU-stk">
-                                <rect key="frame" x="114" y="210" width="147" height="21.5"/>
+                                <rect key="frame" x="114" y="391" width="147" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -303,7 +303,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kjx-gf-TkN">
-                                <rect key="frame" x="46" y="281.5" width="283" height="30"/>
+                                <rect key="frame" x="46" y="437" width="283" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="h4G-DL-gJq"/>
                                 </constraints>
@@ -311,22 +311,41 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P0C-zu-ug4">
+                                <rect key="frame" x="46" y="293" width="283" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請輸入標題" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rb-rp-Wfa">
+                                <rect key="frame" x="114" y="247" width="147" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="P0C-zu-ug4" secondAttribute="trailing" constant="30" id="OFp-h4-qUV"/>
+                            <constraint firstItem="5Rb-rp-Wfa" firstAttribute="top" secondItem="4mq-eR-c4h" secondAttribute="bottom" constant="67" id="PH9-bC-yQE"/>
+                            <constraint firstItem="5Rb-rp-Wfa" firstAttribute="leading" secondItem="AY4-RP-gs0" secondAttribute="leadingMargin" constant="98" id="Pto-49-coQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="s6I-t6-bXH" secondAttribute="trailing" constant="20" id="Sbl-qF-pQT"/>
                             <constraint firstItem="4mq-eR-c4h" firstAttribute="top" secondItem="FLJ-Au-7ZU" secondAttribute="bottom" constant="100" id="TyZ-bl-Us3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kjx-gf-TkN" secondAttribute="trailing" constant="30" id="VCs-Qh-15k"/>
                             <constraint firstItem="4mq-eR-c4h" firstAttribute="leading" secondItem="AY4-RP-gs0" secondAttribute="leadingMargin" constant="80" id="Wxx-Hx-7zF"/>
-                            <constraint firstItem="kI3-LU-stk" firstAttribute="top" secondItem="4mq-eR-c4h" secondAttribute="bottom" constant="30" id="YNk-Rk-8Tm"/>
+                            <constraint firstItem="kI3-LU-stk" firstAttribute="top" secondItem="4mq-eR-c4h" secondAttribute="bottom" constant="211" id="YNk-Rk-8Tm"/>
                             <constraint firstItem="kjx-gf-TkN" firstAttribute="leading" secondItem="AY4-RP-gs0" secondAttribute="leadingMargin" constant="30" id="aFx-KY-czs"/>
-                            <constraint firstItem="kjx-gf-TkN" firstAttribute="top" secondItem="kI3-LU-stk" secondAttribute="bottom" constant="50" id="aRV-Zd-Nyo"/>
+                            <constraint firstItem="kjx-gf-TkN" firstAttribute="top" secondItem="kI3-LU-stk" secondAttribute="bottom" constant="24.5" id="aRV-Zd-Nyo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4mq-eR-c4h" secondAttribute="trailing" constant="80" id="oha-E2-Aj9"/>
                             <constraint firstItem="kI3-LU-stk" firstAttribute="centerX" secondItem="AY4-RP-gs0" secondAttribute="centerX" id="pNc-Ug-piU"/>
                             <constraint firstItem="2We-aX-9FE" firstAttribute="top" secondItem="s6I-t6-bXH" secondAttribute="bottom" constant="30" id="qra-Og-WTl"/>
+                            <constraint firstItem="P0C-zu-ug4" firstAttribute="top" secondItem="5Rb-rp-Wfa" secondAttribute="bottom" constant="24.5" id="tsC-Ac-jBG"/>
+                            <constraint firstItem="P0C-zu-ug4" firstAttribute="leading" secondItem="AY4-RP-gs0" secondAttribute="leadingMargin" constant="30" id="x8q-AE-bGL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Rb-rp-Wfa" secondAttribute="trailing" constant="98" id="yXM-PC-a2U"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="temperaryTitle" destination="P0C-zu-ug4" id="aGh-n1-5kB"/>
                         <outlet property="website" destination="kjx-gf-TkN" id="eE6-mt-oZf"/>
                     </connections>
                 </viewController>
