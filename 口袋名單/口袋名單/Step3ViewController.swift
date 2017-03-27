@@ -2,33 +2,41 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class Step3ViewController: UIViewController {
+class Step3ViewController: UIViewController, Step2delegate {
     @IBOutlet weak var website: UITextField!
-
+    let ref = FIRDatabase.database().reference().child("user")
+    
     @IBAction func doneFillingInfo(_ sender: Any) {
-        
+        if title == "" {
+            let allert = UIAlertController(title: "您還未輸入網址", message: "請複製貼上想儲存的網址（例如google map網址）", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            allert.addAction(action)
+            self.present(allert, animated: true, completion: nil)
+        } else {
             uploadData()
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
-            self.present(vc, animated: true, completion: nil)
-        
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        Step2ViewController.shared.delegate = self
     }
     
+    func passTitle(title: String) {
+        if title == "" {
+            let allert = UIAlertController(title: "您還未輸入標題", message: "請在step 2輸入新增項目的標題", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            allert.addAction(action)
+            self.present(allert, animated: true, completion: nil)
+        } else {
+        ref.childByAutoId().setValue(["title": title])
+        }
+    }
     func uploadData() {
         if let uid = constants.uid, let url = website.text {
-            if title == "" {
-                let allert = UIAlertController(title: "您還未輸入標題", message: "請輸入新增項目的標題", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                allert.addAction(action)
-                self.present(allert, animated: true, completion: nil)
-            } else {
-                let ref = FIRDatabase.database().reference().child("user").child(uid)
-                let refKey = ref.key
-                let data = [refKey: ["url": url]]
-                ref.setValue(data)
-            }
+                let cell = ref.child(uid).childByAutoId()
+                cell.setValue(["url": url])
         }
     }
 }
