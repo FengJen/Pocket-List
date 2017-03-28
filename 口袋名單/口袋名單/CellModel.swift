@@ -1,8 +1,8 @@
 import Foundation
 
-struct CellModel {
-    let title: String
-    let content: String
-    let url: String
+class CellModel: NSObject {
+    var title: String?
+    var content: String?
+    var url: String?
 }
 
