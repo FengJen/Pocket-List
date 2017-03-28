@@ -46,8 +46,8 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let child1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodTableiewController")
-        let child2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesTableiewController")
+        let child1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
+        let child2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController")
         return [child1, child2]
     }
     override func didReceiveMemoryWarning() {

@@ -8,14 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		84331CB01E812BBA0060CB74 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84331CAF1E812BBA0060CB74 /* LoginViewController.swift */; };
+		843DA1C31E8919B300E7ECCA /* CellDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DA1C21E8919B300E7ECCA /* CellDataManager.swift */; };
+		847CBDA11E8A4649003E057A /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CBDA01E8A4649003E057A /* CellModel.swift */; };
+		847CBDA31E8A4BDF003E057A /* FoodCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CBDA21E8A4BDF003E057A /* FoodCollectionViewController.swift */; };
+		847CBDA51E8A4BF2003E057A /* SitesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CBDA41E8A4BF2003E057A /* SitesCollectionViewController.swift */; };
+		847CBDB41E8A5AF4003E057A /* CellViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CBDB21E8A5AF4003E057A /* CellViewCollectionViewCell.swift */; };
+		847CBDB51E8A5AF4003E057A /* CellViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847CBDB31E8A5AF4003E057A /* CellViewCollectionViewCell.xib */; };
 		848509BA1E7FCC4F00A9770B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509B91E7FCC4F00A9770B /* AppDelegate.swift */; };
 		848509BC1E7FCC4F00A9770B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509BB1E7FCC4F00A9770B /* SignUpViewController.swift */; };
 		848509BF1E7FCC4F00A9770B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848509BD1E7FCC4F00A9770B /* Main.storyboard */; };
 		848509C11E7FCC4F00A9770B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848509C01E7FCC4F00A9770B /* Assets.xcassets */; };
 		848509C41E7FCC4F00A9770B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848509C21E7FCC4F00A9770B /* LaunchScreen.storyboard */; };
 		848509CD1E7FFF7E00A9770B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */; };
-		848509D21E8116C300A9770B /* FoodTableiewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848509D01E8116C300A9770B /* FoodTableiewController.swift */; };
-		848509D31E8116C300A9770B /* ItemsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848509D11E8116C300A9770B /* ItemsTableViewController.xib */; };
 		8489AEA01E814EE6007D88D9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489AE9F1E814EE6007D88D9 /* TabBarController.swift */; };
 		8489AEA21E815259007D88D9 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489AEA11E815259007D88D9 /* ShareViewController.swift */; };
 		84A5D5B31E821E5300B05B22 /* ItemsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */; };
@@ -25,7 +29,6 @@
 		84C1245A1E82901700B48360 /* Step3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124591E82901700B48360 /* Step3ViewController.swift */; };
 		84C124601E82BACD00B48360 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1245F1E82BACD00B48360 /* ParentViewController.swift */; };
 		84C124621E83799900B48360 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124611E83799900B48360 /* Constant.swift */; };
-		84C124651E83B89C00B48360 /* SitesTableiewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124641E83B89C00B48360 /* SitesTableiewController.swift */; };
 		F57526EE0E48334EBDA6EFD6 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7890F73A3897EF95423CE777 /* Pods_____.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +36,12 @@
 		25098106847774A39FDBF6B0 /* Pods-口袋名單.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.release.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.release.xcconfig"; sourceTree = "<group>"; };
 		7890F73A3897EF95423CE777 /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84331CAF1E812BBA0060CB74 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		843DA1C21E8919B300E7ECCA /* CellDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDataManager.swift; sourceTree = "<group>"; };
+		847CBDA01E8A4649003E057A /* CellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		847CBDA21E8A4BDF003E057A /* FoodCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewController.swift; sourceTree = "<group>"; };
+		847CBDA41E8A4BF2003E057A /* SitesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SitesCollectionViewController.swift; sourceTree = "<group>"; };
+		847CBDB21E8A5AF4003E057A /* CellViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewCollectionViewCell.swift; sourceTree = "<group>"; };
+		847CBDB31E8A5AF4003E057A /* CellViewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellViewCollectionViewCell.xib; sourceTree = "<group>"; };
 		848509B61E7FCC4F00A9770B /* 口袋名單.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "口袋名單.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848509B91E7FCC4F00A9770B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848509BB1E7FCC4F00A9770B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -41,8 +50,6 @@
 		848509C31E7FCC4F00A9770B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848509C51E7FCC4F00A9770B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		848509D01E8116C300A9770B /* FoodTableiewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTableiewController.swift; sourceTree = "<group>"; };
-		848509D11E8116C300A9770B /* ItemsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemsTableViewController.xib; sourceTree = "<group>"; };
 		8489AE9F1E814EE6007D88D9 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8489AEA11E815259007D88D9 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsNavigationController.swift; sourceTree = "<group>"; };
@@ -52,7 +59,6 @@
 		84C124591E82901700B48360 /* Step3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step3ViewController.swift; sourceTree = "<group>"; };
 		84C1245F1E82BACD00B48360 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentViewController.swift; path = ../ParentViewController.swift; sourceTree = "<group>"; };
 		84C124611E83799900B48360 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		84C124641E83B89C00B48360 /* SitesTableiewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SitesTableiewController.swift; sourceTree = "<group>"; };
 		93A59B7A40731FBBE3F116C9 /* Pods-口袋名單.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.debug.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +106,6 @@
 				848509C21E7FCC4F00A9770B /* LaunchScreen.storyboard */,
 				848509C51E7FCC4F00A9770B /* Info.plist */,
 				848509CC1E7FFF7E00A9770B /* GoogleService-Info.plist */,
-				848509D11E8116C300A9770B /* ItemsTableViewController.xib */,
 			);
 			path = "口袋名單";
 			sourceTree = "<group>";
@@ -112,6 +117,9 @@
 				84C124551E828FF500B48360 /* Step1ViewController.swift */,
 				84C124571E82900500B48360 /* Step2ViewController.swift */,
 				84C124591E82901700B48360 /* Step3ViewController.swift */,
+				847CBDA01E8A4649003E057A /* CellModel.swift */,
+				847CBDB21E8A5AF4003E057A /* CellViewCollectionViewCell.swift */,
+				847CBDB31E8A5AF4003E057A /* CellViewCollectionViewCell.xib */,
 			);
 			name = createCell;
 			sourceTree = "<group>";
@@ -127,11 +135,12 @@
 		84A5D5B91E822B7700B05B22 /* mainPage */ = {
 			isa = PBXGroup;
 			children = (
+				847CBDA21E8A4BDF003E057A /* FoodCollectionViewController.swift */,
+				847CBDA41E8A4BF2003E057A /* SitesCollectionViewController.swift */,
 				84C1245F1E82BACD00B48360 /* ParentViewController.swift */,
-				848509D01E8116C300A9770B /* FoodTableiewController.swift */,
-				84C124641E83B89C00B48360 /* SitesTableiewController.swift */,
 				84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */,
 				8489AE9F1E814EE6007D88D9 /* TabBarController.swift */,
+				843DA1C21E8919B300E7ECCA /* CellDataManager.swift */,
 			);
 			name = mainPage;
 			sourceTree = "<group>";
@@ -225,9 +234,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847CBDB51E8A5AF4003E057A /* CellViewCollectionViewCell.xib in Resources */,
 				848509C41E7FCC4F00A9770B /* LaunchScreen.storyboard in Resources */,
 				848509C11E7FCC4F00A9770B /* Assets.xcassets in Resources */,
-				848509D31E8116C300A9770B /* ItemsTableViewController.xib in Resources */,
 				848509CD1E7FFF7E00A9770B /* GoogleService-Info.plist in Resources */,
 				848509BF1E7FCC4F00A9770B /* Main.storyboard in Resources */,
 			);
@@ -303,18 +312,21 @@
 			files = (
 				84C124601E82BACD00B48360 /* ParentViewController.swift in Sources */,
 				84A5D5B51E821EA500B05B22 /* StepsViewController.swift in Sources */,
+				843DA1C31E8919B300E7ECCA /* CellDataManager.swift in Sources */,
 				84C1245A1E82901700B48360 /* Step3ViewController.swift in Sources */,
 				84C124581E82900500B48360 /* Step2ViewController.swift in Sources */,
+				847CBDA51E8A4BF2003E057A /* SitesCollectionViewController.swift in Sources */,
 				8489AEA21E815259007D88D9 /* ShareViewController.swift in Sources */,
 				8489AEA01E814EE6007D88D9 /* TabBarController.swift in Sources */,
 				84331CB01E812BBA0060CB74 /* LoginViewController.swift in Sources */,
 				84C124561E828FF500B48360 /* Step1ViewController.swift in Sources */,
 				848509BC1E7FCC4F00A9770B /* SignUpViewController.swift in Sources */,
 				84C124621E83799900B48360 /* Constant.swift in Sources */,
+				847CBDA11E8A4649003E057A /* CellModel.swift in Sources */,
+				847CBDB41E8A5AF4003E057A /* CellViewCollectionViewCell.swift in Sources */,
+				847CBDA31E8A4BDF003E057A /* FoodCollectionViewController.swift in Sources */,
 				84A5D5B31E821E5300B05B22 /* ItemsNavigationController.swift in Sources */,
 				848509BA1E7FCC4F00A9770B /* AppDelegate.swift in Sources */,
-				848509D21E8116C300A9770B /* FoodTableiewController.swift in Sources */,
-				84C124651E83B89C00B48360 /* SitesTableiewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
