@@ -475,40 +475,6 @@
             </objects>
             <point key="canvasLocation" x="3246" y="134"/>
         </scene>
-        <!--Food Collection View Controller-->
-        <scene sceneID="cNO-hY-W2Y">
-            <objects>
-                <collectionViewController storyboardIdentifier="FoodCollectionViewController" id="bxc-wc-o4X" customClass="FoodCollectionViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="XFG-3a-06y">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0aN-0X-cOa">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CpI-gQ-00R">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="bxc-wc-o4X" id="ffL-Tk-EXy"/>
-                            <outlet property="delegate" destination="bxc-wc-o4X" id="4aM-ak-q3y"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mnm-ZT-mYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4246" y="134"/>
-        </scene>
         <!--Cell Detail View Controller-->
         <scene sceneID="45s-aJ-Vhz">
             <objects>
@@ -526,6 +492,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8M-pT-1yY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6377" y="134"/>
+        </scene>
+        <!--Food Collection View Controller-->
+        <scene sceneID="506-KE-WxZ">
+            <objects>
+                <collectionViewController storyboardIdentifier="FoodCollectionViewController" id="IBz-oJ-fh6" customClass="FoodCollectionViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="b36-ob-XWd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bJ3-vb-I0J">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="IBz-oJ-fh6" id="8Dr-Q4-x1G"/>
+                            <outlet property="delegate" destination="IBz-oJ-fh6" id="rCr-fC-mMR"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SwU-tz-fSm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4221" y="97"/>
         </scene>
         <!--Sites Collection View Controller-->
         <scene sceneID="0n3-dM-QQD">

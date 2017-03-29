@@ -9,9 +9,9 @@ class CellDetaManager {
     
     func getCellData(completion: @escaping (_ value: [CellModel]?) -> Void) {
         var value: [CellModel] = []
-        self.ref.child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("user").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
-                guard let taskSnapshot = child as? FIRDataSnapshot else { continue }
+                guard let taskSnapshot = child as? FIRDataSnapshot else { return }
                 guard let children = taskSnapshot.value as? [String: AnyObject] else { return }
                 guard let title = children["title"] as? String,
                       let url = children["url"] as? String else { return }

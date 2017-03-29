@@ -11,28 +11,28 @@ import XLPagerTabStrip
 import Firebase
 import FirebaseDatabase
 
-private let reuseIdentifier = "Cell"
 
 class FoodCollectionViewController: UICollectionViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
     var ref: FIRDatabaseReference!
-    var refHandle: UInt!
-    var cellList = [CellModel]()
+    //var refHandle: UInt!
+    var cellList: [CellModel] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
         
-        fetchUsers()
         setLayout()
+        let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
+        self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
+        CellDetaManager.shared.getCellData { (value) in
+            guard let cellArray = value else { return }
+            print("--------\(value)-----")
+            self.cellList = cellArray
+            self.collectionView?.reloadData()
+        }
+
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ItemCollectionViewCell")
-
-        // Do any additional setup after loading the view.
     }
   
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
@@ -42,6 +42,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    /*
     }
     func fetchUsers() {
         let uid = FIRAuth.auth()?.currentUser?.uid
@@ -52,7 +53,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         reference.child("user").child(uid!).queryOrdered(byChild: "title").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
             
         })
-        
+      */  
         
         /*
         
@@ -84,7 +85,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 

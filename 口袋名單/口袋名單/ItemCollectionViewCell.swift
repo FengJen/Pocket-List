@@ -9,12 +9,13 @@
 import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
-    let customCell = ItemCollectionViewCell()
+    //let customCell = ItemCollectionViewCell()
     
     @IBOutlet weak var cellTitle: UIButton!
 
     @IBAction func toContentView(_ sender: Any) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController")
+        //self.window?.rootViewController?.navigationController?.pushViewController(vc, animated: true)
         self.window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
     override func awakeFromNib() {
@@ -22,6 +23,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     func setUp() {
-        customCell.cellTitle.setTitle("", for: .normal)
+        self.cellTitle.setTitle("", for: .normal)
     }
 }
