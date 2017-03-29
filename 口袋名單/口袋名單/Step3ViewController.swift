@@ -42,7 +42,7 @@ class Step3ViewController: UIViewController {
 //        }
 //    }
     func uploadData() {
-        if let uid = constants.uid, let url = website.text, let title = temperaryTitle.text {
+        if let uid = Constants.uid, let url = website.text, let title = temperaryTitle.text {
                 let cell = ref.child(uid).childByAutoId()
             cell.setValue(["title": title, "url": url])
         }

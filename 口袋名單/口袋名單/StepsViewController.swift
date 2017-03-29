@@ -12,7 +12,11 @@ class StepsViewController: UIPageViewController, UIPageViewControllerDataSource 
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
-        
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self

@@ -52,7 +52,7 @@ class Step2ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     func uploadData() {
-        if let uid = constants.uid, let title = placeTitle.text {
+        if let uid = Constants.uid, let title = placeTitle.text {
             if title == "" {
                 
             } else {

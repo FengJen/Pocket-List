@@ -24,8 +24,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         ref = FIRDatabase.database().reference()
         
         fetchUsers()
+        setLayout()
         
-        setUp()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,9 +34,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 
         // Do any additional setup after loading the view.
     }
-    func setUp() {
-        
-    }
+  
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Food")
     }
@@ -47,9 +45,27 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     func fetchUsers() {
         let uid = FIRAuth.auth()?.currentUser?.uid
+        print("==========")
+        print(uid!)
+        print("==========")
+        let reference = FIRDatabase.database().reference()
+        reference.child("user").child(uid!).queryOrdered(byChild: "title").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+        })
+        
+        
+        /*
+        
+        (of: .value, with: { snapshot in
+            print("==========")
+            print(snapshot.value)
+            print(snapshot.key)
+            print("==========")
+            self.collectionView?.reloadData()
+        })
         let customCell = ref.child(uid!).childByAutoId()
         let customCellID = customCell.key
-        refHandle = ref.child("user").child(customCellID).observe(.childAdded, with: { (snapshot) in
+        refHandle = ref.child("user").child(uid!).observe(.childAdded, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let cellModel = CellModel()
                 cellModel.setValuesForKeys(dictionary)
@@ -60,7 +76,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                 }
             }
         })
-    }
+ */
+ }
  
 
     // MARK: UICollectionViewDataSource
@@ -77,15 +94,20 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath)
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
+        cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
         
-        
-        
-        
-    
         return cell
+        }
+        return UICollectionViewCell()
     }
 
+    func setLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14)
+        layout.minimumLineSpacing = 14
+        layout.itemSize = CGSize(width: 166, height: 166)
+    }
     // MARK: UICollectionViewDelegate
 
     /*
