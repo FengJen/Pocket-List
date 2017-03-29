@@ -128,6 +128,7 @@
 				84C124551E828FF500B48360 /* Step1ViewController.swift */,
 				84C124571E82900500B48360 /* Step2ViewController.swift */,
 				84C124591E82901700B48360 /* Step3ViewController.swift */,
+				843DA1C21E8919B300E7ECCA /* CellDataManager.swift */,
 				847CBDA01E8A4649003E057A /* CellModel.swift */,
 				847CBDB21E8A5AF4003E057A /* ItemCollectionViewCell.swift */,
 				847CBDB31E8A5AF4003E057A /* ItemCollectionViewCell.xib */,
@@ -151,7 +152,6 @@
 				84C1245F1E82BACD00B48360 /* ParentViewController.swift */,
 				84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */,
 				8489AE9F1E814EE6007D88D9 /* TabBarController.swift */,
-				843DA1C21E8919B300E7ECCA /* CellDataManager.swift */,
 			);
 			name = mainPage;
 			sourceTree = "<group>";
