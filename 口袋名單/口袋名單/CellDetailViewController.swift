@@ -9,7 +9,7 @@
 import UIKit
 
 class CellDetailViewController: UIViewController {
-    var cell = CellModel()
+    var cell = [CellModel]()
     @IBOutlet weak var editTitle: UITextField!
 
     @IBOutlet weak var editUrl: UITextField!
@@ -17,12 +17,13 @@ class CellDetailViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUp() 
         // Do any additional setup after loading the view.
     }
     
     func setUp() {
-       // editTitle.text
+        editTitle.text = cell[0].title
+        editUrl.text = cell[0].url
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -17,7 +17,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     
     var ref: FIRDatabaseReference!
     //var refHandle: UInt!
-    var cellList: [CellModel] = []
+    var cellList = [CellModel]()
     let itemPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
@@ -114,8 +114,9 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         let button = sender
         if let cell = button.superview?.superview as? ItemCollectionViewCell {
         let indexPath = collectionView?.indexPath(for: cell)
-        CellDetailViewController().cell = cellList[(indexPath?.row)!]
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController")
+        
+            guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController") as? CellDetailViewController else { return }
+            vc.cell = [self.cellList[(indexPath?.row)!]]
         self.navigationController?.pushViewController(vc, animated: true)
         }
     }
