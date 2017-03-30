@@ -21,12 +21,11 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
    
     let itemPerRow: CGFloat = 2
     let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 50.0, right: 10.0)
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
-        
+        self.navigationController?.navigationBar.isTranslucent = false
         
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
@@ -65,10 +64,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         reference.child("user").child(uid!).queryOrdered(byChild: "title").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
             
         })
-      */  
-        
-        /*
-        
         (of: .value, with: { snapshot in
             print("==========")
             print(snapshot.value)
@@ -126,8 +121,10 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let url = URL(string: cellList[indexPath.row].url!) {
-            let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+        guard let url = cellList[indexPath.row].url else { return }
+        if let getUrl = URL(string: url) {
+        //if let url = URL(string: cellList[indexPath.item].url!) {
+            let safariViewController = SFSafariViewController(url: getUrl, entersReaderIfAvailable: true)
             self.present(safariViewController, animated: true, completion: nil)
         }
     }
