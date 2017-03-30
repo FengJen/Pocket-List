@@ -18,8 +18,10 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     var ref: FIRDatabaseReference!
     //var refHandle: UInt!
     var cellList = [CellModel]()
-    let itemPerRow: CGFloat = 3
-    let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+   
+    let itemPerRow: CGFloat = 2
+    let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 50.0, right: 10.0)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +30,12 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
+        
+        //collectionView?.cellForItem(at: 1)?.topAnchor.constraint(equalTo: navigationController?.navigationBar.bottomAnchor, constant: 74)
+        
         CellDetaManager.shared.getCellData { (value) in
             guard let cellArray = value else { return }
-            print("--------\(value)-----")
+            //print("--------\(value)-----")
             self.cellList = cellArray
             
             DispatchQueue.main.async {
@@ -132,7 +137,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 extension FoodCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * (itemPerRow)
+        let paddingSpace = sectionInsets.left * (itemPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth/itemPerRow
         return CGSize(width: widthPerItem, height: widthPerItem)

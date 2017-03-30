@@ -9,30 +9,25 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-
+/*
 protocol Step2delegate: class {
     func passTitle(title: String)
 }
-
+*/
 class Step2ViewController: UIViewController {
     
     static let shared = Step2ViewController()
-    weak var delegate: Step2delegate?
+  //  weak var delegate: Step2delegate?
     
-    @IBOutlet weak var placeTitle: UITextField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        store()
+        
         
     }
-    func store() {        
-        if let title = placeTitle.text {
-            self.delegate?.passTitle(title: title)
-        }
-        
-    }
-  
+ 
+  /*
      func toPage3Button() {
         if placeTitle.text == "" {
             let allert = UIAlertController(title: "您還未輸入標題", message: "請輸入新增項目的標題", preferredStyle: .alert)
@@ -71,5 +66,5 @@ class Step2ViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+*/
 }

@@ -31,16 +31,6 @@ class Step3ViewController: UIViewController {
         //Step2ViewController.shared.delegate = self
     }
     
-//    func passTitle(title: String) {
-//        if title == "" {
-//            let allert = UIAlertController(title: "您還未輸入標題", message: "請在step 2輸入新增項目的標題", preferredStyle: .alert)
-//            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//            allert.addAction(action)
-//            self.present(allert, animated: true, completion: nil)
-//        } else {
-//        ref.childByAutoId().setValue(["title": title])
-//        }
-//    }
     func uploadData() {
         if let uid = Constants.uid, let url = website.text, let title = temperaryTitle.text {
                 let cell = ref.child(uid).childByAutoId()
