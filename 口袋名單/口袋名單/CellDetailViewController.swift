@@ -9,7 +9,11 @@
 import UIKit
 
 class CellDetailViewController: UIViewController {
+    @IBOutlet weak var editTitle: UITextField!
 
+    @IBOutlet weak var editUrl: UITextField!
+    
+    @IBOutlet weak var doneButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 

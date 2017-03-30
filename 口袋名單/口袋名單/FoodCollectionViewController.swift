@@ -10,6 +10,7 @@ import UIKit
 import XLPagerTabStrip
 import Firebase
 import FirebaseDatabase
+import SafariServices
 
 
 class FoodCollectionViewController: UICollectionViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
@@ -37,7 +38,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             }
             
         }
-        setLayout()
 
         
     }
@@ -109,43 +109,20 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
         return UICollectionViewCell()
     }
-
-    func setLayout() {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14)
-        layout.minimumLineSpacing = 14
-        layout.itemSize = CGSize(width: 166, height: 166)
-    }
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    func preformCellEditView() {
+        
+        CellDetailViewController().cell = cellList
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-    */
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let url = URL(string: cellList[indexPath.row].url) {
+            let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            self.present(safariViewController, animated: true, completion: nil)
+        }
+    }
 
 }
 
