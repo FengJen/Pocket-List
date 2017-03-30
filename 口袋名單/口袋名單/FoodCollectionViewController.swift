@@ -110,15 +110,18 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         return UICollectionViewCell()
     }
     
-    func preformCellEditView() {
-        
-        CellDetailViewController().cell = cellList
+    func preformCellEditView(sender: UIButton) {
+        let button = sender
+        if let cell = button.superview?.superview as? ItemCollectionViewCell {
+        let indexPath = collectionView?.indexPath(for: cell)
+        CellDetailViewController().cell = cellList[(indexPath?.row)!]
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController")
         self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let url = URL(string: cellList[indexPath.row].url) {
+        if let url = URL(string: cellList[indexPath.row].url!) {
             let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             self.present(safariViewController, animated: true, completion: nil)
         }

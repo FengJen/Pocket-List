@@ -1,8 +1,8 @@
 import Foundation
 
 struct CellModel {
-    var title: String
+    var title: String?
     //var content: String
-    var url: String
+    var url: String?
 }
 
