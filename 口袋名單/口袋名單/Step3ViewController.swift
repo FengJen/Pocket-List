@@ -2,8 +2,9 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class Step3ViewController: UIViewController {
+class Step3ViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var temperaryTitle: UITextField!
     @IBOutlet weak var website: UITextField!
     let ref = FIRDatabase.database().reference().child("user")
@@ -31,6 +32,21 @@ class Step3ViewController: UIViewController {
         //Step2ViewController.shared.delegate = self
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == website {
+        let move = CGPoint(x: 0, y: 250)
+        scrollView.setContentOffset(move, animated: true)
+        } 
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let move = CGPoint(x: 0, y: 0)
+        scrollView.setContentOffset(move, animated: true)
+    }
     func uploadData() {
         if let uid = Constants.uid, let url = website.text, let title = temperaryTitle.text {
                 let cell = ref.child(uid).childByAutoId()
