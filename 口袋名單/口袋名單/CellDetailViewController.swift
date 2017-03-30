@@ -9,7 +9,7 @@
 import UIKit
 
 class CellDetailViewController: UIViewController {
-    var cell = [CellModel]()
+    var cell = CellModel()
     @IBOutlet weak var editTitle: UITextField!
 
     @IBOutlet weak var editUrl: UITextField!
@@ -22,8 +22,8 @@ class CellDetailViewController: UIViewController {
     }
     
     func setUp() {
-        editTitle.text = cell[0].title
-        editUrl.text = cell[0].url
+        editTitle.text = cell.title
+        editUrl.text = cell.url
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

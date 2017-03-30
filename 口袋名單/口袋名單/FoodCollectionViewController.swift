@@ -112,11 +112,10 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     
     func preformCellEditView(sender: UIButton) {
         let button = sender
-        if let cell = button.superview?.superview as? ItemCollectionViewCell {
-        let indexPath = collectionView?.indexPath(for: cell)
-        
-            guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController") as? CellDetailViewController else { return }
-            vc.cell = [self.cellList[(indexPath?.row)!]]
+        if let cell = button.superview?.superview as? ItemCollectionViewCell,
+           let indexPath = collectionView?.indexPath(for: cell) {
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController") as? CellDetailViewController else { return }
+            vc.cell = self.cellList[(indexPath.row)]
         self.navigationController?.pushViewController(vc, animated: true)
         }
     }

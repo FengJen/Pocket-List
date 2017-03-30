@@ -3,10 +3,10 @@ import UIKit
 class StepsViewController: UIPageViewController, UIPageViewControllerDataSource {
     lazy var viewcontrollerList: [UIViewController] = {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let step1VC = storyBoard.instantiateViewController(withIdentifier: "step1")
+        //let step1VC = storyBoard.instantiateViewController(withIdentifier: "step1")
         let step2VC = storyBoard.instantiateViewController(withIdentifier: "step2")
         let step3VC = storyBoard.instantiateViewController(withIdentifier: "step3")
-        return [step1VC, step2VC, step3VC]
+        return [step2VC, step3VC]
     }()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,8 +21,8 @@ class StepsViewController: UIPageViewController, UIPageViewControllerDataSource 
         super.viewDidLoad()
         self.dataSource = self
         navigationController?.navigationBar.isTranslucent = false
-        if let firstVC = viewcontrollerList.first {
-            self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
+        if let secondVC = viewcontrollerList.first {
+            self.setViewControllers([secondVC], direction: .forward, animated: true, completion: nil)
         }
         
     }
