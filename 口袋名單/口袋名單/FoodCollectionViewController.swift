@@ -20,7 +20,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     var cellList = [CellModel]()
    
     let itemPerRow: CGFloat = 2
-    let sectionInsets = UIEdgeInsets(top: 73.0, left: 10.0, bottom: 50.0, right: 10.0)
+    let sectionInsets = UIEdgeInsets(top: 76.0, left: 10.0, bottom: 50.0, right: 10.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()

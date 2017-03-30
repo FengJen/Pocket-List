@@ -7,6 +7,8 @@ class CellDetaManager {
     let uid = FIRAuth.auth()?.currentUser?.uid
     let ref = FIRDatabase.database().reference()
     
+    typealias editData = (_ value: String) -> Void
+    // todo hadle uid
     func getCellData(completion: @escaping (_ value: [CellModel]?) -> Void) {
         var value: [CellModel] = []
         self.ref.child("user").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -22,4 +24,9 @@ class CellDetaManager {
                 completion(value)
         })
     }
+    
+    func changeCellData(title: String, url: String, completion: @escaping editData) {
+        //self.ref.child("user").child(uid!).updateChildValues(editData)
+        }
+    
 }
