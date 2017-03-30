@@ -9,6 +9,7 @@
 import UIKit
 
 class CellDetailViewController: UIViewController {
+    var cell = [CellModel]()
     @IBOutlet weak var editTitle: UITextField!
 
     @IBOutlet weak var editUrl: UITextField!

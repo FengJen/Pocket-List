@@ -13,11 +13,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cellTitle: UIButton!
 
-    @IBAction func toContentView(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController")
-        //self.window?.rootViewController?.navigationController?.pushViewController(vc, animated: true)
-        self.window?.rootViewController?.present(vc, animated: true, completion: nil)
-    }
+          // self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
