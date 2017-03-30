@@ -20,7 +20,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     var cellList = [CellModel]()
    
     let itemPerRow: CGFloat = 2
-    let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 50.0, right: 10.0)
+    let sectionInsets = UIEdgeInsets(top: 73.0, left: 10.0, bottom: 50.0, right: 10.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,7 +137,8 @@ extension FoodCollectionViewController: UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * (itemPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth/itemPerRow
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        let heightPerItem = widthPerItem - 20
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
