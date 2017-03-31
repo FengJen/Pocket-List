@@ -28,13 +28,15 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
         editUrl.text = cell.url
     }
     
-    @IBAction func editData(_ sender: Any) {
+    @IBAction func editData(_ sender: UIButton) {
         guard let text = editTitle.text else { return }
         //if text != Constants.ref.child(Constants.uid!).child(cell.autoID!).value(forKey: "title") as? String {
             
     Constants.ref.child("user").child(Constants.uid!).child(cell.autoID!).updateChildValues(["title": text])
-        //let foodVC = FoodCollectionViewController()
-        //UIApplication.shared.keyWindow?.rootViewController = foodVC
+        //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
+        
+        
+        
         
        // }
     }
