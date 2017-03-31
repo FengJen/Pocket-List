@@ -30,13 +30,15 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func editData(_ sender: Any) {
         guard let text = editTitle.text else { return }
-        //Constants.ref.child("user").child(Constants.uid!).updateChildValues(["title": text])
-        Constants.ref.child("user").child(Constants.uid!).child(cell.autoID!).updateChildValues(["title": text])
-    }
-    func changeData() {
+        //if text != Constants.ref.child(Constants.uid!).child(cell.autoID!).value(forKey: "title") as? String {
+            
+    Constants.ref.child("user").child(Constants.uid!).child(cell.autoID!).updateChildValues(["title": text])
+        //let foodVC = FoodCollectionViewController()
+        //UIApplication.shared.keyWindow?.rootViewController = foodVC
         
-        
+       // }
     }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

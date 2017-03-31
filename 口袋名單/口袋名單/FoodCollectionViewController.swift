@@ -34,7 +34,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
         CellDetaManager.shared.getCellData { (value) in
             guard let cellArray = value else { return }
-            print("--------\(value)-----")
+            //print("--------\(value)-----")
             self.cellList = cellArray
             
             DispatchQueue.main.async {
