@@ -19,6 +19,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
     func setUp() {
         self.cellTitle.setTitle("", for: .normal)
     }

@@ -36,6 +36,7 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
         //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
         
         
+        performSegue(withIdentifier: "unwindSegue", sender: sender)
         
         
        // }

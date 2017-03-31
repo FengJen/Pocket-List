@@ -30,6 +30,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ZpK-RD-1aE" id="jIa-HH-fGb"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-1x-U8m">
                                 <rect key="frame" x="16" y="336" width="343" height="44"/>
@@ -39,6 +42,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ZpK-RD-1aE" id="Svo-8h-TmD"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avJ-cW-JGv">
                                 <rect key="frame" x="111" y="483.5" width="153" height="30"/>
@@ -101,6 +107,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="5Xy-EJ-OLk"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="64L-kF-xBz">
                                 <rect key="frame" x="137" y="424" width="100" height="30"/>
@@ -124,6 +133,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="sVf-Lj-yHi"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -542,9 +554,11 @@
                         <outlet property="doneButton" destination="cVR-Wu-HD9" id="CMZ-wb-k3G"/>
                         <outlet property="editTitle" destination="5nW-7e-CyE" id="3Ha-Lc-dYD"/>
                         <outlet property="editUrl" destination="HDJ-aV-oEE" id="opV-my-scL"/>
+                        <segue destination="O9z-Zr-98b" kind="unwind" identifier="unwindSegue" unwindAction="unwindToVC1WithSegue:" id="LDd-om-DwO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8M-pT-1yY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="O9z-Zr-98b" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6376.8000000000002" y="133.5832083958021"/>
         </scene>

@@ -24,6 +24,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         ref = FIRDatabase.database().reference()
         self.navigationController?.navigationBar.isTranslucent = false //check
         
@@ -45,7 +47,9 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 
         
     }
-  
+    @IBAction func unwindToVC1(segue: UIStoryboardSegue) { }
+    
+    
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Food")
     }
