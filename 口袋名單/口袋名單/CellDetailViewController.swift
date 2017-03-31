@@ -31,9 +31,7 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func editData(_ sender: Any) {
         guard let text = editTitle.text else { return }
         //Constants.ref.child("user").child(Constants.uid!).updateChildValues(["title": text])
-        Constants.ref.child("user").child(Constants.uid!).updateChildValues(["title": text]) { (error, dataref) in
-            
-        }
+        Constants.ref.child("user").child(Constants.uid!).child(cell.autoID!).updateChildValues(["title": text])
     }
     func changeData() {
         

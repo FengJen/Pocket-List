@@ -34,7 +34,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
         CellDetaManager.shared.getCellData { (value) in
             guard let cellArray = value else { return }
-            //print("--------\(value)-----")
+            print("--------\(value)-----")
             self.cellList = cellArray
             
             DispatchQueue.main.async {
@@ -104,7 +104,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
         cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
-            cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
+        cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
         return cell
         }
         return UICollectionViewCell()

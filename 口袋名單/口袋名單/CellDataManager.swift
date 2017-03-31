@@ -14,9 +14,9 @@ class CellDetaManager {
         self.ref.child("user").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
                 guard let taskSnapshot = child as? FIRDataSnapshot else { return }
+                let autoID = taskSnapshot.key
                 guard let children = taskSnapshot.value as? [String: AnyObject] else { return }
                 guard let title = children["title"] as? String,
-                      let autoID = children["autoID"] as? String,
                       let url = children["url"] as? String else { return }
                     
                 let cellModel = CellModel(autoID: autoID, title: title, url: url)
