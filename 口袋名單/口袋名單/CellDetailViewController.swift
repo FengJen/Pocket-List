@@ -8,8 +8,9 @@
 
 import UIKit
 
-class CellDetailViewController: UIViewController {
+class CellDetailViewController: UIViewController, UITextFieldDelegate {
     var cell = CellModel()
+    
     @IBOutlet weak var editTitle: UITextField!
 
     @IBOutlet weak var editUrl: UITextField!
@@ -26,6 +27,24 @@ class CellDetailViewController: UIViewController {
         editTitle.text = cell.title
         editUrl.text = cell.url
     }
+    
+    @IBAction func editData(_ sender: Any) {
+        guard let text = editTitle.text else { return }
+        //Constants.ref.child("user").child(Constants.uid!).updateChildValues(["title": text])
+        Constants.ref.child("user").child(Constants.uid!).updateChildValues(["title": text]) { (error, dataref) in
+            
+        }
+    }
+    func changeData() {
+        
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

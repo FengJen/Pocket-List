@@ -16,9 +16,10 @@ class CellDetaManager {
                 guard let taskSnapshot = child as? FIRDataSnapshot else { return }
                 guard let children = taskSnapshot.value as? [String: AnyObject] else { return }
                 guard let title = children["title"] as? String,
+                      let autoID = children["autoID"] as? String,
                       let url = children["url"] as? String else { return }
                     
-                let cellModel = CellModel(title: title, url: url)
+                let cellModel = CellModel(autoID: autoID, title: title, url: url)
                 value.append(cellModel)
             }
                 completion(value)

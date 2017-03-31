@@ -496,6 +496,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vTD-iG-TNQ" id="gld-63-yrt"/>
+                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d6L-sQ-nus">
                                 <rect key="frame" x="17" y="399" width="343" height="210"/>
@@ -507,6 +510,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVR-Wu-HD9">
                                 <rect key="frame" x="71" y="617" width="234" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="editData:" destination="vTD-iG-TNQ" eventType="touchUpInside" id="ypV-b2-k4F"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HDJ-aV-oEE">
                                 <rect key="frame" x="17" y="346" width="343" height="30"/>
