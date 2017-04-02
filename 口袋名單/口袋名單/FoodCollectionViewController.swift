@@ -33,7 +33,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         
-        //collectionView?.cellForItem(at: 1)?.topAnchor.constraint(equalTo: navigationController?.navigationBar.bottomAnchor, constant: 74)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
         CellDetaManager.shared.getCellData { (value) in
             guard let cellArray = value else { return }
@@ -50,7 +50,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        
     }
     func loadList() {
         

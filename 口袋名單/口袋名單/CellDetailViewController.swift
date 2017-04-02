@@ -22,7 +22,6 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setUp()
         
-        // Do any additional setup after loading the view.
     }
     
     func setUp() {
@@ -31,11 +30,12 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func editData(_ sender: UIButton) {
-        guard let text = editTitle.text else { return }
+        guard let text = editTitle.text, let url = editUrl.text else { return }
         
         //todo: check if data changed
-            
-    Constants.ref.child("user").child(Constants.uid!).child(cell.autoID!).updateChildValues(["title": text])
+        guard let cellAutoID = cell.autoID, let uid = Constants.uid else { return }
+    Constants.ref.child("user").child(uid).child(cellAutoID).updateChildValues(["title": text])
+    Constants.ref.child("user").child(uid).child(cellAutoID).updateChildValues(["url": url])
        
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
@@ -43,15 +43,7 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
         performSegue(withIdentifier: "unwindSegue", sender: sender)
         
     }
-    
-    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      //  if segue.identifier == "unwindSegue" {
-        //    let desVC = segue.destination as? FoodCollectionViewController
-            //desVC?.cellList[]
-        //}
-    //}
-   
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
