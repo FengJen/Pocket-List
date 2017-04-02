@@ -26,8 +26,8 @@ class CellDetaManager {
         })
     }
     
-    func changeCellData(title: String, url: String, completion: @escaping editData) {
-        //self.ref.child("user").child(uid!).updateChildValues(editData)
+    func changeCellData(completion: @escaping (_ value: CellModel) -> Void) {
+        
         }
     
 }

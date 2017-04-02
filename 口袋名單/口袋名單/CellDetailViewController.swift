@@ -7,14 +7,16 @@
 //
 
 import UIKit
-
+protocol ChangeCellDataDelegate {
+    func changeCell(newCell: CellModel)
+}
 class CellDetailViewController: UIViewController, UITextFieldDelegate {
     var cell = CellModel()
-    
+   
     @IBOutlet weak var editTitle: UITextField!
 
     @IBOutlet weak var editUrl: UITextField!
-    
+    var delegate: ChangeCellDataDelegate?
     @IBOutlet weak var doneButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,18 +32,25 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func editData(_ sender: UIButton) {
         guard let text = editTitle.text else { return }
-        //if text != Constants.ref.child(Constants.uid!).child(cell.autoID!).value(forKey: "title") as? String {
+        
+        //todo: check if data changed
             
     Constants.ref.child("user").child(Constants.uid!).child(cell.autoID!).updateChildValues(["title": text])
-        //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
+       
         
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         
         performSegue(withIdentifier: "unwindSegue", sender: sender)
         
-        
-       // }
     }
     
+    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      //  if segue.identifier == "unwindSegue" {
+        //    let desVC = segue.destination as? FoodCollectionViewController
+            //desVC?.cellList[]
+        //}
+    //}
+   
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -53,7 +62,4 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
-  
-
 }

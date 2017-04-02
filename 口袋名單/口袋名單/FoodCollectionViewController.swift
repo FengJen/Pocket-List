@@ -18,6 +18,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     var ref: FIRDatabaseReference!
     //var refHandle: UInt!
     var cellList = [CellModel]()
+    
    
     let itemPerRow: CGFloat = 2
     let sectionInsets = UIEdgeInsets(top: 76.0, left: 10.0, bottom: 50.0, right: 10.0)
@@ -46,6 +47,19 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
 
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+    }
+    func loadList() {
+        
+        CellDetaManager.shared.getCellData { (value) in
+            guard let newCell = value else { return }
+            self.cellList = newCell
+        
+        self.collectionView?.reloadData()
+        }
     }
     @IBAction func unwindToVC1(segue: UIStoryboardSegue) { }
     
@@ -132,7 +146,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             self.present(safariViewController, animated: true, completion: nil)
         }
     }
-
+    
 }
 
 extension FoodCollectionViewController: UICollectionViewDelegateFlowLayout {
