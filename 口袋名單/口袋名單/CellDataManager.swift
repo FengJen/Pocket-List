@@ -8,10 +8,11 @@ class CellDetaManager {
     let ref = FIRDatabase.database().reference()
     
     typealias editData = (_ value: String) -> Void
-    // todo hadle uid
+    
     func getCellData(completion: @escaping (_ value: [CellModel]?) -> Void) {
         var value: [CellModel] = []
-        self.ref.child("user").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        guard let unwrapUid = uid else { return }
+        self.ref.child("user").child(unwrapUid).observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
                 guard let taskSnapshot = child as? FIRDataSnapshot else { return }
                 let autoID = taskSnapshot.key

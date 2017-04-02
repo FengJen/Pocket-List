@@ -70,7 +70,12 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func longPress() {
+        let longGes = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressd(_:)))
+        collectionView.addGestureRecognizer(longGes)
+    }
     /*
     }
     func fetchUsers() {
@@ -89,21 +94,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             print("==========")
             self.collectionView?.reloadData()
         })
-        let customCell = ref.child(uid!).childByAutoId()
-        let customCellID = customCell.key
-        refHandle = ref.child("user").child(uid!).observe(.childAdded, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                let cellModel = CellModel()
-                cellModel.setValuesForKeys(dictionary)
-                self.cellList.append(cellModel)
-                
-                DispatchQueue.main.async {
-                    self.collectionView?.reloadData()
-                }
-            }
-        })
- */
- }
+*/
+ 
  
 
     // MARK: UICollectionViewDataSource
