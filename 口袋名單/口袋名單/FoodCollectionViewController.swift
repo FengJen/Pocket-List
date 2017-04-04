@@ -1,11 +1,3 @@
-//
-//  FoodCollectionViewController.swift
-//  口袋名單
-//
-//  Created by 謝豐任 on 2017/3/28.
-//  Copyright © 2017年 appworks. All rights reserved.
-//
-
 import UIKit
 import XLPagerTabStrip
 import Firebase
@@ -15,9 +7,10 @@ import SafariServices
 
 class FoodCollectionViewController: UICollectionViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
     
-    var ref: FIRDatabaseReference!
-    //var refHandle: UInt!
+    let ref = FIRDatabase.database().reference()
     var cellList = [CellModel]()
+    var longPressGesture = UILongPressGestureRecognizer()
+    //var itemArray = NSMutableArray()
     
    
     let itemPerRow: CGFloat = 2
@@ -25,19 +18,26 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getValue()
+        setUp()
         
-        
-        ref = FIRDatabase.database().reference()
-        self.navigationController?.navigationBar.isTranslucent = false //check
         
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
+        
+    }
+    func setUp() {
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
+        self.collectionView?.addGestureRecognizer(longPressGesture)
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+    func getValue() {
+        
         CellDetaManager.shared.getCellData { (value) in
             guard let cellArray = value else { return }
-            //print("--------\(value)-----")
             self.cellList = cellArray
             
             DispatchQueue.main.async {
@@ -46,8 +46,29 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             
         }
 
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
     }
+    func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        
+        switch(gesture.state) {
+            
+        case UIGestureRecognizerState.began:
+            guard let selectedIndexPath = self.collectionView?.indexPathForItem(at: gesture.location(in: self.collectionView)) else {
+                break
+            }
+            collectionView?.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case UIGestureRecognizerState.changed:
+            collectionView?.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case UIGestureRecognizerState.ended:
+            collectionView?.endInteractiveMovement()
+        default:
+            collectionView?.cancelInteractiveMovement()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -72,20 +93,12 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         super.didReceiveMemoryWarning()
     }
     
-    func longPress() {
-        let longGes = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressd(_:)))
-        collectionView.addGestureRecognizer(longGes)
-    }
+
     /*
     }
     func fetchUsers() {
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        print("==========")
-        print(uid!)
-        print("==========")
         let reference = FIRDatabase.database().reference()
         reference.child("user").child(uid!).queryOrdered(byChild: "title").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
-            
         })
         (of: .value, with: { snapshot in
             print("==========")
@@ -95,9 +108,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             self.collectionView?.reloadData()
         })
 */
- 
- 
-
+    
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
