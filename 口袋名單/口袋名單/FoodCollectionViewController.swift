@@ -49,8 +49,31 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        ref.child("pocketList").child(uid!).child(cellList[sourceIndexPath.row].autoID!).setValue(cellList[destinationIndexPath.row].order! + 1, forKey: "order")
-        // todo handle !
+    ref.child("pocketList").child(uid!).child(cellList[sourceIndexPath.row].autoID!).setValue(cellList[destinationIndexPath.row].order!, forKey: "order")
+        
+        if sourceIndexPath > destinationIndexPath {
+            ref.child("pocketList").child(uid!).queryStarting(atValue: cellList[destinationIndexPath.row].order, childKey: "order").queryStarting(atValue: cellList[sourceIndexPath.row].order, childKey: "order").observeSingleEvent(of: .value, with: { (snapShot) in
+                for child in snapShot.children {
+                    guard let taskSnapShot = child as? FIRDataSnapshot else { return }
+                    guard let queryValue = taskSnapShot.value as? [String: AnyObject] else { return }
+                    guard var newOrder = queryValue["order"] as? Int else { return }
+                    newOrder += 1
+                }
+            })
+            //+= 1
+        } else if sourceIndexPath < destinationIndexPath {
+            ref.child("pocketList").child(uid!).queryStarting(atValue: cellList[sourceIndexPath.row].order, childKey: "order").queryEnding(atValue: cellList[destinationIndexPath.row].order, childKey: "order").observeSingleEvent(of: .value, with: { (snapShot) in
+                for child in snapShot.children {
+                    guard let taskSnapShot = child as? FIRDataSnapshot else { return }
+                    guard let queryValue = taskSnapShot.value as? [String: AnyObject] else { return }
+                    guard var newOrder = queryValue["order"] as? Int else { return }
+                    newOrder -= 1
+                }
+                
+            })
+            //-= 1
+        }
+        // todo: handle !
     }
     func handleLongGesture(gesture: UILongPressGestureRecognizer) {
         

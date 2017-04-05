@@ -15,7 +15,7 @@ class CellDetaManager {
         var value: [CellModel] = []
         let uid = FIRAuth.auth()?.currentUser?.uid
         //guard let unwrapUid = uid else { return }
-        self.ref.child("pocketList").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("pocketList").child(uid!).queryOrderedByValue().observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
                 guard let taskSnapshot = child as? FIRDataSnapshot else { return }
                 let autoID = taskSnapshot.key
