@@ -50,7 +50,7 @@ class Step3ViewController: UIViewController, UITextFieldDelegate {
     func uploadData() {
         if let uid = Constants.uid, let url = website.text, let title = temperaryTitle.text {
                 let cell = ref.child(uid).childByAutoId()
-            cell.setValue(["title": title, "url": url, "order": FoodCollectionViewController().cellList.count])
+            cell.setValue(["title": title, "url": url, "order": CellDetaManager.shared.cellArray.count])
         }
     }
 }

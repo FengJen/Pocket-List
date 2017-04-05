@@ -38,7 +38,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         CellDetaManager.shared.getCellData { (value) in
             guard let cellArray = value else { return }
             self.cellList = cellArray
-            
+            CellDetaManager.shared.cellArray = cellArray
+//            self.cellList.append(contentsOf: cellArray)
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
             }
@@ -48,8 +49,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-            //cellList[sourceIndexPath.row].order = cellList[destinationIndexPath.row].order
-            ref.child("pocketList").child(uid!).child(cellList[sourceIndexPath.row].autoID!).setValue(cellList[destinationIndexPath.row].order, forKey: "order")
+        ref.child("pocketList").child(uid!).child(cellList[sourceIndexPath.row].autoID!).setValue(cellList[destinationIndexPath.row].order! + 1, forKey: "order")
+        // todo handle !
     }
     func handleLongGesture(gesture: UILongPressGestureRecognizer) {
         

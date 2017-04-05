@@ -5,6 +5,7 @@ import FirebaseDatabase
 class CellDetaManager {
     static let shared = CellDetaManager()
     
+    var cellArray: [CellModel] = []
     let ref = FIRDatabase.database().reference()
     //var user: User?
     
