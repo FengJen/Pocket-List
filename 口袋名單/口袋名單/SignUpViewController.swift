@@ -28,7 +28,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     if error == nil {
                         guard let uid = user?.uid else { return }
                         let ref = FIRDatabase.database().reference()
-                        let userReference = ref.child("user").child(uid)
+                        let userReference = ref.child("userEmail").child(uid)
                         let values = ["email": email]
                         userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                             if err != nil {
@@ -36,7 +36,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 return
                             }
                         })
-                        print("user created")
                         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                         let tabBarController = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
                         UIApplication.shared.keyWindow?.rootViewController = tabBarController

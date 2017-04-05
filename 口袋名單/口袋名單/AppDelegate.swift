@@ -16,6 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
+        
+        FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+            let loginView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+            let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
+            if user != nil  {
+                self.window?.rootViewController = tabBarController
+                self.window?.makeKeyAndVisible()
+            } else if user == nil {
+                self.window?.rootViewController = loginView
+                self.window?.makeKeyAndVisible()
+            }
+        })
         return true
     }
 

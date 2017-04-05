@@ -21,7 +21,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         getValue()
         setUp()
         
-        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        //print("-----------------\(uid)-----------------")
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         
@@ -49,6 +50,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+        ref.child("user").child(uid)
         
     }
     func handleLongGesture(gesture: UILongPressGestureRecognizer) {
@@ -69,10 +72,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
     func loadList() {
         
         CellDetaManager.shared.getCellData { (value) in
@@ -93,32 +92,15 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         super.didReceiveMemoryWarning()
     }
     
-
-    /*
-    }
-    func fetchUsers() {
-        let reference = FIRDatabase.database().reference()
-        reference.child("user").child(uid!).queryOrdered(byChild: "title").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
-        })
-        (of: .value, with: { snapshot in
-            print("==========")
-            print(snapshot.value)
-            print(snapshot.key)
-            print("==========")
-            self.collectionView?.reloadData()
-        })
-*/
     
-    // MARK: UICollectionViewDataSource
+// MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return cellList.count
     }
 
@@ -150,8 +132,10 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
     }
     
+    
 }
 
+// MARK: FlowLayout
 extension FoodCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

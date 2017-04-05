@@ -16,7 +16,7 @@ class ShareViewController: UIViewController {
             do {
                 try FIRAuth.auth()?.signOut()
                 let loginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
-                self.present(loginViewController, animated: true, completion: nil)
+                UIApplication.shared.keyWindow?.rootViewController = loginViewController
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
