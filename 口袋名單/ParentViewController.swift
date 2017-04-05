@@ -16,6 +16,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         
         super.viewDidLoad()
         newButton()
+        selectButton()
     }
 
     func setUp() {
@@ -45,6 +46,16 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StepsViewController")
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func selectButton() {
+        let selectButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(pressSelectButton))
+        self.navigationItem.setRightBarButton(selectButton, animated: true)
+    }
+    
+    func pressSelectButton() {
+        //FoodCollectionViewController().collectionView
+    }
+    
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let child1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
         let child2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController")

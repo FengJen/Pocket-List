@@ -52,7 +52,7 @@ class Step2ViewController: UIViewController {
                 
             } else {
         let ref = FIRDatabase.database().reference()
-            ref.child("user").child(uid).child("cell").childByAutoId().child("title").setValue(title)
+            ref.child("pocketList").child(uid).child("cell").childByAutoId().child("title").setValue(title)
             }
         }
     }

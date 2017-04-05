@@ -8,11 +8,11 @@ import SafariServices
 class FoodCollectionViewController: UICollectionViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
     
     let ref = FIRDatabase.database().reference()
+    let uid = FIRAuth.auth()?.currentUser?.uid
     var cellList = [CellModel]()
     var longPressGesture = UILongPressGestureRecognizer()
     //var itemArray = NSMutableArray()
     
-   
     let itemPerRow: CGFloat = 2
     let sectionInsets = UIEdgeInsets(top: 76.0, left: 10.0, bottom: 50.0, right: 10.0)
     
@@ -21,8 +21,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         getValue()
         setUp()
         
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        //print("-----------------\(uid)-----------------")
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         
@@ -50,9 +48,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-        ref.child("user").child(uid)
-        
+            //cellList[sourceIndexPath.row].order = cellList[destinationIndexPath.row].order
+            ref.child("pocketList").child(uid!).child(cellList[sourceIndexPath.row].autoID!).setValue(cellList[destinationIndexPath.row].order, forKey: "order")
     }
     func handleLongGesture(gesture: UILongPressGestureRecognizer) {
         

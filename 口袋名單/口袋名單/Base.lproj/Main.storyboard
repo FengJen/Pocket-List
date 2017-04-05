@@ -560,7 +560,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8M-pT-1yY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="O9z-Zr-98b" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6376.8000000000002" y="133.5832083958021"/>
+            <point key="canvasLocation" x="5660" y="97"/>
         </scene>
         <!--Food Collection View Controller-->
         <scene sceneID="506-KE-WxZ">
@@ -585,7 +585,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SwU-tz-fSm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4221" y="97"/>
+            <point key="canvasLocation" x="4298" y="97"/>
         </scene>
         <!--Sites Collection View Controller-->
         <scene sceneID="0n3-dM-QQD">
@@ -619,7 +619,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPN-Hd-yUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5034" y="134"/>
+            <point key="canvasLocation" x="4961" y="97"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GVG-so-dH0">

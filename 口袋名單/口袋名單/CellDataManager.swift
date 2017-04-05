@@ -14,15 +14,16 @@ class CellDetaManager {
         var value: [CellModel] = []
         let uid = FIRAuth.auth()?.currentUser?.uid
         //guard let unwrapUid = uid else { return }
-        self.ref.child("user").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("pocketList").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
                 guard let taskSnapshot = child as? FIRDataSnapshot else { return }
                 let autoID = taskSnapshot.key
                 guard let children = taskSnapshot.value as? [String: AnyObject] else { return }
                 guard let title = children["title"] as? String,
+                      let order = children["order"] as? Int,
                       let url = children["url"] as? String else { return }
                     
-                let cellModel = CellModel(autoID: autoID, title: title, url: url)
+                let cellModel = CellModel(autoID: autoID, title: title, url: url, order: order)
                 value.append(cellModel)
             }
                 completion(value)
@@ -35,7 +36,7 @@ class CellDetaManager {
      }
      func fetchUsers() {
      let reference = FIRDatabase.database().reference()
-     reference.child("user").child(uid!).queryOrdered(byChild: "title").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
+     reference.child("pocketList").child(uid!).queryOrdered(byChild: "title").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
      })
      (of: .value, with: { snapshot in
      print(snapshot.value)
@@ -47,7 +48,7 @@ class CellDetaManager {
         //guard let unwrapUid = uid else { return }
         //var value: [CellModel] = []
         
-        //self.ref.child("user").child(unwrapUid)
+        //self.ref.child("pocketList").child(unwrapUid)
         }
     
 }

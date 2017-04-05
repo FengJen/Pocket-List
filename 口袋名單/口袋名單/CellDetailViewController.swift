@@ -34,8 +34,8 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
         
         //todo: check if data changed
         guard let cellAutoID = cell.autoID, let uid = Constants.uid else { return }
-    Constants.ref.child("user").child(uid).child(cellAutoID).updateChildValues(["title": text])
-    Constants.ref.child("user").child(uid).child(cellAutoID).updateChildValues(["url": url])
+    Constants.ref.child("pocketList").child(uid).child(cellAutoID).updateChildValues(["title": text])
+    Constants.ref.child("pocketList").child(uid).child(cellAutoID).updateChildValues(["url": url])
        
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)

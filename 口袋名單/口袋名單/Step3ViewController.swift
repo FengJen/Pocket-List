@@ -7,7 +7,7 @@ class Step3ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var temperaryTitle: UITextField!
     @IBOutlet weak var website: UITextField!
-    let ref = FIRDatabase.database().reference().child("user")
+    let ref = FIRDatabase.database().reference().child("pocketList")
     
     @IBAction func doneFillingInfo(_ sender: Any) {
         
@@ -50,7 +50,7 @@ class Step3ViewController: UIViewController, UITextFieldDelegate {
     func uploadData() {
         if let uid = Constants.uid, let url = website.text, let title = temperaryTitle.text {
                 let cell = ref.child(uid).childByAutoId()
-            cell.setValue(["title": title, "url": url])
+            cell.setValue(["title": title, "url": url, "order": FoodCollectionViewController().cellList.count])
         }
     }
 }
