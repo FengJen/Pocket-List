@@ -25,7 +25,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-        
+        //todo remove observer
         
     }
     func setUp() {
@@ -52,7 +52,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     ref.child("pocketList").child(uid!).child(cellList[sourceIndexPath.row].autoID!).setValue(cellList[destinationIndexPath.row].order!, forKey: "order")
         
         if sourceIndexPath > destinationIndexPath {
-            ref.child("pocketList").child(uid!).queryStarting(atValue: cellList[destinationIndexPath.row].order, childKey: "order").queryStarting(atValue: cellList[sourceIndexPath.row].order, childKey: "order").observeSingleEvent(of: .value, with: { (snapShot) in
+            ref.child("pocketList").child(uid!).queryStarting(atValue: cellList[destinationIndexPath.row].order, childKey: "order").queryStarting(atValue: cellList[sourceIndexPath.row - 1].order
+                , childKey: "order").observeSingleEvent(of: .value, with: { (snapShot) in
                 for child in snapShot.children {
                     guard let taskSnapShot = child as? FIRDataSnapshot else { return }
                     guard let queryValue = taskSnapShot.value as? [String: AnyObject] else { return }
@@ -62,7 +63,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             })
             //+= 1
         } else if sourceIndexPath < destinationIndexPath {
-            ref.child("pocketList").child(uid!).queryStarting(atValue: cellList[sourceIndexPath.row].order, childKey: "order").queryEnding(atValue: cellList[destinationIndexPath.row].order, childKey: "order").observeSingleEvent(of: .value, with: { (snapShot) in
+            ref.child("pocketList").child(uid!).queryStarting(atValue: cellList[sourceIndexPath.row + 1].order, childKey: "order").queryEnding(atValue: cellList[destinationIndexPath.row].order, childKey: "order").observeSingleEvent(of: .value, with: { (snapShot) in
                 for child in snapShot.children {
                     guard let taskSnapShot = child as? FIRDataSnapshot else { return }
                     guard let queryValue = taskSnapShot.value as? [String: AnyObject] else { return }
@@ -152,8 +153,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             self.present(safariViewController, animated: true, completion: nil)
         }
     }
-    
-    
 }
 
 // MARK: FlowLayout
