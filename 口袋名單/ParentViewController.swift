@@ -11,6 +11,7 @@ import XLPagerTabStrip
 
 class ParentViewController: ButtonBarPagerTabStripViewController {
     
+    
     override func viewDidLoad() {
         setUp()
         
@@ -65,4 +66,6 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 }

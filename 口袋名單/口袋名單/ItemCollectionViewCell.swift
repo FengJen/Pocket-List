@@ -9,7 +9,7 @@
 import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
-    //let customCell = ItemCollectionViewCell()
+    
     
     @IBOutlet weak var cellTitle: UIButton!
 
@@ -17,10 +17,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
     
-    func setUp() {
-        self.cellTitle.setTitle("", for: .normal)
-    }
 }

@@ -7,10 +7,16 @@ import SafariServices
 
 class FoodCollectionViewController: UICollectionViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
     
+    var isSelecting = true
+    
+    
     let ref = FIRDatabase.database().reference()
     let uid = FIRAuth.auth()?.currentUser?.uid
     var cellList = [CellModel]()
     var longPressGesture = UILongPressGestureRecognizer()
+   
+    
+    
     //var itemArray = NSMutableArray()
     
     let itemPerRow: CGFloat = 2
@@ -47,7 +53,31 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
 
     }
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        self.collectionView?.allowsMultipleSelection = isSelecting
+        let indexPaths = self.collectionView?.indexPathsForVisibleItems
+        for indexPath in indexPaths! {
+            self.collectionView?.deselectItem(at: indexPath, animated: false)
+            //let cell: CellModel = self.collectionView?.cellForItem(at: indexPath) as? CellModel
+            //cell.isediting = isediting
+        }
+        
+        if isSelecting {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteAlert))
+        }
+    }
+    func deleteAlert() {
+        
+    }
+        
     
+    func deleteSelectedItemAction(sender: UIBarButtonItem) {
+        //let selectedIndexPaths: [NSIndexPath] = self.collectionView?.indexPathsForVisibleItems
+        var newCellList: [CellModel] = []
+        
+    }
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     ref.child("pocketList").child(uid!).child(cellList[sourceIndexPath.row].autoID!).setValue(cellList[destinationIndexPath.row].order!, forKey: "order")
         
@@ -146,13 +176,17 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let url = cellList[indexPath.row].url else { return }
-        if let getUrl = URL(string: url) {
-        //if let url = URL(string: cellList[indexPath.item].url!) {
-            let safariViewController = SFSafariViewController(url: getUrl, entersReaderIfAvailable: true)
-            self.present(safariViewController, animated: true, completion: nil)
+        if !isSelecting {
+            guard let url = cellList[indexPath.row].url else { return }
+            if let getUrl = URL(string: url) {
+            //if let url = URL(string: cellList[indexPath.item].url!) {
+                let safariViewController = SFSafariViewController(url: getUrl, entersReaderIfAvailable: true)
+                self.present(safariViewController, animated: true, completion: nil)
+            }
         }
     }
+    
+    
 }
 
 // MARK: FlowLayout
