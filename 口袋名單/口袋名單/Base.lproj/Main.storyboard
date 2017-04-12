@@ -470,30 +470,35 @@
                                 <cells/>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDd-wI-fCB">
-                                <rect key="frame" x="16" y="617" width="343" height="50"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZ8-qa-IOL">
-                                        <rect key="frame" x="56" y="10" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="72" y="10" width="40" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="C5F-aN-L4G"/>
+                                        </constraints>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVE-Yc-pMD">
-                                        <rect key="frame" x="237" y="10" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="259" y="10" width="40" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="sxE-eC-G3j"/>
+                                        </constraints>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="UZ8-qa-IOL" secondAttribute="bottom" constant="10" id="HSo-gc-oec"/>
                                     <constraint firstAttribute="height" constant="50" id="J9t-HA-Wxh"/>
-                                    <constraint firstAttribute="bottom" secondItem="aVE-Yc-pMD" secondAttribute="bottom" constant="10" id="ffO-ZI-LWU"/>
-                                    <constraint firstItem="aVE-Yc-pMD" firstAttribute="leading" secondItem="UZ8-qa-IOL" secondAttribute="trailing" constant="135" id="p8B-fi-5uW"/>
+                                    <constraint firstItem="UZ8-qa-IOL" firstAttribute="top" secondItem="MDd-wI-fCB" secondAttribute="top" constant="10" id="Lkm-JU-L6d"/>
+                                    <constraint firstAttribute="bottom" secondItem="UZ8-qa-IOL" secondAttribute="bottom" constant="10" id="T9a-Uh-Wcf"/>
+                                    <constraint firstAttribute="bottom" secondItem="aVE-Yc-pMD" secondAttribute="bottom" constant="10" id="k27-JY-XxN"/>
+                                    <constraint firstItem="aVE-Yc-pMD" firstAttribute="top" secondItem="MDd-wI-fCB" secondAttribute="top" constant="10" id="xHE-3A-gkp"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="MDd-wI-fCB" secondAttribute="trailing" id="7pG-40-pel"/>
-                            <constraint firstItem="MDd-wI-fCB" firstAttribute="leading" secondItem="pHz-pi-CCT" secondAttribute="leadingMargin" id="AVn-r8-hUu"/>
+                            <constraint firstAttribute="trailing" secondItem="MDd-wI-fCB" secondAttribute="trailing" id="7pG-40-pel"/>
+                            <constraint firstItem="MDd-wI-fCB" firstAttribute="leading" secondItem="pHz-pi-CCT" secondAttribute="leading" id="AVn-r8-hUu"/>
                             <constraint firstItem="B1F-vj-9mD" firstAttribute="leading" secondItem="pHz-pi-CCT" secondAttribute="leading" id="EWP-vh-Nbp"/>
                             <constraint firstItem="YH6-cX-htz" firstAttribute="top" secondItem="wxh-XK-RmV" secondAttribute="bottom" id="F8W-tk-WFB"/>
                             <constraint firstAttribute="trailing" secondItem="wxh-XK-RmV" secondAttribute="trailing" id="Goo-vy-vc9"/>
@@ -510,7 +515,9 @@
                     <connections>
                         <outlet property="buttonBarView" destination="B1F-vj-9mD" id="0ep-jB-c8G"/>
                         <outlet property="containerView" destination="wxh-XK-RmV" id="j5j-Bp-8n1"/>
+                        <outlet property="deleteButton" destination="aVE-Yc-pMD" id="kkE-Ag-nW3"/>
                         <outlet property="newBar" destination="MDd-wI-fCB" id="Zwv-5L-64R"/>
+                        <outlet property="shareButton" destination="UZ8-qa-IOL" id="x6E-UV-VoR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfc-Xs-U3w" userLabel="First Responder" sceneMemberID="firstResponder"/>

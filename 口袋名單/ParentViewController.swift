@@ -12,19 +12,22 @@ import XLPagerTabStrip
 class ParentViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var newBar: UIView!
     
+    @IBOutlet weak var shareButton: UIButton!
     
-    let deleteButton = UIButton()
-    let shareButton = UIButton()
+    @IBOutlet weak var deleteButton: UIButton!
+    let FoodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
+    let SitesCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController")
     
     override func viewDidLoad() {
         setUp()
         
         super.viewDidLoad()
         newButton()
-        //SelectButton()
-        //selectButton()
-//        self.navigationItem.rightBarButtonItem = editButtonItem
-//        self.editButtonItem.title = "Select"
+        addNewBarButton()
+//        self.setEditing(true, animated: true)
+        
+        self.navigationItem.rightBarButtonItem = editButtonItem
+        self.editButtonItem.title = "Select"
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -89,7 +92,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
                 style: .plain,
                 target: self,
                 action: #selector(editButton))
-        } else {
+        } else if !editing {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 title: "Cancel",
                 style: .done,
@@ -99,16 +102,25 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     }
     
     func editButton() {
-        self.view.isHidden = false
-        //toolbarItems
+        self.newBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
+        guard let foodchild = FoodCollectionViewController as? UICollectionViewController else { return }
+        //foodchild.collectionView?
+        
+        print("---------\(123)----------")
     }
     func cancel() {
         self.view.isHidden = true
+        print("---------\(12345678)----------")
+    }
+    
+    func addNewBarButton() {
+        shareButton.setImage(#imageLiteral(resourceName: "Upload-50"), for: .normal)
+        deleteButton.setImage(#imageLiteral(resourceName: "Trash-50"), for: .normal)
     }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let child1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
-        let child2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController")
-        return [child1, child2]
+        
+        return [FoodCollectionViewController, SitesCollectionViewController]
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
