@@ -10,16 +10,26 @@ import UIKit
 import XLPagerTabStrip
 
 class ParentViewController: ButtonBarPagerTabStripViewController {
+    @IBOutlet weak var newBar: UIView!
     
+    
+    let deleteButton = UIButton()
+    let shareButton = UIButton()
     
     override func viewDidLoad() {
         setUp()
         
         super.viewDidLoad()
         newButton()
-        selectButton()
+        //SelectButton()
+        //selectButton()
+//        self.navigationItem.rightBarButtonItem = editButtonItem
+//        self.editButtonItem.title = "Select"
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.newBar.isHidden = true
+    }
     func setUp() {
         settings.style.buttonBarBackgroundColor = .white
         settings.style.buttonBarItemBackgroundColor = .white
@@ -38,6 +48,10 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
             newCell?.label.textColor = UIColor(red: 0.13, green: 0.03, blue: 0.25, alpha: 1.0)
         }
     }
+    
+    
+    
+    
     func newButton() {
         let newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(pressPlusButton))
         self.navigationItem.setLeftBarButton(newButton, animated: true)
@@ -48,15 +62,49 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func selectButton() {
-        let selectButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(pressSelectButton))
-        self.navigationItem.setRightBarButton(selectButton, animated: true)
+    
+//    func SelectButton() {
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(
+//            title: "Select",
+//            style: .plain,
+//            target: self,
+//            action: #selector(editButton))
+//      
+////    }
+////    @IBAction func editMode(sender: AnyObject) {
+////        self.setEditing(!self.editing, animated: true)
+////        let newButton = UIBarButtonItem(barButtonSystemItem: (self.editing) ? .Done : .Edit, target: self, action: #selector(editMode(_:)))
+////        self.navigationItem.setLeftBarButtonItem(newButton, animated: true)
+////    }
+//    
+////    func pressSelectButton() {
+////   
+//    }
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+    
+        if editing {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: "Select",
+                style: .plain,
+                target: self,
+                action: #selector(editButton))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: "Cancel",
+                style: .done,
+                target: self,
+                action: #selector(cancel))
+        }
     }
     
-    func pressSelectButton() {
-        //FoodCollectionViewController().collectionView
+    func editButton() {
+        self.view.isHidden = false
+        //toolbarItems
     }
-    
+    func cancel() {
+        self.view.isHidden = true
+    }
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let child1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
         let child2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController")

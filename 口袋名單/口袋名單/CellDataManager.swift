@@ -2,8 +2,8 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-class CellDetaManager {
-    static let shared = CellDetaManager()
+class CellDataManager {
+    static let shared = CellDataManager()
     
     var cellArray: [CellModel] = []
     let ref = FIRDatabase.database().reference()

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840C2D501E9CF9A100A37373 /* Edidbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C2D4E1E9CF9A100A37373 /* Edidbar.swift */; };
 		84331CB01E812BBA0060CB74 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84331CAF1E812BBA0060CB74 /* LoginViewController.swift */; };
 		843DA1C31E8919B300E7ECCA /* CellDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DA1C21E8919B300E7ECCA /* CellDataManager.swift */; };
 		847CBDA11E8A4649003E057A /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CBDA01E8A4649003E057A /* CellModel.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		25098106847774A39FDBF6B0 /* Pods-口袋名單.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.release.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.release.xcconfig"; sourceTree = "<group>"; };
 		7890F73A3897EF95423CE777 /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		840C2D4E1E9CF9A100A37373 /* Edidbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edidbar.swift; sourceTree = "<group>"; };
 		84331CAF1E812BBA0060CB74 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		843DA1C21E8919B300E7ECCA /* CellDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDataManager.swift; sourceTree = "<group>"; };
 		847CBDA01E8A4649003E057A /* CellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				847CBDB71E8A5CF9003E057A /* CellDetailViewController.swift */,
+				840C2D4E1E9CF9A100A37373 /* Edidbar.swift */,
 			);
 			name = editCell;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				84331CB01E812BBA0060CB74 /* LoginViewController.swift in Sources */,
 				84C124561E828FF500B48360 /* Step1ViewController.swift in Sources */,
 				848509BC1E7FCC4F00A9770B /* SignUpViewController.swift in Sources */,
+				840C2D501E9CF9A100A37373 /* Edidbar.swift in Sources */,
 				84C124621E83799900B48360 /* Constant.swift in Sources */,
 				847CBDA11E8A4649003E057A /* CellModel.swift in Sources */,
 				847CBDB41E8A5AF4003E057A /* ItemCollectionViewCell.swift in Sources */,

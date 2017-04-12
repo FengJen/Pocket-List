@@ -7,7 +7,7 @@ import SafariServices
 
 class FoodCollectionViewController: UICollectionViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
     
-    var isSelecting = true
+    //var isSelecting = false
     
     
     let ref = FIRDatabase.database().reference()
@@ -35,16 +35,17 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
     }
     func setUp() {
+        
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
         self.collectionView?.addGestureRecognizer(longPressGesture)
         self.navigationController?.navigationBar.isTranslucent = false
     }
     func getValue() {
         
-        CellDetaManager.shared.getCellData { (value) in
+        CellDataManager.shared.getCellData { (value) in
             guard let cellArray = value else { return }
             self.cellList = cellArray
-            CellDetaManager.shared.cellArray = cellArray
+            CellDataManager.shared.cellArray = cellArray
 //            self.cellList.append(contentsOf: cellArray)
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
@@ -53,29 +54,15 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
 
     }
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        
-        self.collectionView?.allowsMultipleSelection = isSelecting
-        let indexPaths = self.collectionView?.indexPathsForVisibleItems
-        for indexPath in indexPaths! {
-            self.collectionView?.deselectItem(at: indexPath, animated: false)
-            //let cell: CellModel = self.collectionView?.cellForItem(at: indexPath) as? CellModel
-            //cell.isediting = isediting
-        }
-        
-        if isSelecting {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteAlert))
-        }
+    func selectCell (sender: UIButton) {
+        let i = sender.layer.value(forKey: "index") as? Int
+        CellDataManager.shared.cellArray.remove(at: i!)
     }
-    func deleteAlert() {
-        
-    }
-        
-    
+
     func deleteSelectedItemAction(sender: UIBarButtonItem) {
         //let selectedIndexPaths: [NSIndexPath] = self.collectionView?.indexPathsForVisibleItems
-        var newCellList: [CellModel] = []
+        
+        
         
     }
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -126,15 +113,26 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     
     func loadList() {
         
-        CellDetaManager.shared.getCellData { (value) in
+        CellDataManager.shared.getCellData { (value) in
             guard let newCell = value else { return }
             self.cellList = newCell
         
         self.collectionView?.reloadData()
         }
     }
-    @IBAction func unwindToVC1(segue: UIStoryboardSegue) { }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        if editing {
+            
+            self.collectionView?.allowsMultipleSelection = true
+            
+        } else {
+            self.editButtonItem.title = "Cancel"
+        }
+        
+    }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Food")
@@ -157,35 +155,46 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
-        cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
-        cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
-        return cell
+        if isEditing == false {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
+            cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
+            cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
+            return cell
+            }
         }
         return UICollectionViewCell()
     }
     
     func preformCellEditView(sender: UIButton) {
         let button = sender
-        if let cell = button.superview?.superview as? ItemCollectionViewCell,
-           let indexPath = collectionView?.indexPath(for: cell) {
-        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController") as? CellDetailViewController else { return }
-            vc.cell = self.cellList[(indexPath.row)]
-        self.navigationController?.pushViewController(vc, animated: true)
+        if isEditing == false {
+            if let cell = button.superview?.superview as? ItemCollectionViewCell,
+               let indexPath = collectionView?.indexPath(for: cell) {
+            guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController") as? CellDetailViewController else { return }
+                vc.cell = self.cellList[(indexPath.row)]
+            self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
-
+    func deleteItems(at indexPaths: [IndexPath]) {
+        
+    }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if !isSelecting {
+        if self.isEditing == false {
             guard let url = cellList[indexPath.row].url else { return }
             if let getUrl = URL(string: url) {
             //if let url = URL(string: cellList[indexPath.item].url!) {
                 let safariViewController = SFSafariViewController(url: getUrl, entersReaderIfAvailable: true)
                 self.present(safariViewController, animated: true, completion: nil)
+                
             }
+        } else {
+            guard let selectedCells = collectionView.indexPathsForSelectedItems else { return }
+            self.deleteItems(at: selectedCells)
+            //highlight selected
         }
     }
-    
+    @IBAction func unwindToVC1(segue: UIStoryboardSegue) { }
     
 }
 
