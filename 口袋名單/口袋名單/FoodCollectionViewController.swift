@@ -178,7 +178,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             if let getUrl = URL(string: url) {
                 let safariViewController = SFSafariViewController(url: getUrl, entersReaderIfAvailable: true)
                 self.present(safariViewController, animated: true, completion: nil)
-                
+            
             }
         } else if isEditing == true {
 
@@ -186,7 +186,19 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             selectedIndexPaths.append(indexPath)
             
             cell?.backgroundColor = UIColor.black
+            //cell.whiteView.backgroundColor = UIColor(white: 1, alpha: 0.2)
 
+        }
+    }
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        if isEditing == true {
+            
+            collectionView.allowsMultipleSelection = true
+            //cell.whiteView.backgroundColor = UIColor(white: 1, alpha: 0)
+            cell?.backgroundColor = UIColor.cyan
+            
+            //selectedIndexPaths.remove(at: indexPath.row)
         }
     }
     @IBAction func unwindToVC1(segue: UIStoryboardSegue) { }
