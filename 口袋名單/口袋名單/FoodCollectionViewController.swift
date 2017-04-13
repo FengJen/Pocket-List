@@ -123,6 +123,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("me: \(cellList.count)")
         return cellList.count
     }
 
@@ -159,14 +160,19 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
             //let item = cellList[indexPath.row]
             //print(CellDataManager.shared.cellArray)
-            
             CellDataManager.shared.cellArray.remove(at: indexPath.row)
             cellList.remove(at: indexPath.row)
+            
             //print("\(CellDataManager.shared.cellArray)-------------")
             
         }
-        
-        
+        print(selectedIndexPaths)
+
+        self.isEditing = false
+        print(cellList)
+        print(CellDataManager.shared.cellArray)
+        cellList = CellDataManager.shared.cellArray
+        print(cellList)
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
@@ -185,7 +191,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 
             collectionView.allowsMultipleSelection = true
             selectedIndexPaths.append(indexPath)
-            
+            print(selectedIndexPaths)
             cell?.backgroundColor = UIColor.black
 
         }
