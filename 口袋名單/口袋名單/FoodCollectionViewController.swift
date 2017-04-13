@@ -7,16 +7,11 @@ import SafariServices
 
 class FoodCollectionViewController: UICollectionViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
     
-    //var isSelecting = false
-    
-    
     let ref = FIRDatabase.database().reference()
     let uid = FIRAuth.auth()?.currentUser?.uid
     var cellList = [CellModel]()
     var longPressGesture = UILongPressGestureRecognizer()
-   
-    
-    
+       
     //var itemArray = NSMutableArray()
     
     let itemPerRow: CGFloat = 2
@@ -133,7 +128,9 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if isEditing == false {
+            
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
+            //cell.backgroundColor = UIColor.cyan
             cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
             cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
             return cell
@@ -173,6 +170,10 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
+        cell?.layer.shadowColor = UIColor.gray.cgColor
+        cell?.layer.shadowOpacity = 1
+        cell?.layer.shadowRadius = 10
+        cell?.layer.shadowOffset = CGSize.zero
         if self.isEditing == false {
             guard let url = cellList[indexPath.row].url else { return }
             if let getUrl = URL(string: url) {
@@ -186,7 +187,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             selectedIndexPaths.append(indexPath)
             
             cell?.backgroundColor = UIColor.black
-            //cell.whiteView.backgroundColor = UIColor(white: 1, alpha: 0.2)
 
         }
     }
@@ -195,7 +195,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         if isEditing == true {
             
             collectionView.allowsMultipleSelection = true
-            //cell.whiteView.backgroundColor = UIColor(white: 1, alpha: 0)
             cell?.backgroundColor = UIColor.cyan
             
             //selectedIndexPaths.remove(at: indexPath.row)

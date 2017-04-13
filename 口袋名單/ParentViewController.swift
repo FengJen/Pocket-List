@@ -16,6 +16,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     let foodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController") as! FoodCollectionViewController
     let sitesCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController") as! SitesCollectionViewController
+    let editButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(setEdit))
     
     override func viewDidLoad() {
         setUp()
@@ -24,8 +25,11 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         newButton()
         addNewBarButton()
 //        self.setEditing(true, animated: true)
-        self.navigationItem.rightBarButtonItem = editButtonItem
-        self.editButtonItem.title = "Select"
+        let editButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(setEdit))
+        self.navigationItem.rightBarButtonItem = editButton
+    }
+    func setEdit() {
+        self.isEditing = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,21 +88,25 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         self.tabBarController?.tabBar.isHidden = true
         foodCollectionViewController.isEditing = true
 
-        
+        if editing == true {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Cancel",
             style: .plain,
             target: self,
             action: #selector(cancel))
+        }
+//            else {
+//            navigationItem.rightBarButtonItem?.title = "Select"
+//        }
     }
-    
     func cancel() {
         
-        navigationItem.rightBarButtonItem = editButtonItem
-        self.editButtonItem.title = "Select"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
+        
         self.tabBarController?.tabBar.isHidden = false
         self.newBar.isHidden = true
         foodCollectionViewController.isEditing = false
+        
     }
     
     func addNewBarButton() {

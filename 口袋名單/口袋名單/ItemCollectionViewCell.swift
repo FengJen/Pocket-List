@@ -10,7 +10,7 @@ import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var whiteLabel: UILabel!
+    
     
     @IBOutlet weak var cellTitle: UIButton!
 
@@ -20,7 +20,11 @@ class ItemCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // Initialization code
+        cellTitle.backgroundColor = UIColor.yellow
+        cellTitle.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 50)
+        
+        //cellTitle.layer.cornerRadius = 15
     }
+    
     
 }
