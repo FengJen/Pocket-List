@@ -31,8 +31,11 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         //getValue loadlist
         NotificationCenter.default.addObserver(self, selector: #selector(getValue), name: NSNotification.Name(rawValue: "load"), object: nil)
-        //todo remove observer
+        // remove observer ?
         
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     func setUp() {
         
@@ -46,7 +49,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             guard let cellArray = value else { return }
             self.cellList = cellArray
             CellDataManager.shared.cellArray = cellArray
-//            self.cellList.append(contentsOf: cellArray)
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
             }
@@ -54,22 +56,16 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
 
     }
-    func loadList() {
-        
-        CellDataManager.shared.getCellData { (value) in
-            guard let newCell = value else { return }
-            self.cellList = newCell
-            
-            self.collectionView?.reloadData()
-        }
-    }
+//    func loadList() {
+//        
+//        CellDataManager.shared.getCellData { (value) in
+//            guard let newCell = value else { return }
+//            self.cellList = newCell
+//            
+//            self.collectionView?.reloadData()
+//        }
+//    }
 
-    func deleteSelectedItemAction(sender: UIBarButtonItem) {
-        //let selectedIndexPaths: [NSIndexPath] = self.collectionView?.indexPathsForVisibleItems
-        
-        
-        
-    }
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     ref.child("pocketList").child(uid!).child(cellList[sourceIndexPath.row].autoID!).setValue(cellList[destinationIndexPath.row].order!, forKey: "order")
         
@@ -165,11 +161,14 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         for indexPath in selectedIndexPaths {
         
             //let item = cellList[indexPath.row]
+            //print(CellDataManager.shared.cellArray)
             
             CellDataManager.shared.cellArray.remove(at: indexPath.row)
-            
+            cellList.remove(at: indexPath.row)
+            //print("\(CellDataManager.shared.cellArray)-------------")
             
         }
+        
         
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -187,9 +186,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             selectedIndexPaths.append(indexPath)
             
             cell?.backgroundColor = UIColor.black
-            
-//            guard let selectedCells = collectionView.indexPathsForSelectedItems else { return }
-//            self.deleteItems(at: selectedCells)
 
         }
     }

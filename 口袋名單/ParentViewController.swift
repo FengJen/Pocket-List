@@ -111,6 +111,17 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         
         let selectedIndexPaths = foodCollectionViewController.selectedIndexPaths
         
+//        for index in selectedIndexPaths {
+//            foodCollectionViewController.cellList.remove(at: index.row)
+//            foodCollectionViewController.collectionView?.deleteItems(at: selectedIndexPaths)
+////            foodCollectionViewController.collectionView?.reloadItems(at: selectedIndexPaths)
+////            foodCollectionViewController.collectionView?.performBatchUpdates({
+////                self.foodCollectionViewController.collectionView?.reloadData()
+////            }, completion: { (_) in
+////                print("end")
+////            })
+//        }
+    
         // deleted
         foodCollectionViewController.deleteItems(at: selectedIndexPaths)
         //foodCollectionViewController.cellList = newList
