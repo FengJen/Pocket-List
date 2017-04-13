@@ -1,11 +1,3 @@
-//
-//  PageMenuViewController.swift
-//  口袋名單
-//
-//  Created by 謝豐任 on 2017/3/22.
-//  Copyright © 2017年 appworks. All rights reserved.
-//
-
 import UIKit
 import XLPagerTabStrip
 
@@ -24,7 +16,6 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         super.viewDidLoad()
         newButton()
         addNewBarButton()
-//        self.setEditing(true, animated: true)
         let editButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(setEdit))
         self.navigationItem.rightBarButtonItem = editButton
     }
@@ -117,25 +108,20 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     func deleteItems() {
         
-        let selectedIndexPaths = foodCollectionViewController.selectedIndexPaths
+//        let selectedIndexPaths = foodCollectionViewController.selectedIndexPaths
         
 //        for index in selectedIndexPaths {
 //            foodCollectionViewController.cellList.remove(at: index.row)
 //            foodCollectionViewController.collectionView?.deleteItems(at: selectedIndexPaths)
 ////            foodCollectionViewController.collectionView?.reloadItems(at: selectedIndexPaths)
-////            foodCollectionViewController.collectionView?.performBatchUpdates({
-////                self.foodCollectionViewController.collectionView?.reloadData()
-////            }, completion: { (_) in
-////                print("end")
-////            })
-//        }
+////
     
         // deleted
-        foodCollectionViewController.deleteItems(at: selectedIndexPaths)
-        //foocollectionView?.reloadData()
-        //foodCollectionViewController.cellList = newList
-       
-        foodCollectionViewController.collectionView!.reloadData()
+        let deleteID = foodCollectionViewController.selectedAutoIDs
+        foodCollectionViewController.deleteItems(at: deleteID)
+        foodCollectionViewController.isEditing = false
+        
+        
         
     }
     

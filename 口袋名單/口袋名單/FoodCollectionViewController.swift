@@ -123,7 +123,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("me: \(cellList.count)")
         return cellList.count
     }
 
@@ -152,26 +151,38 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
     }
     
-    var selectedIndexPaths: [IndexPath] = []
+    //var selectedIndexPaths: [IndexPath] = []
+    var selectedAutoIDs: [String] = []
     
-    func deleteItems(at indexPaths: [IndexPath]) {
+    func deleteItems(at autoID: [String]) {
         
-        for indexPath in selectedIndexPaths {
-        
-            //let item = cellList[indexPath.row]
-            //print(CellDataManager.shared.cellArray)
-            CellDataManager.shared.cellArray.remove(at: indexPath.row)
-            cellList.remove(at: indexPath.row)
+        for autoID in selectedAutoIDs {
+            ref.child("pocketList").child(uid!).child(autoID).removeValue(completionBlock: { (error, newRef) in
+                if error != nil {
+                    print(error ?? "")
+                }
+                //guard let deleteCell =
+                
+            })
+            CellDataManager.shared.getCellData { (valew) in
+                //guard let newCellArray = value else { return }
+                CellDataManager.shared.cellArray = valew!
+                self.cellList = valew!
+                
+            }
+            DispatchQueue.main.async {
+                self.collectionView!.reloadData()
+            }
             
-            //print("\(CellDataManager.shared.cellArray)-------------")
+//            CellDataManager.shared.cellArray.remove(at: indexPath.row)
+//            cellList.remove(at: indexPath.row)
+            
+            
             
         }
-        print(selectedIndexPaths)
 
-        self.isEditing = false
-        print(cellList)
-        print(CellDataManager.shared.cellArray)
-        cellList = CellDataManager.shared.cellArray
+        
+        //cellList = CellDataManager.shared.cellArray
         print(cellList)
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -190,8 +201,10 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         } else if isEditing == true {
 
             collectionView.allowsMultipleSelection = true
-            selectedIndexPaths.append(indexPath)
-            print(selectedIndexPaths)
+            //selectedIndexPaths.append(indexPath)
+            guard let autoID = cellList[indexPath.row].autoID else { return }
+            selectedAutoIDs.append(autoID)
+            
             cell?.backgroundColor = UIColor.black
 
         }
