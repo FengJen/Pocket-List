@@ -216,6 +216,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             collectionView.allowsMultipleSelection = true
             cell?.backgroundColor = UIColor.cyan
             
+            selectedAutoIDs.remove(cellList[indexPath.row].autoID!)
             //selectedIndexPaths.remove(at: indexPath.row)
         }
     }
@@ -240,5 +241,24 @@ extension FoodCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
+    }
+}
+
+extension Array where Element:Equatable {
+    public mutating func remove(_ item:Element ) {
+        var index = 0
+        while index < self.count {
+            if self[index] == item {
+                self.remove(at: index)
+            } else {
+                index += 1
+            }
+        }
+    }
+    
+    public func array( removing item:Element ) -> [Element] {
+        var result = self
+        result.remove( item )
+        return result
     }
 }
