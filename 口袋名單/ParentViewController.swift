@@ -15,7 +15,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var shareButton: UIButton!
     
     @IBOutlet weak var deleteButton: UIButton!
-    let FoodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
+    let FoodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController") as! FoodCollectionViewController
     let SitesCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController")
     
     override func viewDidLoad() {
@@ -25,7 +25,6 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         newButton()
         addNewBarButton()
 //        self.setEditing(true, animated: true)
-        
         self.navigationItem.rightBarButtonItem = editButtonItem
         self.editButtonItem.title = "Select"
     }
@@ -53,7 +52,16 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     }
     
     
-    
+    func deleteItems() {
+        
+//        let selectedIndexPaths = FoodCollectionViewController.selectedIndexPaths
+//        
+        // deleted
+        
+     //   FoodCollectionViewController.cellList = newList
+        FoodCollectionViewController.collectionView!.reloadData()
+        
+    }
     
     func newButton() {
         let newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(pressPlusButton))
@@ -66,13 +74,6 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     }
     
     
-//    func SelectButton() {
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(
-//            title: "Select",
-//            style: .plain,
-//            target: self,
-//            action: #selector(editButton))
-//      
 ////    }
 ////    @IBAction func editMode(sender: AnyObject) {
 ////        self.setEditing(!self.editing, animated: true)
@@ -85,33 +86,27 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
 //    }
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-    
-        if editing {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(
-                title: "Select",
-                style: .plain,
-                target: self,
-                action: #selector(editButton))
-        } else if !editing {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(
-                title: "Cancel",
-                style: .done,
-                target: self,
-                action: #selector(cancel))
-        }
-    }
-    
-    func editButton() {
+        
         self.newBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
         guard let foodchild = FoodCollectionViewController as? UICollectionViewController else { return }
-        //foodchild.collectionView?
+        foodchild.collectionView?.allowsMultipleSelection = true
         
-        print("---------\(123)----------")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: .plain,
+            target: self,
+            action: #selector(cancel))
     }
+    
     func cancel() {
-        self.view.isHidden = true
-        print("---------\(12345678)----------")
+        
+        
+        
+        navigationItem.rightBarButtonItem = editButtonItem
+        self.editButtonItem.title = "Select"
+        self.newBar.isHidden = true
+//        print("---------\(12345678)----------")
     }
     
     func addNewBarButton() {

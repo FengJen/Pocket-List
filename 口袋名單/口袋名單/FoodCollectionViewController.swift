@@ -121,18 +121,18 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
     }
     
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        
-        if editing {
-            
-            self.collectionView?.allowsMultipleSelection = true
-            
-        } else {
-            self.editButtonItem.title = "Cancel"
-        }
-        
-    }
+//    override func setEditing(_ editing: Bool, animated: Bool) {
+//        super.setEditing(editing, animated: animated)
+//        
+//        if editing {
+//            
+//            self.collectionView?.allowsMultipleSelection = true
+//            
+//        } else {
+//            self.editButtonItem.title = "Cancel"
+//        }
+//        
+//    }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Food")
@@ -141,6 +141,9 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    
+    
     
     
 // MARK: UICollectionViewDataSource
@@ -176,7 +179,21 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             }
         }
     }
+    
+    var selectedIndexPaths: [IndexPath] = []
+    
     func deleteItems(at indexPaths: [IndexPath]) {
+        
+        for indexPath in indexPaths {
+        
+            let item = cellList[indexPath.row]
+            
+            
+            
+//            Manager.shared.delete(id: item.autoID)
+
+            
+        }
         
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -190,7 +207,10 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             }
         } else {
             guard let selectedCells = collectionView.indexPathsForSelectedItems else { return }
-            self.deleteItems(at: selectedCells)
+            
+            selectedIndexPaths.append(indexPath)
+            
+//            self.deleteItems(at: selectedCells)
             //highlight selected
         }
     }
