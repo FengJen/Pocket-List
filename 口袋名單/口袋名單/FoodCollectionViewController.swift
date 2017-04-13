@@ -29,8 +29,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        //getValue loadlist
+        NotificationCenter.default.addObserver(self, selector: #selector(getValue), name: NSNotification.Name(rawValue: "load"), object: nil)
         //todo remove observer
         
     }
@@ -54,7 +54,15 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
 
     }
-
+    func loadList() {
+        
+        CellDataManager.shared.getCellData { (value) in
+            guard let newCell = value else { return }
+            self.cellList = newCell
+            
+            self.collectionView?.reloadData()
+        }
+    }
 
     func deleteSelectedItemAction(sender: UIBarButtonItem) {
         //let selectedIndexPaths: [NSIndexPath] = self.collectionView?.indexPathsForVisibleItems
@@ -105,16 +113,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             collectionView?.endInteractiveMovement()
         default:
             collectionView?.cancelInteractiveMovement()
-        }
-    }
-    
-    func loadList() {
-        
-        CellDataManager.shared.getCellData { (value) in
-            guard let newCell = value else { return }
-            self.cellList = newCell
-        
-        self.collectionView?.reloadData()
         }
     }
     
@@ -181,7 +179,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     
     func deleteItems(at indexPaths: [IndexPath]) {
         
-        for indexPath in indexPaths {
+        for indexPath in selectedIndexPaths {
         
             //let item = cellList[indexPath.row]
           
@@ -192,6 +190,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
         if self.isEditing == false {
             guard let url = cellList[indexPath.row].url else { return }
             if let getUrl = URL(string: url) {
@@ -200,12 +199,15 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                 
             }
         } else if isEditing == true {
-//            guard let selectedCells = collectionView.indexPathsForSelectedItems else { return }
-            
+
+            collectionView.allowsMultipleSelection = true
             selectedIndexPaths.append(indexPath)
             
+            cell?.backgroundColor = UIColor.black
+            
+//            guard let selectedCells = collectionView.indexPathsForSelectedItems else { return }
 //            self.deleteItems(at: selectedCells)
-            //highlight selected
+
         }
     }
     @IBAction func unwindToVC1(segue: UIStoryboardSegue) { }

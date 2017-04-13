@@ -82,8 +82,8 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         
         self.newBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
-//        guard let foodchild = foodCollectionViewController
-//        foodchild.collectionView?.allowsMultipleSelection = true
+        foodCollectionViewController.isEditing = true
+
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Cancel",
@@ -98,6 +98,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         self.editButtonItem.title = "Select"
         self.tabBarController?.tabBar.isHidden = false
         self.newBar.isHidden = true
+        foodCollectionViewController.isEditing = false
     }
     
     func addNewBarButton() {
