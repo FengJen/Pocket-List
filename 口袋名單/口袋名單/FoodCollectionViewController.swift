@@ -54,10 +54,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
 
     }
-    func selectCell (sender: UIButton) {
-        let i = sender.layer.value(forKey: "index") as? Int
-        CellDataManager.shared.cellArray.remove(at: i!)
-    }
+
 
     func deleteSelectedItemAction(sender: UIBarButtonItem) {
         //let selectedIndexPaths: [NSIndexPath] = self.collectionView?.indexPathsForVisibleItems
@@ -186,11 +183,9 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
         for indexPath in indexPaths {
         
-            let item = cellList[indexPath.row]
-            
-            
-            
-//            Manager.shared.delete(id: item.autoID)
+            //let item = cellList[indexPath.row]
+          
+            CellDataManager.shared.cellArray.remove(at: indexPath.row)
 
             
         }
@@ -200,13 +195,12 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         if self.isEditing == false {
             guard let url = cellList[indexPath.row].url else { return }
             if let getUrl = URL(string: url) {
-            //if let url = URL(string: cellList[indexPath.item].url!) {
                 let safariViewController = SFSafariViewController(url: getUrl, entersReaderIfAvailable: true)
                 self.present(safariViewController, animated: true, completion: nil)
                 
             }
-        } else {
-            guard let selectedCells = collectionView.indexPathsForSelectedItems else { return }
+        } else if isEditing == true {
+//            guard let selectedCells = collectionView.indexPathsForSelectedItems else { return }
             
             selectedIndexPaths.append(indexPath)
             

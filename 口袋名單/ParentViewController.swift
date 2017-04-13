@@ -11,12 +11,11 @@ import XLPagerTabStrip
 
 class ParentViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var newBar: UIView!
-    
     @IBOutlet weak var shareButton: UIButton!
-    
     @IBOutlet weak var deleteButton: UIButton!
-    let FoodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController") as! FoodCollectionViewController
-    let SitesCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController")
+    
+    let foodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController") as! FoodCollectionViewController
+    let sitesCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController") as! SitesCollectionViewController
     
     override func viewDidLoad() {
         setUp()
@@ -32,6 +31,12 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         super.viewWillAppear(animated)
         self.newBar.isHidden = true
     }
+    
+    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        
+        return [foodCollectionViewController, sitesCollectionViewController]
+    }
+    
     func setUp() {
         settings.style.buttonBarBackgroundColor = .white
         settings.style.buttonBarItemBackgroundColor = .white
@@ -49,18 +54,6 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
             oldCell?.label.textColor = .black
             newCell?.label.textColor = UIColor(red: 0.13, green: 0.03, blue: 0.25, alpha: 1.0)
         }
-    }
-    
-    
-    func deleteItems() {
-        
-//        let selectedIndexPaths = FoodCollectionViewController.selectedIndexPaths
-//        
-        // deleted
-        
-     //   FoodCollectionViewController.cellList = newList
-        FoodCollectionViewController.collectionView!.reloadData()
-        
     }
     
     func newButton() {
@@ -89,8 +82,8 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         
         self.newBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
-        guard let foodchild = FoodCollectionViewController as? UICollectionViewController else { return }
-        foodchild.collectionView?.allowsMultipleSelection = true
+//        guard let foodchild = foodCollectionViewController
+//        foodchild.collectionView?.allowsMultipleSelection = true
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Cancel",
@@ -101,22 +94,29 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     func cancel() {
         
-        
-        
         navigationItem.rightBarButtonItem = editButtonItem
         self.editButtonItem.title = "Select"
+        self.tabBarController?.tabBar.isHidden = false
         self.newBar.isHidden = true
-//        print("---------\(12345678)----------")
     }
     
     func addNewBarButton() {
         shareButton.setImage(#imageLiteral(resourceName: "Upload-50"), for: .normal)
         deleteButton.setImage(#imageLiteral(resourceName: "Trash-50"), for: .normal)
+        deleteButton.addTarget(self, action: #selector(deleteItems), for: .touchUpInside)
     }
-    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+    
+    func deleteItems() {
         
-        return [FoodCollectionViewController, SitesCollectionViewController]
+        let selectedIndexPaths = foodCollectionViewController.selectedIndexPaths
+        
+        // deleted
+        foodCollectionViewController.deleteItems(at: selectedIndexPaths)
+        //foodCollectionViewController.cellList = newList
+        foodCollectionViewController.collectionView!.reloadData()
+        
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
