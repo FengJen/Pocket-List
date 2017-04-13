@@ -114,6 +114,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         // deleted
         foodCollectionViewController.deleteItems(at: selectedIndexPaths)
         //foodCollectionViewController.cellList = newList
+       
         foodCollectionViewController.collectionView!.reloadData()
         
     }

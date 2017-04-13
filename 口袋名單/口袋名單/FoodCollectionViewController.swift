@@ -116,19 +116,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
     }
     
-//    override func setEditing(_ editing: Bool, animated: Bool) {
-//        super.setEditing(editing, animated: animated)
-//        
-//        if editing {
-//            
-//            self.collectionView?.allowsMultipleSelection = true
-//            
-//        } else {
-//            self.editButtonItem.title = "Cancel"
-//        }
-//        
-//    }
-    
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Food")
     }
@@ -136,10 +123,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
-    
-    
     
 // MARK: UICollectionViewDataSource
 
@@ -182,9 +165,9 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         for indexPath in selectedIndexPaths {
         
             //let item = cellList[indexPath.row]
-          
+            
             CellDataManager.shared.cellArray.remove(at: indexPath.row)
-
+            
             
         }
         
