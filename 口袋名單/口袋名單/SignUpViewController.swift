@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var password: UITextField!
     
+    @IBOutlet weak var registerButton: UIButton!
     @IBAction func creatUser(_ sender: Any) {
         if email.text == "" || password.text == "" {
             let alertController = UIAlertController(title: "error", message: "Please enter password and email", preferredStyle: .alert)
@@ -52,7 +53,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        registerButton.layer.cornerRadius = 22
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
