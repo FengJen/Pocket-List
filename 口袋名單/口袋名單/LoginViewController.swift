@@ -65,6 +65,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         signinButton.setImage(#imageLiteral(resourceName: "button-with-cross-stitch-icon"), for: .normal)
         
         signinButton.setTitle("Login", for: .normal)
+        signinButton.layer.shadowColor = UIColor.white.cgColor
+        signinButton.layer.shadowOpacity = 1
+        signinButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        signinButton.layer.shadowRadius = 5
+        
         //signinButton.layer.cornerRadius = signinButton.frame.width/2
         
         
