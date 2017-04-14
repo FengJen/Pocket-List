@@ -18,6 +18,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     let sectionInsets = UIEdgeInsets(top: 76.0, left: 10.0, bottom: 50.0, right: 10.0)
     
     override func viewDidLoad() {
+        
+        headerStyle()
         super.viewDidLoad()
         getValue()
         setUp()
@@ -32,6 +34,34 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "load"), object: nil)
     }
+    func headerStyle() {
+        
+        settings.style.buttonBarBackgroundColor: UIColor?
+        // buttonBar minimumInteritemSpacing value, note that button bar extends from UICollectionView
+        settings.style.buttonBarMinimumInteritemSpacing: CGFloat?
+        // buttonBar minimumLineSpacing value
+        settings.style.buttonBarMinimumLineSpacing: CGFloat?
+        // buttonBar flow layout left content inset value
+        settings.style.buttonBarLeftContentInset: CGFloat?
+        // buttonBar flow layout right content inset value
+        settings.style.buttonBarRightContentInset: CGFloat?
+        
+        // selected bar view is created programmatically so it's important to set up the following 2 properties properly
+        settings.style.selectedBarBackgroundColor = UIColor.blackColor()
+        settings.style.selectedBarHeight: CGFloat = 5
+        
+        // each buttonBar item is a UICollectionView cell of type ButtonBarViewCell
+        settings.style.buttonBarItemBackgroundColor: UIColor?
+        settings.style.buttonBarItemFont = UIFont.systemFontOfSize(18)
+        // helps to determine the cell width, it represent the space before and after the title label
+        settings.style.buttonBarItemLeftRightMargin: CGFloat = 8
+        settings.style.buttonBarItemTitleColor: UIColor?
+        // in case the barView items do not fill the screen width this property stretch the cells to fill the screen
+        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
+        // only used if button bar is created programmatically and not using storyboards or nib files as recommended.
+        public var buttonBarHeight: CGFloat?
+    }
+    
     func setUp() {
         
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
@@ -131,7 +161,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         if isEditing == false {
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
-            //cell.backgroundColor = UIColor.cyan
+            cell.backgroundColor = UIColor.cyan
             cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
             cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
             return cell
@@ -165,21 +195,15 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                 //guard let deleteCell =
                 
             })
+            //todo handle !
             CellDataManager.shared.getCellData { (valew) in
-                //guard let newCellArray = value else { return }
                 CellDataManager.shared.cellArray = valew!
                 self.cellList = valew!
                 
             }
-            DispatchQueue.main.async {
+            
                 self.collectionView!.reloadData()
-            }
-            
-//            CellDataManager.shared.cellArray.remove(at: indexPath.row)
-//            cellList.remove(at: indexPath.row)
-            
-            
-            
+            self.isEditing = false
         }
 
         
@@ -202,12 +226,11 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         } else if isEditing == true {
 
             collectionView.allowsMultipleSelection = true
-            //selectedIndexPaths.append(indexPath)
             guard let autoID = cellList[indexPath.row].autoID else { return }
             selectedAutoIDs.append(autoID)
             
-            cell?.backgroundColor = UIColor.black
-
+            cell?.backgroundColor = UIColor.blue
+            
         }
     }
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
