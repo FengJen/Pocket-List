@@ -138,7 +138,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
         return UICollectionViewCell()
     }
-    
+    // todo cellback
     func preformCellEditView(sender: UIButton) {
         let button = sender
         if isEditing == false {

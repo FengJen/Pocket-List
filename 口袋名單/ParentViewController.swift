@@ -90,6 +90,8 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
 //            navigationItem.rightBarButtonItem?.title = "Select"
 //        }
     }
+    
+    //todo handle cancle action
     func cancel() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
@@ -120,7 +122,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         let deleteID = foodCollectionViewController.selectedAutoIDs
         foodCollectionViewController.deleteItems(at: deleteID)
         foodCollectionViewController.isEditing = false
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
         
         
     }
