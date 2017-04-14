@@ -51,17 +51,18 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
 
     }
-//    func loadList() {
-//        
-//        CellDataManager.shared.getCellData { (value) in
-//            guard let newCell = value else { return }
-//            self.cellList = newCell
-//            
-//            self.collectionView?.reloadData()
-//        }
-//    }
+    func loadList() {
+        
+        CellDataManager.shared.getCellData { (value) in
+            guard let newCell = value else { return }
+            self.cellList = newCell
+            
+            self.collectionView?.reloadData()
+        }
+    }
 
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        /*
     ref.child("pocketList").child(uid!).child(cellList[sourceIndexPath.row].autoID!).setValue(cellList[destinationIndexPath.row].order!, forKey: "order")
         
         if sourceIndexPath > destinationIndexPath {
@@ -87,7 +88,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             })
             //-= 1
         }
-        // todo: handle !
+        // todo: handle !  */
     }
     func handleLongGesture(gesture: UILongPressGestureRecognizer) {
         
