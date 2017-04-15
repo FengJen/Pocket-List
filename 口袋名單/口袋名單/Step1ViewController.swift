@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class Step1ViewController: UIViewController, UITextFieldDelegate {
+class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var temperaryTitle: UITextField!
@@ -31,9 +31,70 @@ class Step1ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setImageView()
     }
     
+    //MARK: pick image
+    func pickImage() {
+        
+        let imagePicker = UIImagePickerController()
+        
+        imagePicker.delegate = self
+        
+        imagePicker.allowsEditing = true
+        
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func setImageView() {
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(pickImage))
+        
+        imageView.addGestureRecognizer(tap)
+        
+        imageView.isUserInteractionEnabled = true
+        
+        let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
+        
+        imageView.image = image
+        
+        imageView.tintColor = UIColor.white
+        
+        imageView.contentMode = .scaleAspectFit
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+            imageView.frame = CGRect(x: 0, y: 0, width: pickedImage.size.width, height: pickedImage.size.height)
+            
+            imageView.image = pickedImage
+            
+            imageView.contentMode = .scaleAspectFit
+            
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: upload to firebase
+    func uploadData() {
+        if let uid = Constants.uid, let url = website.text, let title = temperaryTitle.text, let content = contentView.text {
+                let cell = ref.child(uid).childByAutoId()
+            let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content] as [String : Any]
+            cell.setValue(value)
+        }
+    }
+    
+    // MARK: handle keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -41,18 +102,12 @@ class Step1ViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == website {
-        let move = CGPoint(x: 0, y: 250)
-        scrollView.setContentOffset(move, animated: true)
-        } 
+            let move = CGPoint(x: 0, y: 250)
+            scrollView.setContentOffset(move, animated: true)
+        }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         let move = CGPoint(x: 0, y: 0)
         scrollView.setContentOffset(move, animated: true)
-    }
-    func uploadData() {
-        if let uid = Constants.uid, let url = website.text, let title = temperaryTitle.text {
-                let cell = ref.child(uid).childByAutoId()
-            cell.setValue(["title": title, "url": url, "order": CellDataManager.shared.cellArray.count])
-        }
     }
 }

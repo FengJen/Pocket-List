@@ -9,7 +9,7 @@ class CellDataManager {
     let ref = FIRDatabase.database().reference()
     //var user: User?
     
-    typealias editData = (_ value: String) -> Void
+    //typealias editData = (_ value: String) -> Void
     
     func getCellData(completion: @escaping (_ value: [CellModel]?) -> Void) {
         var value: [CellModel] = []
@@ -22,10 +22,10 @@ class CellDataManager {
                 guard let children = taskSnapshot.value as? [String: AnyObject] else { return }
                 guard let title = children["title"] as? String,
                       let order = children["order"] as? Int,
-                      let content = children["content"] as? String
+                      let content = children["content"] as? String,
                       let url = children["url"] as? String else { return }
                     
-                let cellModel = CellModel(autoID: autoID, title: title, url: url, order: order, content: )
+                let cellModel = CellModel(autoID: autoID, title: title, url: url, order: order, content: content)
                 value.append(cellModel)
             }
                 completion(value)

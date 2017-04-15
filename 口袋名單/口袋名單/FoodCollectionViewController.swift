@@ -183,7 +183,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
     }
     
-    //var selectedIndexPaths: [IndexPath] = []
     var selectedAutoIDs: [String] = []
     
     func deleteItems(at autoID: [String]) {
@@ -193,8 +192,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                 if error != nil {
                     print(error ?? "")
                 }
-                //guard let deleteCell =
-                
             })
             //todo handle !
             CellDataManager.shared.getCellData { (valew) in
@@ -204,13 +201,12 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             }
             
                 self.collectionView!.reloadData()
-            self.isEditing = false
+                self.isEditing = false
         }
 
-        
         //cellList = CellDataManager.shared.cellArray
-        print(cellList)
     }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.layer.shadowColor = UIColor.gray.cgColor
