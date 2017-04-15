@@ -27,6 +27,8 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
     func setUp() {
         editTitle.text = cell.title
         editUrl.text = cell.url
+        
+        doneButton.layer.cornerRadius = 22
     }
     
     @IBAction func editData(_ sender: UIButton) {

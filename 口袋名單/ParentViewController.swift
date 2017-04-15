@@ -60,8 +60,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StepsViewController")
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
+        
 ////    }
 ////    @IBAction func editMode(sender: AnyObject) {
 ////        self.setEditing(!self.editing, animated: true)

@@ -12,6 +12,7 @@ class ItemsNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBar.backgroundColor = UIColor.yellow
     }
    
     override func didReceiveMemoryWarning() {

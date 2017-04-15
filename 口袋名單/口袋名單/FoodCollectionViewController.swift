@@ -35,7 +35,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     func headerStyle() {
-        
+        /*
         settings.style.buttonBarBackgroundColor: UIColor?
         // buttonBar minimumInteritemSpacing value, note that button bar extends from UICollectionView
         settings.style.buttonBarMinimumInteritemSpacing: CGFloat?
@@ -60,6 +60,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         settings.style.buttonBarItemsShouldFillAvailiableWidth = true
         // only used if button bar is created programmatically and not using storyboards or nib files as recommended.
         public var buttonBarHeight: CGFloat?
+ */
     }
     
     func setUp() {
