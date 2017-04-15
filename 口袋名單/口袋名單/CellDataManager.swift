@@ -22,9 +22,10 @@ class CellDataManager {
                 guard let children = taskSnapshot.value as? [String: AnyObject] else { return }
                 guard let title = children["title"] as? String,
                       let order = children["order"] as? Int,
+                      let content = children["content"] as? String
                       let url = children["url"] as? String else { return }
                     
-                let cellModel = CellModel(autoID: autoID, title: title, url: url, order: order)
+                let cellModel = CellModel(autoID: autoID, title: title, url: url, order: order, content: )
                 value.append(cellModel)
             }
                 completion(value)

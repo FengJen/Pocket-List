@@ -395,6 +395,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="1Wf-9u-uEq" id="mRE-zx-hOJ"/>
+                        <outlet property="imageView" destination="k1y-2n-xej" id="H8z-Jd-sUL"/>
                         <outlet property="scrollView" destination="V8y-lZ-gbk" id="E2Y-OW-P7d"/>
                         <outlet property="temperaryTitle" destination="P0C-zu-ug4" id="aGh-n1-5kB"/>
                         <outlet property="website" destination="kjx-gf-TkN" id="eE6-mt-oZf"/>

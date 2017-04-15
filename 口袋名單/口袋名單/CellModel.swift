@@ -5,8 +5,7 @@ struct CellModel {
     var title: String?
     var url: String?
     var order: Int?
-    
-    
-    //var content: String
+    var content: String?
+    var image: Data?
 }
 

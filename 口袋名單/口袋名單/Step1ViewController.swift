@@ -7,9 +7,12 @@ class Step1ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var temperaryTitle: UITextField!
     @IBOutlet weak var website: UITextField!
+    @IBOutlet weak var contentView: UITextView!
+    @IBOutlet weak var imageView: UIImageView!
     let ref = FIRDatabase.database().reference().child("pocketList")
     @IBAction func doneButton(_ sender: Any) {
         if temperaryTitle.text == "" {
+         
             let allert = UIAlertController(title: "您還未輸入標題", message: "請在輸入新增項目的標題", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             allert.addAction(action)
