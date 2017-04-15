@@ -249,52 +249,10 @@
             </objects>
             <point key="canvasLocation" x="4155" y="-736"/>
         </scene>
-        <!--Step1 View Controller-->
-        <scene sceneID="kHL-7Q-F0F">
-            <objects>
-                <viewController storyboardIdentifier="step1" id="l9T-AL-T9n" customClass="Step1ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UGQ-f8-C5z"/>
-                        <viewControllerLayoutGuide type="bottom" id="y1p-EN-DaC"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rdT-1Z-wCp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugF-nI-NH2">
-                                <rect key="frame" x="96" y="120" width="183" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="iIV-v1-V2Z"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選擇封面圖片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvN-ys-GTb">
-                                <rect key="frame" x="132.5" y="210" width="110.5" height="21.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="VvN-ys-GTb" firstAttribute="centerX" secondItem="rdT-1Z-wCp" secondAttribute="centerX" id="6fx-sG-DhW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ugF-nI-NH2" secondAttribute="trailing" constant="80" id="D44-kW-q41"/>
-                            <constraint firstItem="VvN-ys-GTb" firstAttribute="top" secondItem="ugF-nI-NH2" secondAttribute="bottom" constant="30" id="MdK-1r-tCJ"/>
-                            <constraint firstItem="ugF-nI-NH2" firstAttribute="leading" secondItem="rdT-1Z-wCp" secondAttribute="leadingMargin" constant="80" id="f7m-RH-oIy"/>
-                            <constraint firstItem="ugF-nI-NH2" firstAttribute="top" secondItem="UGQ-f8-C5z" secondAttribute="bottom" constant="100" id="mz5-PF-ajl"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v39-vy-HB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4999" y="-916"/>
-        </scene>
         <!--Step2 View Controller-->
         <scene sceneID="Bdu-Vo-rgy">
             <objects>
-                <viewController storyboardIdentifier="step2" id="Uci-mE-zsa" customClass="Step2ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Step2ViewController" id="Uci-mE-zsa" customClass="Step2ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vL9-4z-zFy"/>
                         <viewControllerLayoutGuide type="bottom" id="2eZ-gR-rpG"/>
@@ -359,10 +317,10 @@
             </objects>
             <point key="canvasLocation" x="7040.8000000000002" y="-916.1919040479761"/>
         </scene>
-        <!--Step3 View Controller-->
+        <!--Step1 View Controller-->
         <scene sceneID="ZzX-i9-aT0">
             <objects>
-                <viewController storyboardIdentifier="step3" id="qOm-uI-gId" customClass="Step3ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Step1ViewController" id="qOm-uI-gId" customClass="Step1ViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FLJ-Au-7ZU"/>
                         <viewControllerLayoutGuide type="bottom" id="2We-aX-9FE"/>
@@ -399,12 +357,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6I-t6-bXH">
-                                        <rect key="frame" x="157" y="531" width="60" height="44"/>
+                                        <rect key="frame" x="157" y="531" width="60" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="cUz-JO-bx7"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="kSp-1Y-thz"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="q02-7h-1CU"/>
-                                            <constraint firstAttribute="height" constant="44" id="wNg-6z-kwK"/>
+                                            <constraint firstAttribute="width" constant="60" id="kSp-1Y-thz"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Done"/>
@@ -413,7 +369,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請輸入標題" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rb-rp-Wfa">
-                                        <rect key="frame" x="114" y="175" width="147" height="22"/>
+                                        <rect key="frame" x="142" y="175" width="92" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -433,23 +389,23 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="kjx-gf-TkN" firstAttribute="top" secondItem="kI3-LU-stk" secondAttribute="bottom" constant="21" id="2Jr-KB-M8t"/>
-                                    <constraint firstItem="4mq-eR-c4h" firstAttribute="centerX" secondItem="5Rb-rp-Wfa" secondAttribute="centerX" id="2nC-lo-1Al"/>
                                     <constraint firstAttribute="trailing" secondItem="kjx-gf-TkN" secondAttribute="trailing" constant="46" id="4Sn-yn-BeJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="kI3-LU-stk" secondAttribute="trailing" constant="114" id="5oA-6y-MC4"/>
+                                    <constraint firstAttribute="bottom" secondItem="s6I-t6-bXH" secondAttribute="bottom" constant="80" id="6e4-o0-Vfb"/>
                                     <constraint firstItem="kjx-gf-TkN" firstAttribute="leading" secondItem="V8y-lZ-gbk" secondAttribute="leading" constant="46" id="Ebc-lc-jkC"/>
-                                    <constraint firstItem="s6I-t6-bXH" firstAttribute="top" secondItem="kjx-gf-TkN" secondAttribute="bottom" constant="84" id="KZa-9c-rlA"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Rb-rp-Wfa" secondAttribute="trailing" constant="141" id="F9I-wh-U0G"/>
+                                    <constraint firstItem="kI3-LU-stk" firstAttribute="leading" secondItem="V8y-lZ-gbk" secondAttribute="leading" constant="114" id="Kkn-U3-IlI"/>
                                     <constraint firstItem="kI3-LU-stk" firstAttribute="top" secondItem="P0C-zu-ug4" secondAttribute="bottom" constant="120" id="L3t-gC-N2w"/>
                                     <constraint firstItem="4mq-eR-c4h" firstAttribute="leading" secondItem="V8y-lZ-gbk" secondAttribute="leading" constant="96" id="Oqd-HL-9wf"/>
-                                    <constraint firstItem="kI3-LU-stk" firstAttribute="centerX" secondItem="s6I-t6-bXH" secondAttribute="centerX" id="Peq-V7-0VW"/>
-                                    <constraint firstItem="s6I-t6-bXH" firstAttribute="centerX" secondItem="V8y-lZ-gbk" secondAttribute="centerX" id="Uyw-zW-cHE"/>
                                     <constraint firstItem="P0C-zu-ug4" firstAttribute="leading" secondItem="V8y-lZ-gbk" secondAttribute="leading" constant="46" id="Xbe-1X-ei4"/>
-                                    <constraint firstAttribute="bottom" secondItem="s6I-t6-bXH" secondAttribute="bottom" constant="27" id="f25-cf-q37"/>
+                                    <constraint firstItem="s6I-t6-bXH" firstAttribute="top" secondItem="kjx-gf-TkN" secondAttribute="bottom" constant="84" id="a7s-VA-0pX"/>
                                     <constraint firstAttribute="trailing" secondItem="P0C-zu-ug4" secondAttribute="trailing" constant="46" id="jJI-9n-2fC"/>
+                                    <constraint firstItem="5Rb-rp-Wfa" firstAttribute="leading" secondItem="V8y-lZ-gbk" secondAttribute="leading" constant="142" id="ld2-ko-ahQ"/>
                                     <constraint firstItem="4mq-eR-c4h" firstAttribute="top" secondItem="V8y-lZ-gbk" secondAttribute="top" constant="50" id="mZw-Nf-RDK"/>
                                     <constraint firstItem="5Rb-rp-Wfa" firstAttribute="top" secondItem="4mq-eR-c4h" secondAttribute="bottom" constant="65" id="pgT-Fe-Xg1"/>
                                     <constraint firstItem="P0C-zu-ug4" firstAttribute="top" secondItem="5Rb-rp-Wfa" secondAttribute="bottom" constant="27" id="qJK-6f-p4c"/>
-                                    <constraint firstItem="5Rb-rp-Wfa" firstAttribute="trailing" secondItem="kI3-LU-stk" secondAttribute="trailing" id="tZP-Cw-Fj2"/>
-                                    <constraint firstItem="5Rb-rp-Wfa" firstAttribute="centerX" secondItem="P0C-zu-ug4" secondAttribute="centerX" id="urt-eC-kNn"/>
-                                    <constraint firstItem="5Rb-rp-Wfa" firstAttribute="leading" secondItem="kI3-LU-stk" secondAttribute="leading" id="yoW-aM-Nx8"/>
+                                    <constraint firstAttribute="trailing" secondItem="4mq-eR-c4h" secondAttribute="trailing" constant="96" id="qXD-8o-QWr"/>
+                                    <constraint firstItem="s6I-t6-bXH" firstAttribute="centerX" secondItem="kjx-gf-TkN" secondAttribute="centerX" id="zha-mb-FJV"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
