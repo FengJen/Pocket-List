@@ -631,6 +631,7 @@
                         <outlet property="doneButton" destination="cVR-Wu-HD9" id="CMZ-wb-k3G"/>
                         <outlet property="editTitle" destination="5nW-7e-CyE" id="3Ha-Lc-dYD"/>
                         <outlet property="editUrl" destination="HDJ-aV-oEE" id="opV-my-scL"/>
+                        <outlet property="imageView" destination="7vx-mv-w4Q" id="icZ-Gl-Slq"/>
                         <segue destination="O9z-Zr-98b" kind="unwind" identifier="unwindSegue" unwindAction="unwindToVC1WithSegue:" id="LDd-om-DwO"/>
                     </connections>
                 </viewController>

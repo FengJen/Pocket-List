@@ -7,9 +7,9 @@
 //
 
 import UIKit
-protocol ChangeCellDataDelegate {
-    func changeCell(newCell: CellModel)
-}
+//protocol ChangeCellDataDelegate {
+//    func changeCell(newCell: CellModel)
+//}
 class CellDetailViewController: UIViewController, UITextFieldDelegate {
     var cell = CellModel()
    
@@ -18,8 +18,13 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var editUrl: UITextField!
     
     @IBOutlet weak var content: UITextView!
-    var delegate: ChangeCellDataDelegate?
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
     @IBOutlet weak var doneButton: UIButton!
+    
+    //var delegate: ChangeCellDataDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -30,6 +35,8 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate {
         editTitle.text = cell.title
         editUrl.text = cell.url
         content.text = cell.content
+        //imageView.image =
+        
         
         doneButton.layer.cornerRadius = 22
     }

@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 struct CellModel {
     var autoID: String?
@@ -6,6 +7,6 @@ struct CellModel {
     var url: String?
     var order: Int?
     var content: String?
-    //var image: Data?
+    var image: UIImage?
 }
 

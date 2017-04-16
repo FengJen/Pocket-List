@@ -88,10 +88,11 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     func uploadData() {
         //let filePath = "\(FIRAuth.auth()?.currentUser?.uid)/\("userPhoto")"
-        let storageRef = FIRStorage.storage().reference(withPath: "userPics/food.jpg")
+        let imageName = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("\(imageName).jpg")
         let metaData = FIRStorageMetadata()
         metaData.contentType = "image/jpg"
-        if let uploadData = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+        if let uploadData = UIImageJPEGRepresentation(imageView.image!, 0.1) {
         storageRef.put(uploadData, metadata: nil, completion: { (storeMetaData, error) in
                 if error != nil {
                     print(error?.localizedDescription ?? "")

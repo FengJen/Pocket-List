@@ -9,7 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItemCollectionViewCell" customModule="口袋名單" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItemCollectionViewCell" customModule="口袋名單" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="p5D-BV-JFl" id="6ri-kP-NPK"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="gTV-IL-0wX" customClass="ItemCollectionViewCell" customModule="口袋名單" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="262" height="240"/>
@@ -25,13 +29,20 @@
                             <constraint firstAttribute="height" constant="45" id="tY3-UU-1Dd"/>
                         </constraints>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p5D-BV-JFl">
+                        <rect key="frame" x="0.0" y="0.0" width="262" height="195"/>
+                    </imageView>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="PWh-t7-yTC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="LQC-52-YSF"/>
+                <constraint firstItem="p5D-BV-JFl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QQF-nu-AES"/>
+                <constraint firstItem="p5D-BV-JFl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="S2j-bh-Ixx"/>
                 <constraint firstAttribute="trailing" secondItem="PWh-t7-yTC" secondAttribute="trailing" id="a48-Xr-6DA"/>
                 <constraint firstAttribute="bottom" secondItem="PWh-t7-yTC" secondAttribute="bottom" id="ekF-Fu-j4t"/>
+                <constraint firstAttribute="trailing" secondItem="p5D-BV-JFl" secondAttribute="trailing" id="hYe-2H-TvJ"/>
+                <constraint firstItem="PWh-t7-yTC" firstAttribute="top" secondItem="p5D-BV-JFl" secondAttribute="bottom" id="o1b-TB-bH9"/>
             </constraints>
             <size key="customSize" width="262" height="240"/>
             <connections>

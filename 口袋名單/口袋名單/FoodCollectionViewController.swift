@@ -27,7 +27,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         //getValue loadlist
-        NotificationCenter.default.addObserver(self, selector: #selector(getValue), name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadEditValue), name: NSNotification.Name(rawValue: "load"), object: nil)
         // remove observer ?
         
     }
@@ -82,7 +82,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         }
 
     }
-    func loadList() {
+    func loadEditValue() {
         
         CellDataManager.shared.getCellData { (value) in
             guard let newCell = value else { return }
@@ -165,6 +165,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             cell.backgroundColor = UIColor.cyan
             cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
             cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
+            cell.imageView.image = cellList[indexPath.row].image
             return cell
             }
         }
