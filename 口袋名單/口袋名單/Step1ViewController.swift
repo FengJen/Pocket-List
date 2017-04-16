@@ -10,6 +10,9 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet weak var contentView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     let ref = FIRDatabase.database().reference().child("pocketList")
+    let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
+    
+    
     @IBAction func doneButton(_ sender: Any) {
         if temperaryTitle.text == "" {
          
@@ -26,6 +29,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             uploadData()
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
             navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
     
@@ -56,8 +60,6 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         imageView.isUserInteractionEnabled = true
         
-        let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
-        
         imageView.image = image
         
         imageView.tintColor = UIColor.white
@@ -66,8 +68,29 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var data = Data()
+        
+        let filePath = "\(FIRAuth.auth()?.currentUser?.uid)/\("userPhoto")"
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/jpg"
+        //self.ref.
+        let storageRef = FIRStorage.storage().reference().child("cell image")
+        
         
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+            if let uploadData = UIImageJPEGRepresentation(pickedImage, 0.8) {
+                storageRef.put(uploadData, metadata: nil, completion: { (storeMetaData, error) in
+                    if error != nil {
+                        print(error?.localizedDescription ?? "")
+                        return
+                    }
+                    let downloadURL = storeMetaData?.downloadURL()?.absoluteString
+                    ref.child("pockList").child(uid).
+                })
+            }
+            
             
             imageView.frame = CGRect(x: 0, y: 0, width: pickedImage.size.width, height: pickedImage.size.height)
             
@@ -85,12 +108,15 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         dismiss(animated: true, completion: nil)
     }
     
+    
     //MARK: upload to firebase
-    func uploadData() {
+    func uploadData(value: [String: AnyObject]) {
         if let uid = Constants.uid, let url = website.text, let title = temperaryTitle.text, let content = contentView.text {
-                let cell = ref.child(uid).childByAutoId()
+                let userRef = ref.child(uid).childByAutoId()
             let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content] as [String : Any]
-            cell.setValue(value)
+            userRef.setValue(value, withCompletionBlock: { (error, ref) in
+                
+            })
         }
     }
     
