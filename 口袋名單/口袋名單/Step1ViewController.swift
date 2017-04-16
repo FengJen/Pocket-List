@@ -36,6 +36,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     override func viewDidLoad() {
         super.viewDidLoad()
         setImageView()
+        
+        imageView.contentMode = .center
     }
     
     //MARK: pick image
@@ -68,57 +70,55 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        var data = Data()
-        
-        let filePath = "\(FIRAuth.auth()?.currentUser?.uid)/\("userPhoto")"
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/jpg"
-        //self.ref.
-        let storageRef = FIRStorage.storage().reference().child("cell image")
-        
         
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             
-            if let uploadData = UIImageJPEGRepresentation(pickedImage, 0.8) {
-                storageRef.put(uploadData, metadata: nil, completion: { (storeMetaData, error) in
-                    if error != nil {
-                        print(error?.localizedDescription ?? "")
-                        return
-                    }
-                    let downloadURL = storeMetaData?.downloadURL()?.absoluteString
-                    ref.child("pockList").child(uid).
-                })
-            }
-            
-            
-            imageView.frame = CGRect(x: 0, y: 0, width: pickedImage.size.width, height: pickedImage.size.height)
+            //imageView.frame = CGRect(x: 0, y: 0, width: pickedImage.size.width, height: pickedImage.size.height)
             
             imageView.image = pickedImage
             
             imageView.contentMode = .scaleAspectFit
-            
         }
-        
-        dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
         dismiss(animated: true, completion: nil)
     }
-    
+    func uploadData() {
+        //let filePath = "\(FIRAuth.auth()?.currentUser?.uid)/\("userPhoto")"
+        let storageRef = FIRStorage.storage().reference(withPath: "userPics/food.jpg")
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/jpg"
+        if let uploadData = UIImageJPEGRepresentation(imageView.image!, 0.8) {
+        storageRef.put(uploadData, metadata: nil, completion: { (storeMetaData, error) in
+                if error != nil {
+                    print(error?.localizedDescription ?? "")
+                    return
+                }
+            if let uid = Constants.uid,
+               let url = self.website.text,
+               let title = self.temperaryTitle.text,
+               let content = self.contentView.text,
+               let imageURL = storeMetaData?.downloadURL()?.absoluteString {
+                    let userRef = self.ref.child(uid).childByAutoId()
+                    let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL] as [String : Any]
+                    userRef.setValue(value)
+                }
+            })
+         
+        }
+        
+    }
     
     //MARK: upload to firebase
-    func uploadData(value: [String: AnyObject]) {
-        if let uid = Constants.uid, let url = website.text, let title = temperaryTitle.text, let content = contentView.text {
-                let userRef = ref.child(uid).childByAutoId()
-            let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content] as [String : Any]
-            userRef.setValue(value, withCompletionBlock: { (error, ref) in
-                
-            })
+    /*func uploadData(value: [String : Any]) {
+        if let uid = Constants.uid {
+        
+        
         }
-    }
+    }*/
     
     // MARK: handle keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
