@@ -29,95 +29,96 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        setImageView()
+        //setImageView()
     }
     
     func setUp() {
         editTitle.text = cell.title
         editUrl.text = cell.url
         content.text = cell.content
-        
+        imageView.image = cell.image
         
         
         doneButton.layer.cornerRadius = 22
     }
     //MARK: pick image
-    func pickImage() {
-        
-        let imagePicker = UIImagePickerController()
-        
-        imagePicker.delegate = self
-        
-        imagePicker.allowsEditing = true
-        
-        imagePicker.sourceType = .photoLibrary
-        
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func setImageView() {
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(pickImage))
-        
-        imageView.addGestureRecognizer(tap)
-        
-        imageView.isUserInteractionEnabled = true
-        
-        imageView.image = cell.image
-        
-        imageView.tintColor = UIColor.white
-        
-        imageView.contentMode = .scaleAspectFit
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            
-            //imageView.frame = CGRect(x: 0, y: 0, width: pickedImage.size.width, height: pickedImage.size.height)
-            
-            imageView.image = pickedImage
-            
-            imageView.contentMode = .scaleAspectFit
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        dismiss(animated: true, completion: nil)
-    }
+//    func pickImage() {
+//        
+//        let imagePicker = UIImagePickerController()
+//        
+//        imagePicker.delegate = self
+//        
+//        imagePicker.allowsEditing = true
+//        
+//        imagePicker.sourceType = .photoLibrary
+//        
+//        present(imagePicker, animated: true, completion: nil)
+//    }
+//    
+//    func setImageView() {
+//        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(pickImage))
+//        
+//        imageView.addGestureRecognizer(tap)
+//        
+//        imageView.isUserInteractionEnabled = true
+//        
+//        imageView.image = cell.image
+//        
+//        imageView.tintColor = UIColor.white
+//        
+//        imageView.contentMode = .scaleAspectFit
+//    }
+//    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        
+//        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+//            
+//            //imageView.frame = CGRect(x: 0, y: 0, width: pickedImage.size.width, height: pickedImage.size.height)
+//            
+//            imageView.image = pickedImage
+//            
+//            imageView.contentMode = .scaleAspectFit
+//        }
+//        dismiss(animated: true, completion: nil)
+//    }
+//    
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        
+//        dismiss(animated: true, completion: nil)
+//    }
     @IBAction func editData(_ sender: UIButton) {
         guard let text = editTitle.text, let url = editUrl.text, let content = content.text else { return }
-        let imageName = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child("\(imageName).jpg")
-        let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/jpg"
-        if let uploadData = UIImageJPEGRepresentation(imageView.image!, 0.1) {
-            storageRef.put(uploadData, metadata: nil, completion: { (storeMetaData, error) in
-                if error != nil {
-                    print(error?.localizedDescription ?? "")
-                    return
-                }
-                if let uid = Constants.uid,
-                    
-                    let imageURL = storeMetaData?.downloadURL()?.absoluteString {
-                    let userRef = self.ref.child(uid).childByAutoId()
-                    let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL] as [String : Any]
-                    userRef.setValue(value)
-                }
-            })
-            
-        }
-        //todo: check if data changed
-        guard let cellAutoID = cell.autoID, let uid = Constants.uid else { return }
-        let editRef = Constants.ref.child("pocketList").child(uid).child(cellAutoID)
-            let imageURL = imageView.image.image
-            editRef.updateChildValues(["title": text])
-            editRef.updateChildValues(["url": url])
-            editRef.updateChildValues(["content": content])
-            editRef.updateChildValues(["image":""])
         
+        guard let cellAutoID = self.cell.autoID, let uid = Constants.uid else { return }
+        let editRef = Constants.ref.child("pocketList").child(uid).child(cellAutoID)
+        
+        editRef.updateChildValues(["title": text])
+        editRef.updateChildValues(["url": url])
+        editRef.updateChildValues(["content": content])
+        //editRef.updateChildValues(["image": imageURL ?? ""])
+//        let imageName = UUID().uuidString
+//        let storageRef = FIRStorage.storage().reference().child("\(imageName).jpg")
+//        let metaData = FIRStorageMetadata()
+//        metaData.contentType = "image/jpg"
+//        if let uploadData = UIImageJPEGRepresentation(imageView.image!, 0.1) {
+//            storageRef.put(uploadData, metadata: nil, completion: { (storeMetaData, error) in
+//                if error != nil {
+//                    print(error?.localizedDescription ?? "")
+//                    return
+//                }
+//                guard let cellAutoID = self.cell.autoID, let uid = Constants.uid else { return }
+//                let editRef = Constants.ref.child("pocketList").child(uid).child(cellAutoID)
+//                let imageURL = storeMetaData?.downloadURL()?.absoluteString
+//                editRef.updateChildValues(["title": text])
+//                editRef.updateChildValues(["url": url])
+//                editRef.updateChildValues(["content": content])
+//                editRef.updateChildValues(["image": imageURL ?? ""])
+//                
+//            })
+        
+//        }
+    
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         
         performSegue(withIdentifier: "unwindSegue", sender: sender)

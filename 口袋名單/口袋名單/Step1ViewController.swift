@@ -88,7 +88,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     func uploadData() {
         //let filePath = "\(FIRAuth.auth()?.currentUser?.uid)/\("userPhoto")"
-        let imageName = NSUUID().uuidString
+        let imageName = UUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("\(imageName).jpg")
         let metaData = FIRStorageMetadata()
         metaData.contentType = "image/jpg"

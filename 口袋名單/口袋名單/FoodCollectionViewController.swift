@@ -185,7 +185,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     var selectedAutoIDs: [String] = []
-    
+            //todo delete image storage
     func deleteItems(at autoID: [String]) {
         
         for autoID in selectedAutoIDs {

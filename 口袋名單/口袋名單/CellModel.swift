@@ -8,5 +8,6 @@ struct CellModel {
     var order: Int?
     var content: String?
     var image: UIImage?
+    //var imageID: String?
 }
 

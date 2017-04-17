@@ -25,6 +25,7 @@ class CellDataManager {
                       let order = children["order"] as? Int,
                       let content = children["content"] as? String,
                       let downloadURL = children["image"] as? String,
+                      //let imageID = children["imageID"] as? String,
                       let url = children["url"] as? String else { return }
                 
                 let storageRef = FIRStorage.storage().reference(forURL: downloadURL)
