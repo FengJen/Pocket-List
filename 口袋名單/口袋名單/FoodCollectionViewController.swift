@@ -10,6 +10,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     let ref = FIRDatabase.database().reference()
     let uid = FIRAuth.auth()?.currentUser?.uid
     var cellList = [CellModel]()
+    
     var longPressGesture = UILongPressGestureRecognizer()
        
     //var itemArray = NSMutableArray()
@@ -26,9 +27,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
-        //getValue loadlist
-        NotificationCenter.default.addObserver(self, selector: #selector(getValue), name: NSNotification.Name(rawValue: "load"), object: nil)
-        // remove observer ?
+        //getValue loadlist?
+        NotificationCenter.default.addObserver(self, selector: #selector(loadEditValue), name: NSNotification.Name(rawValue: "load"), object: nil)
         
     }
     deinit {
