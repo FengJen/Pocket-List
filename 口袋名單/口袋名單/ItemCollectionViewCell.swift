@@ -14,7 +14,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cellTitle: UIButton!
 
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var myImageView: UIImageView!
     
           // self.window?.rootViewController?.present(vc, animated: true, completion: nil)
     

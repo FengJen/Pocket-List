@@ -14,8 +14,8 @@ class CellDataManager {
     func getCellData(completion: @escaping (_ value: [CellModel]?) -> Void) {
         var value: [CellModel] = [] //?
         let uid = FIRAuth.auth()?.currentUser?.uid
-
-        self.ref.child("pocketList").child(uid!).queryOrderedByValue().observe( .value, with: { (snapshot) in
+        //.queryOrdered(byChild: "order")
+        self.ref.child("pocketList").child(uid!).observe( .value, with: { (snapshot) in
             for child in snapshot.children {
                 guard let taskSnapshot = child as? FIRDataSnapshot else { return }
                 let autoID = taskSnapshot.key
@@ -29,28 +29,34 @@ class CellDataManager {
                 
                 let storageRef = FIRStorage.storage().reference(forURL: downloadURL)
                 
-                storageRef.downloadURL(completion: { (imageurl, error) in
-                    let data = NSData(contentsOf: imageurl!) as! Data
-                    let image = UIImage(data: data)
-                    //guard let imageString = imageurl?.absoluteString else { return }
-                    let cellModel = CellModel(autoID: autoID, title: title, url: url, order: order, content: content, image: image)
-                    value.append(cellModel)
-
-                })
+//                storageRef.downloadURL(completion: { (imageurl, error) in
+//                    if error != nil {
+//                        print(error?.localizedDescription ?? "")
+//                    }
+//                    guard let data = NSData(contentsOf: imageurl!) as? Data else { return }
+//                    let image = UIImage(data: data)
+//                    let cellModel = CellModel(autoID: autoID, title: title, url: url, order: order, content: content, image: image)
+//                    value.append(cellModel)
+//
+//                })
                 
                 
-                /*storageRef.data(withMaxSize: (1 * 1024 * 1024), completion: { (data, error) in
-                    if error != nil {
-                        print(error?.localizedDescription ?? "")
-                    }
+                    storageRef.data(withMaxSize: (1 * 1024 * 1024), completion: { (data, error) in
+                        if error != nil {
+                            print(error?.localizedDescription ?? "")
+                        }
+                        
+                        guard let imageData = data else { return }
+                        let picture = UIImage(data: imageData)
+                        let cellModel = CellModel(autoID: autoID, title: title, url: url, order: order, content: content, image: picture)
+                        value.append(cellModel)
+                         completion(value)
+                    })
                     
-                    guard let imageData = data else { return }
-                    let picture = UIImage(data: imageData)
- */
-                                  //  })
-              
+                
+            
             }
-                completion(value)
+            
         })
     }
     
