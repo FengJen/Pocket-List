@@ -9,7 +9,11 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     
     let ref = FIRDatabase.database().reference()
     let uid = FIRAuth.auth()?.currentUser?.uid
-    var cellList = [CellModel]()
+    var cellList: [CellModel] = [] {
+        didSet {
+            self.collectionView?.reloadData()
+        }
+    }
     
     var longPressGesture = UILongPressGestureRecognizer()
        
@@ -76,7 +80,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             self.cellList = cellArray
             CellDataManager.shared.cellArray = cellArray
             
-            self.collectionView?.reloadData()
+            //self.collectionView?.reloadData()
         
             
         }
@@ -88,7 +92,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             guard let newCell = value else { return }
             self.cellList = newCell
             
-            self.collectionView?.reloadData()
+            //self.collectionView?.reloadData()
         }
     }
 
@@ -162,7 +166,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         if isEditing == false {
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
-            cell.backgroundColor = UIColor.cyan
+            
             cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
             cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
             cell.myImageView.image = cellList[indexPath.row].image
@@ -209,11 +213,11 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.shadowColor = UIColor.gray.cgColor
-        cell?.layer.shadowOpacity = 1
-        cell?.layer.shadowRadius = 10
-        cell?.layer.shadowOffset = CGSize.zero
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell else { return }
+        cell.layer.shadowColor = UIColor.gray.cgColor
+        cell.layer.shadowOpacity = 1
+        cell.layer.shadowRadius = 10
+        cell.layer.shadowOffset = CGSize.zero
         if self.isEditing == false {
             guard let url = cellList[indexPath.row].url else { return }
             if let getUrl = URL(string: url) {
@@ -227,16 +231,16 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             guard let autoID = cellList[indexPath.row].autoID else { return }
             selectedAutoIDs.append(autoID)
             
-            cell?.backgroundColor = UIColor.blue
+            cell.myImageView.alpha = 0.5
             
         }
     }
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell else { return }
         if isEditing == true {
             
             collectionView.allowsMultipleSelection = true
-            cell?.backgroundColor = UIColor.cyan
+            cell.myImageView.alpha = 1
             
             selectedAutoIDs.remove(cellList[indexPath.row].autoID!)
             //selectedIndexPaths.remove(at: indexPath.row)
