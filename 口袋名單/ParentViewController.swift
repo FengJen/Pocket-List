@@ -1,5 +1,7 @@
 import UIKit
 import XLPagerTabStrip
+import Firebase
+
 
 class ParentViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var newBar: UIView!
@@ -60,17 +62,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StepsViewController")
         navigationController?.pushViewController(vc, animated: true)
     }
-        
-////    }
-////    @IBAction func editMode(sender: AnyObject) {
-////        self.setEditing(!self.editing, animated: true)
-////        let newButton = UIBarButtonItem(barButtonSystemItem: (self.editing) ? .Done : .Edit, target: self, action: #selector(editMode(_:)))
-////        self.navigationItem.setLeftBarButtonItem(newButton, animated: true)
-////    }
-//    
-////    func pressSelectButton() {
-////   
-//    }
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
@@ -105,25 +97,35 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         shareButton.setImage(#imageLiteral(resourceName: "Upload-50"), for: .normal)
         deleteButton.setImage(#imageLiteral(resourceName: "Trash-50"), for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteItems), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(shareItems), for: .touchUpInside)
     }
     
     func deleteItems() {
-        
-//        let selectedIndexPaths = foodCollectionViewController.selectedIndexPaths
-        
-//        for index in selectedIndexPaths {
-//            foodCollectionViewController.cellList.remove(at: index.row)
-//            foodCollectionViewController.collectionView?.deleteItems(at: selectedIndexPaths)
-////            foodCollectionViewController.collectionView?.reloadItems(at: selectedIndexPaths)
-////
-    
-        // deleted
+
         let deleteID = foodCollectionViewController.selectedAutoIDs
         foodCollectionViewController.deleteItems(at: deleteID)
         foodCollectionViewController.isEditing = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
-        
-        
+
+    }
+    
+    func shareItems() {
+        var inputText: String?
+        //let shareID = foodCollectionViewController.selectedAutoIDs
+        let alertController = UIAlertController(title: "Share your lists", message: "Enter the email to whom you want to send", preferredStyle: .alert)
+        let sendAction = UIAlertAction(title: "Send", style: .default, handler: { action -> Void in
+            
+            
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Reciver Email"
+            inputText = textField.text
+        }
+        alertController.addAction(sendAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
     }
     
     override func didReceiveMemoryWarning() {
@@ -131,5 +133,8 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func pushNotification() {
+        FIRMessaging.messaging()
+    }
     
 }

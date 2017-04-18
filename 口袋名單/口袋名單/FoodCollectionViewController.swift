@@ -231,7 +231,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             guard let autoID = cellList[indexPath.row].autoID else { return }
             selectedAutoIDs.append(autoID)
             
-            cell.myImageView.alpha = 0.5
+            cell.myImageView.alpha = 0.2
             
         }
     }

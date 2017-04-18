@@ -54,31 +54,10 @@ class CellDataManager {
                         value.append(cellModel)
                          completion(value)
                     })
-                    
-                
             
             }
             
         })
     }
-    
-    /*
-     }
-     func fetchUsers() {
-     let reference = FIRDatabase.database().reference()
-     reference.child("pocketList").child(uid!).queryOrdered(byChild: "title").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
-     })
-     (of: .value, with: { snapshot in
-     print(snapshot.value)
-     print(snapshot.key)
-     self.collectionView?.reloadData()
-     })
-     */
-    func reorderCellData(completion: @escaping (_ value: [CellModel]) -> Void) {
-        //guard let unwrapUid = uid else { return }
-        //var value: [CellModel] = []
-        
-        //self.ref.child("pocketList").child(unwrapUid)
-        }
     
 }
