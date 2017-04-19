@@ -10,16 +10,50 @@ import UIKit
 import Firebase
 
 class ShareViewController: UIViewController {
+    var receiveCells: [CellModel] = []
     
     @IBOutlet weak var sharingKey: UITextField!
     
     
     
     @IBAction func receive(_ sender: Any) {
-        FIRDatabase.database().reference().child("package").queryOrdered(byChild: "packageID").queryEqual(toValue: sharingKey.text).observeSingleEvent(of: .value, with: { (snapshot) in
+        guard let text = sharingKey.text else { return }
+        FIRDatabase.database().reference().child("package").queryOrdered(byChild: "packageID").queryEqual(toValue: text).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let newCells = snapshot.value as? [String: Any] else { return }
             for newCell in newCells {
                 
+//                guard let task = newCell as? [String: Any] else { return }
+                guard let value = newCell.value as? [String: AnyObject] else { continue }
+                
+                guard let cellList = value["cellList"] as? Array<Dictionary<String, Any>> else { continue }
+                //guard let cellList = value["cellList"] as? FIRDataSnapshot else { continue }
+                for some in cellList {
+                    guard let cellSnap = some as? FIRDataSnapshot else { return }
+                    guard let cellValue = cellSnap.value as? [String: Any] else { return }
+                    guard let title = cellValue["title"] as? String,
+                          let order = cellValue["order"] as? Int,
+                          let content = cellValue["content"] as? String,
+                          let downloadURL = cellValue["image"] as? String,
+                          let url = cellValue["url"] as? String else { return }
+                    let storageRef = FIRStorage.storage().reference(forURL: downloadURL)
+                    
+                    storageRef.data(withMaxSize: (1 * 1024 * 1024), completion: { (data, error) in
+                        if error != nil {
+                            print(error?.localizedDescription ?? "")
+                        }
+                        
+                        guard let imageData = data else { return }
+                        let picture = UIImage(data: imageData)
+                        let cellModel = CellModel(autoID: "", title: title, url: url, order: order, content: content, image: picture)
+                        self.receiveCells.append(cellModel)
+                        
+                    })
+
+                }
+       
+            print(self.receiveCells.count)
+                    
+
             }
         })
         
