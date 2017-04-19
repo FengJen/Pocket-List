@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pocket List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cc-MM-oFR">
+                                <rect key="frame" x="50" y="100" width="314" height="49"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="42"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your Favorite sites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvW-RI-IOu">
+                                <rect key="frame" x="50" y="609" width="314" height="27"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save and Share " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g42-jn-O3N">
+                                <rect key="frame" x="50" y="575" width="314" height="26"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pocket-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ncz-hw-Vvl">
+                                <rect key="frame" x="128" y="252" width="159" height="149"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="159" id="Br6-I0-p92"/>
+                                    <constraint firstAttribute="height" constant="149" id="P1d-K7-qq4"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.57647058823529407" green="0.86274509803921573" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ncz-hw-Vvl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="108" id="4vt-Ae-NyL"/>
+                            <constraint firstItem="bvW-RI-IOu" firstAttribute="leading" secondItem="g42-jn-O3N" secondAttribute="leading" id="9Hn-O5-Bd9"/>
+                            <constraint firstItem="g42-jn-O3N" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9PI-ei-6fW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g42-jn-O3N" secondAttribute="trailing" constant="30" id="DnM-WC-hFL"/>
+                            <constraint firstItem="9Cc-MM-oFR" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="30" id="GsY-Oc-U56"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="bvW-RI-IOu" secondAttribute="bottom" constant="100" id="IEP-BI-USP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Cc-MM-oFR" secondAttribute="trailing" constant="30" id="N3Q-IE-KQg"/>
+                            <constraint firstItem="g42-jn-O3N" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="30" id="OCp-Lv-3wW"/>
+                            <constraint firstItem="bvW-RI-IOu" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="X8U-Ew-rae"/>
+                            <constraint firstItem="9Cc-MM-oFR" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aA2-2w-hKY"/>
+                            <constraint firstItem="ncz-hw-Vvl" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="252" id="djO-XX-5rM"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="g42-jn-O3N" secondAttribute="bottom" constant="135.5" id="pgQ-12-S4l"/>
+                            <constraint firstItem="9Cc-MM-oFR" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="80" id="ryA-7g-vbK"/>
+                            <constraint firstItem="bvW-RI-IOu" firstAttribute="top" secondItem="g42-jn-O3N" secondAttribute="bottom" constant="8" symbolic="YES" id="vrq-1L-drq"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="pocket-icon" width="128" height="128"/>
+    </resources>
+</document>
