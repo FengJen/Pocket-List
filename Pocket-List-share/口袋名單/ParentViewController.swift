@@ -122,42 +122,37 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         let shareIDs = foodCollectionViewController.selectedAutoIDs
         var cellPackage: [Any] = []
         let uid = Constants.uid
-        let alertController = UIAlertController(title: "Share your lists", message: "Enter the email to whom you want to send", preferredStyle: .alert)
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Reciver Email"
-        }
-        let sendAction = UIAlertAction(title: "Send", style: .default, handler: { action -> Void in
-            guard let inputText = alertController.textFields?[0].text else { return }
-            
-            
-            for cellID in shareIDs {
+        let packageRef = FIRDatabase.database().reference().child("package").childByAutoId()
+        for cellID in shareIDs {
             FIRDatabase.database().reference().child("pocketList").child(uid!).queryOrdered(byChild: "cellID").queryEqual(toValue: cellID).observeSingleEvent(of: .value, with: { (snapshot) in
-               
+                
                 //print(snapshot.value)
                 guard let snap = snapshot.value as? [String: Any] else { return }
                 cellPackage.append(snap)
-
                 
-                })
-            }
-                FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
-                    guard let email = emailSnapshot.value as? [String: Any] else { return }
-                    guard let senderEmail = email["email"] as? String else { return }
-                    
-                    
-                    let packageRef = FIRDatabase.database().reference().child("package").childByAutoId()
-                    let value = [
-                        "senderEmail": senderEmail,
-                        "receiverEmail": inputText,
-                        "cellList": cellPackage,
-                        "packageID": packageRef.key
-                        ] as [String : Any]
-                    packageRef.setValue(value)
-                })
+                
+            })
+        }
+        FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
+            guard let email = emailSnapshot.value as? [String: Any] else { return }
+            guard let senderEmail = email["email"] as? String else { return }
             
+            let value = [
+                "senderEmail": senderEmail,
+                //"receiverEmail": inputText,
+                "cellList": cellPackage,
+                "packageID": packageRef.key
+                ] as [String : Any]
+            packageRef.setValue(value)
+        })
+        
+        let alertController = UIAlertController(title: "This is your sharing key", message: "Send the key to the receiver: \(packageRef.key)", preferredStyle: .alert)
+
+        let sendAction = UIAlertAction(title: "Send", style: .default, handler: { action -> Void in
             
-        
-        
+            //uiactivitycontroller
+            
+           
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         
