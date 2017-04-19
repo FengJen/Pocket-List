@@ -152,7 +152,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
             
             //uiactivitycontroller
             
-           
+           //todo don't pass as array?
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         

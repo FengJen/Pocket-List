@@ -26,6 +26,8 @@ class ShareViewController: UIViewController {
                 guard let value = newCell.value as? [String: AnyObject] else { continue }
                 
                 guard let cellList = value["cellList"] as? Array<Dictionary<String, Any>> else { continue }
+                print(cellList)
+                FIRDatabase.database().reference().child("pocketList").child(Constants.uid!).updateChildValues([Constants.uid!: cellList])
                 //guard let cellList = value["cellList"] as? FIRDataSnapshot else { continue }
                 for some in cellList {
                     guard let cellSnap = some as? FIRDataSnapshot else { return }
