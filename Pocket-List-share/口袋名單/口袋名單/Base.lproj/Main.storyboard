@@ -434,49 +434,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no sharing key yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYm-vk-Lgh">
-                                <rect key="frame" x="112.5" y="211" width="150" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="UEm-33-No2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="After you share your list, send the key beblow to your friend" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwZ-iI-sYE">
-                                <rect key="frame" x="46" y="134" width="282" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WBS-jP-CNJ" firstAttribute="top" secondItem="XWn-pr-ek1" secondAttribute="bottom" constant="55" id="29w-6g-BC2"/>
                             <constraint firstItem="i8H-5M-zSm" firstAttribute="top" secondItem="WBS-jP-CNJ" secondAttribute="bottom" constant="85" id="7Gt-AG-Evx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WBS-jP-CNJ" secondAttribute="trailing" constant="137" id="9c4-4v-Xic"/>
-                            <constraint firstItem="wwZ-iI-sYE" firstAttribute="centerX" secondItem="eqm-3I-clj" secondAttribute="centerX" id="ELd-4z-1cF"/>
-                            <constraint firstItem="wwZ-iI-sYE" firstAttribute="leading" secondItem="eqm-3I-clj" secondAttribute="leadingMargin" constant="30" id="EhY-mC-76B"/>
-                            <constraint firstItem="wwZ-iI-sYE" firstAttribute="top" secondItem="ZVD-n7-4io" secondAttribute="bottom" constant="70" id="Hf5-XJ-INZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wwZ-iI-sYE" secondAttribute="trailing" constant="31" id="HhE-5W-qx5"/>
                             <constraint firstItem="WBS-jP-CNJ" firstAttribute="leading" secondItem="eqm-3I-clj" secondAttribute="leadingMargin" constant="137" id="Mn1-wQ-nmx"/>
                             <constraint firstItem="WBS-jP-CNJ" firstAttribute="centerX" secondItem="eqm-3I-clj" secondAttribute="centerX" id="Q6p-lZ-xOW"/>
                             <constraint firstItem="XWn-pr-ek1" firstAttribute="centerX" secondItem="eqm-3I-clj" secondAttribute="centerX" id="RG8-9D-SXc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XWn-pr-ek1" secondAttribute="trailing" constant="20" id="Sz6-m6-Oqz"/>
                             <constraint firstItem="E2d-C9-jZ5" firstAttribute="top" secondItem="i8H-5M-zSm" secondAttribute="bottom" constant="70" id="cWI-y9-PZC"/>
-                            <constraint firstItem="XWn-pr-ek1" firstAttribute="top" secondItem="nYm-vk-Lgh" secondAttribute="bottom" constant="86" id="eb6-YE-ThR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="i8H-5M-zSm" secondAttribute="trailing" constant="104" id="fs3-Gu-rL1"/>
                             <constraint firstItem="XWn-pr-ek1" firstAttribute="leading" secondItem="eqm-3I-clj" secondAttribute="leadingMargin" constant="20" id="gdT-on-D7X"/>
-                            <constraint firstItem="nYm-vk-Lgh" firstAttribute="centerX" secondItem="eqm-3I-clj" secondAttribute="centerX" id="h6q-2h-0yP"/>
                             <constraint firstItem="XWn-pr-ek1" firstAttribute="top" secondItem="ZVD-n7-4io" secondAttribute="bottom" constant="254" id="nHt-en-IaZ"/>
-                            <constraint firstItem="nYm-vk-Lgh" firstAttribute="top" secondItem="wwZ-iI-sYE" secondAttribute="bottom" constant="36" id="vJ3-ky-lwX"/>
                             <constraint firstItem="i8H-5M-zSm" firstAttribute="leading" secondItem="eqm-3I-clj" secondAttribute="leadingMargin" constant="103" id="xnY-2c-ti0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="U6E-mF-mY4"/>
                     <connections>
-                        <outlet property="senderEmail" destination="XWn-pr-ek1" id="fVa-xs-j6I"/>
-                        <outlet property="sharingKey" destination="nYm-vk-Lgh" id="0S3-9Z-cRg"/>
+                        <outlet property="sharingKey" destination="XWn-pr-ek1" id="JiE-q8-cfd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSE-DW-2qA" userLabel="First Responder" sceneMemberID="firstResponder"/>

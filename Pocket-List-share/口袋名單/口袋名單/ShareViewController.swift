@@ -11,30 +11,33 @@ import Firebase
 
 class ShareViewController: UIViewController {
     
-    @IBOutlet weak var senderEmail: UITextField!
+    @IBOutlet weak var sharingKey: UITextField!
     
-    @IBOutlet weak var sharingKey: UILabel!
+    
+    
     @IBAction func receive(_ sender: Any) {
-            let uid = Constants.uid
-        FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
-            guard let email = emailSnapshot.value as? [String: Any] else { return }
-            guard let receiver = email["email"] as? String else { return }
-            //if senderEmail.text =
+        FIRDatabase.database().reference().child("package").queryOrdered(byChild: "packageID").queryEqual(toValue: sharingKey.text).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let newCells = snapshot.value as? [String: Any] else { return }
+            for newCell in newCells {
+                
+            }
         })
+        
     }
     
     func alert() {
-        let alertController = UIAlertController(title: "Receive", message: "Please enter the email of sender", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Check receive items", message: "\("someone") wants to send \("") to you", preferredStyle: .alert)
         alertController.addTextField { (textFeild) in
-            textFeild.placeholder = "Enter sender email here"
+            textFeild.placeholder = "Enter sharing key from your friend here"
         }
         let accept = UIAlertAction(title: "Accept", style: .default) { (action) in
-            let senderEmail = alertController.textFields?[0].text
             
-            //add accept & decline
+            
+            
         
         }
         let decline = UIAlertAction(title: "Decline", style: .destructive, handler: nil)
+        //todo delete package in 5mins?
         alertController.addAction(accept)
         alertController.addAction(decline)
         self.present(alertController, animated: true, completion: nil)
@@ -54,17 +57,9 @@ class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    NotificationCenter.default.addObserver(self, selector: #selector(showSharingKey), name: NSNotification.Name(rawValue: "passKey"), object: nil)
         
     }
-    func showSharingKey(_ notification: NSNotification) {
-        sharingKey.text = notification.userInfo?["key"] as? String
-    }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "passKey"), object: nil)
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
