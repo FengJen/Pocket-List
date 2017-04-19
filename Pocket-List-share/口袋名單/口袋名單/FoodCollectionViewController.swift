@@ -28,7 +28,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         //getValue loadlist
         NotificationCenter.default.addObserver(self, selector: #selector(getValue), name: NSNotification.Name(rawValue: "load"), object: nil)
-        // remove observer ?
         
     }
     deinit {

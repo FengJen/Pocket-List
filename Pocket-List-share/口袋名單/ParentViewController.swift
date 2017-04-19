@@ -150,6 +150,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
                     FIRDatabase.database().reference().child("package").childByAutoId().setValue(value)
                 })
             }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "passKey"), object: nil, userInfo: ["key": "abc"])
         
         
         })
