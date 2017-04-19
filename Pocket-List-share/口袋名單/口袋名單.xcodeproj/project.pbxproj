@@ -144,9 +144,9 @@
 		84A5D5B91E822B7700B05B22 /* mainPage */ = {
 			isa = PBXGroup;
 			children = (
+				84C1245F1E82BACD00B48360 /* ParentViewController.swift */,
 				847CBDA21E8A4BDF003E057A /* FoodCollectionViewController.swift */,
 				847CBDA41E8A4BF2003E057A /* SitesCollectionViewController.swift */,
-				84C1245F1E82BACD00B48360 /* ParentViewController.swift */,
 				84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */,
 				8489AE9F1E814EE6007D88D9 /* TabBarController.swift */,
 			);

@@ -138,7 +138,8 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
                 cellPackage.append(snap)
 
                 
-            })
+                })
+            }
                 FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
                     guard let email = emailSnapshot.value as? [String: Any] else { return }
                     guard let senderEmail = email["email"] as? String else { return }
@@ -147,10 +148,12 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
                         "receiverEmail": inputText,
                         "cellList": cellPackage
                         ] as [String : Any]
+                    print(emailSnapshot.key)
                     FIRDatabase.database().reference().child("package").childByAutoId().setValue(value)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "passKey"), object: nil, userInfo: ["key": emailSnapshot.key])
                 })
-            }
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "passKey"), object: nil, userInfo: ["key": "abc"])
+            
+            
         
         
         })
