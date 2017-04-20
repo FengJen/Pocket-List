@@ -39,7 +39,6 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             //todo reload after upload
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
             navigationController?.pushViewController(vc, animated: true)
-            //todo delegate?
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "new"), object: nil)
         }
     }

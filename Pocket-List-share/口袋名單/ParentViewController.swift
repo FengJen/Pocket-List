@@ -86,16 +86,13 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
             target: self,
             action: #selector(cancel))
         }
-//            else {
-//            navigationItem.rightBarButtonItem?.title = "Select"
-//        }
+        
     }
     
-    //todo handle cancle action
     func cancel() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
-        
+        foodCollectionViewController.isEditing = false
         self.tabBarController?.tabBar.isHidden = false
         self.newBar.isHidden = true
         for indexPath in foodCollectionViewController.selectedIndexPaths {
