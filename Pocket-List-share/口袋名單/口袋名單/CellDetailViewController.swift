@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseStorage
+import Firebase
 //protocol ChangeCellDataDelegate {
 //    func changeCell(newCell: CellModel)
 //}
@@ -90,8 +91,8 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBAction func editData(_ sender: UIButton) {
         guard let text = editTitle.text, let url = editUrl.text, let content = content.text else { return }
         
-        guard let cellAutoID = self.cell.autoID, let uid = Constants.uid else { return }
-        let editRef = Constants.ref.child("pocketList").child(uid).child(cellAutoID)
+        guard let cellAutoID = self.cell.autoID, let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+        let editRef = FIRDatabase.database().reference().child("pocketList").child(uid).child(cellAutoID)
         
         editRef.updateChildValues(["title": text])
         editRef.updateChildValues(["url": url])

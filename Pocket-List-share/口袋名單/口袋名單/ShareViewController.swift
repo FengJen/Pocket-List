@@ -21,14 +21,14 @@ class ShareViewController: UIViewController {
         FIRDatabase.database().reference().child("package").queryOrdered(byChild: "packageID").queryEqual(toValue: text).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let newCells = snapshot.value as? [String: Any] else { return }
             for newCell in newCells {
-                
+                let uid = FIRAuth.auth()?.currentUser?.uid
 //                guard let task = newCell as? [String: Any] else { return }
                 guard let value = newCell.value as? [String: AnyObject] else { continue }
                 
                 guard let cellList = value["cellList"] as? Array<Dictionary<String, Any>> else { continue }
                 
                 for cell in cellList {
-                    FIRDatabase.database().reference().child("pocketList").child(Constants.uid!).updateChildValues(cell)
+                    FIRDatabase.database().reference().child("pocketList").child(uid!).updateChildValues(cell)
                 }
             }
         })

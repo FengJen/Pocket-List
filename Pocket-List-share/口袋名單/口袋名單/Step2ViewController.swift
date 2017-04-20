@@ -34,7 +34,7 @@ class Step2ViewController: UIViewController {
 
     }
     func uploadData() {
-        if let uid = Constants.uid, let url = step1VC.website.text, let title = step1VC.temperaryTitle.text {
+        if let uid = FIRAuth.auth()?.currentUser?.uid, let url = step1VC.website.text, let title = step1VC.temperaryTitle.text {
             let cell = ref.child(uid).childByAutoId()
             cell.setValue(["title": title, "url": url, "order": CellDataManager.shared.cellArray.count])
         }

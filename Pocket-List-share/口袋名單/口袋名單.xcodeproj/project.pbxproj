@@ -28,7 +28,6 @@
 		84C124581E82900500B48360 /* Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124571E82900500B48360 /* Step2ViewController.swift */; };
 		84C1245A1E82901700B48360 /* Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124591E82901700B48360 /* Step1ViewController.swift */; };
 		84C124601E82BACD00B48360 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1245F1E82BACD00B48360 /* ParentViewController.swift */; };
-		84C124621E83799900B48360 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124611E83799900B48360 /* Constant.swift */; };
 		F57526EE0E48334EBDA6EFD6 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7890F73A3897EF95423CE777 /* Pods_____.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,6 @@
 		84C124571E82900500B48360 /* Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step2ViewController.swift; sourceTree = "<group>"; };
 		84C124591E82901700B48360 /* Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step1ViewController.swift; sourceTree = "<group>"; };
 		84C1245F1E82BACD00B48360 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentViewController.swift; path = ../ParentViewController.swift; sourceTree = "<group>"; };
-		84C124611E83799900B48360 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		93A59B7A40731FBBE3F116C9 /* Pods-口袋名單.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.debug.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				848509B91E7FCC4F00A9770B /* AppDelegate.swift */,
-				84C124611E83799900B48360 /* Constant.swift */,
 				84A5D5BA1E822B9F00B05B22 /* loginPage */,
 				84A5D5B91E822B7700B05B22 /* mainPage */,
 				84A5D5B71E822B3100B05B22 /* createCell */,
@@ -331,7 +328,6 @@
 				8489AEA01E814EE6007D88D9 /* TabBarController.swift in Sources */,
 				84331CB01E812BBA0060CB74 /* LoginViewController.swift in Sources */,
 				848509BC1E7FCC4F00A9770B /* SignUpViewController.swift in Sources */,
-				84C124621E83799900B48360 /* Constant.swift in Sources */,
 				847CBDA11E8A4649003E057A /* CellModel.swift in Sources */,
 				847CBDB41E8A5AF4003E057A /* ItemCollectionViewCell.swift in Sources */,
 				847CBDA31E8A4BDF003E057A /* FoodCollectionViewController.swift in Sources */,

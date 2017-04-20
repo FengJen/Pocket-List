@@ -121,7 +121,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     func shareItems() {
         let shareIDs = foodCollectionViewController.selectedAutoIDs
         var cellPackage: [Any] = []
-        let uid = Constants.uid
+        let uid = FIRAuth.auth()?.currentUser?.uid
         let packageRef = FIRDatabase.database().reference().child("package").childByAutoId()
         for cellID in shareIDs {
             FIRDatabase.database().reference().child("pocketList").child(uid!).queryOrdered(byChild: "cellID").queryEqual(toValue: cellID).observeSingleEvent(of: .value, with: { (snapshot) in

@@ -109,7 +109,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     print(error?.localizedDescription ?? "")
                     return
                 }
-            if let uid = Constants.uid,
+            if let uid = FIRAuth.auth()?.currentUser?.uid,
                let url = self.website.text,
                let title = self.temperaryTitle.text,
                let content = self.contentView.text,
