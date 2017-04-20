@@ -98,8 +98,14 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         
         self.tabBarController?.tabBar.isHidden = false
         self.newBar.isHidden = true
-        foodCollectionViewController.isEditing = false
-        
+        for indexPath in foodCollectionViewController.selectedIndexPaths {
+        guard let cell = foodCollectionViewController.collectionView?.cellForItem(at: indexPath) as? ItemCollectionViewCell else { return }
+            foodCollectionViewController.collectionView?.deselectItem(at: indexPath, animated: true)
+            cell.myImageView.alpha = 1
+        }
+        for cellID in foodCollectionViewController.selectedAutoIDs {
+        foodCollectionViewController.selectedAutoIDs.remove(cellID)
+        }
     }
     
     func addNewBarButton() {

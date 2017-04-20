@@ -11,7 +11,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     let uid = FIRAuth.auth()?.currentUser?.uid
     var cellList = [CellModel]()
     var longPressGesture = UILongPressGestureRecognizer()
-       
+    
     //var itemArray = NSMutableArray()
     
     let itemPerRow: CGFloat = 2
@@ -29,7 +29,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         //getValue loadlist
         NotificationCenter.default.addObserver(self, selector: #selector(getValue), name: NSNotification.Name(rawValue: "load"), object: nil)
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "new"), object: nil, queue: nil) { (Notification) in
-            self.getValue()
+            self.loadEditValue()
         }
     }
     deinit {
@@ -161,8 +161,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if isEditing == false {
-            
+        
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
             cell.myImageView.alpha = 1
             cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
@@ -170,7 +169,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             cell.myImageView.image = cellList[indexPath.row].image
             return cell
             }
-        }
+        
         return UICollectionViewCell()
     }
     // todo cellback
@@ -187,6 +186,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     var selectedAutoIDs: [String] = []
+    var selectedIndexPaths: [IndexPath] = []
             //todo delete image storage
     func deleteItems(at autoID: [String]) {
         
@@ -229,7 +229,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             collectionView.allowsMultipleSelection = true
             guard let autoID = cellList[indexPath.row].autoID else { return }
             selectedAutoIDs.append(autoID)
-            
+            selectedIndexPaths.append(indexPath)
             cell.myImageView.alpha = 0.3
             
         }

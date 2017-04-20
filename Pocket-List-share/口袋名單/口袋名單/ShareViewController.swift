@@ -10,11 +10,8 @@ import UIKit
 import Firebase
 
 class ShareViewController: UIViewController {
-    var receiveCells: [CellModel] = []
     
     @IBOutlet weak var sharingKey: UITextField!
-    
-    
     
     @IBAction func receive(_ sender: Any) {
         guard let text = sharingKey.text else { return }
@@ -22,17 +19,18 @@ class ShareViewController: UIViewController {
             guard let newCells = snapshot.value as? [String: Any] else { return }
             for newCell in newCells {
                 let uid = FIRAuth.auth()?.currentUser?.uid
-//                guard let task = newCell as? [String: Any] else { return }
                 guard let value = newCell.value as? [String: AnyObject] else { continue }
                 
                 guard let cellList = value["cellList"] as? Array<Dictionary<String, Any>> else { continue }
                 
                 for cell in cellList {
                     FIRDatabase.database().reference().child("pocketList").child(uid!).updateChildValues(cell)
+                    //todo fix new user condition
                 }
             }
         })
         
+                self.tabBarController?.selectedIndex = 0
     }
     
     func alert() {
@@ -42,9 +40,6 @@ class ShareViewController: UIViewController {
         }
         let accept = UIAlertAction(title: "Accept", style: .default) { (action) in
             
-            
-            
-        
         }
         let decline = UIAlertAction(title: "Decline", style: .destructive, handler: nil)
         //todo delete package in 5mins?
