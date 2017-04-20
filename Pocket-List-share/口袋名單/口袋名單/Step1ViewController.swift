@@ -2,14 +2,14 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-protocol didCreateNewCell {
-    
+protocol Step1ViewControllerDelegete: class {
+    func isUploaded()
 }
 
 class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var some: String = ""
-    weak var delegate: Step1ViewController!
+    weak var delegate: Step1ViewControllerDelegete?
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var temperaryTitle: UITextField!
@@ -33,14 +33,26 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             allert.addAction(action)
             self.present(allert, animated: true, completion: nil)
         } else {
-            DispatchQueue.main.async {
-                self.uploadData()
-            }
-            //todo reload after upload
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
-            navigationController?.pushViewController(vc, animated: true)
+   
+            self.uploadData() // upload to firebase
+            
+//            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
+//            navigationController?.pushViewController(vc, animated: true)
+            
+            
+//            self.create(self.uploadData(), completion: {
+//                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
+//                navigationController?.pushViewController(vc, animated: true)
+//            })
+            
+            
+           
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "new"), object: nil)
         }
+    }
+    
+    func create (_: () -> Void , completion: () -> Void) {
+    
     }
     
     override func viewDidLoad() {
@@ -113,9 +125,20 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                let title = self.temperaryTitle.text,
                let content = self.contentView.text,
                let imageURL = storeMetaData?.downloadURL()?.absoluteString {
-                    let userRef = self.ref.child(uid).childByAutoId()
+                let userRef = self.ref.child(uid).childByAutoId()
                 let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key] as [String : Any]
                     userRef.setValue(value)
+              
+                    let foodController = self.navigationController?.childViewControllers[0].childViewControllers[0] as? FoodCollectionViewController
+                
+                    foodController?.collectionView?.reloadData()
+//                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                _ = self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
+//                  print(self.navigationController?.childViewControllers[0].childViewControllers[0])
+//                    self.delegate = foodController
+//                    self.delegate?.isUploaded()
                 }
             })
          

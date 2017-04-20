@@ -287,3 +287,9 @@ extension Array where Element:Equatable {
         return result
     }
 }
+
+extension FoodCollectionViewController: Step1ViewControllerDelegete {
+    func isUploaded() {
+        self.collectionView?.reloadData()
+    }
+}

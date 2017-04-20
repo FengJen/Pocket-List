@@ -132,8 +132,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
                 //print(snapshot.value)
                 guard let snap = snapshot.value as? [String: Any] else { return }
                 cellPackage.append(snap)
-                
-                
+                                
             })
         }
         FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
