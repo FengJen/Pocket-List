@@ -26,36 +26,10 @@ class ShareViewController: UIViewController {
                 guard let value = newCell.value as? [String: AnyObject] else { continue }
                 
                 guard let cellList = value["cellList"] as? Array<Dictionary<String, Any>> else { continue }
-                print(cellList)
-                FIRDatabase.database().reference().child("pocketList").child(Constants.uid!).updateChildValues([Constants.uid!: cellList])
-                //guard let cellList = value["cellList"] as? FIRDataSnapshot else { continue }
-                for some in cellList {
-                    guard let cellSnap = some as? FIRDataSnapshot else { return }
-                    guard let cellValue = cellSnap.value as? [String: Any] else { return }
-                    guard let title = cellValue["title"] as? String,
-                          let order = cellValue["order"] as? Int,
-                          let content = cellValue["content"] as? String,
-                          let downloadURL = cellValue["image"] as? String,
-                          let url = cellValue["url"] as? String else { return }
-                    let storageRef = FIRStorage.storage().reference(forURL: downloadURL)
-                    
-                    storageRef.data(withMaxSize: (1 * 1024 * 1024), completion: { (data, error) in
-                        if error != nil {
-                            print(error?.localizedDescription ?? "")
-                        }
-                        
-                        guard let imageData = data else { return }
-                        let picture = UIImage(data: imageData)
-                        let cellModel = CellModel(autoID: "", title: title, url: url, order: order, content: content, image: picture)
-                        self.receiveCells.append(cellModel)
-                        
-                    })
-
+                
+                for cell in cellList {
+                    FIRDatabase.database().reference().child("pocketList").child(Constants.uid!).updateChildValues(cell)
                 }
-       
-            print(self.receiveCells.count)
-                    
-
             }
         })
         

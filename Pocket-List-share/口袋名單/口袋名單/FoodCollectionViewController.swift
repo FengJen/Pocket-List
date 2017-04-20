@@ -28,10 +28,13 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         //getValue loadlist
         NotificationCenter.default.addObserver(self, selector: #selector(getValue), name: NSNotification.Name(rawValue: "load"), object: nil)
-        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "new"), object: nil, queue: nil) { (Notification) in
+            self.getValue()
+        }
     }
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "new"), object: nil)
     }
     func headerStyle() {
         /*
@@ -193,10 +196,11 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                     print(error ?? "")
                 }
             })
-            //todo handle !
+            
             CellDataManager.shared.getCellData { (valew) in
-                CellDataManager.shared.cellArray = valew!
-                self.cellList = valew!
+                guard let cellArray = valew else { return }
+                CellDataManager.shared.cellArray = cellArray
+                self.cellList = cellArray
                 
             }
             

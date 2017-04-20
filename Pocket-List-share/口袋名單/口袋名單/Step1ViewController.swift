@@ -2,7 +2,14 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+protocol didCreateNewCell {
+    
+}
+
 class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var some: String = ""
+    weak var delegate: Step1ViewController!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var temperaryTitle: UITextField!
@@ -26,10 +33,14 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             allert.addAction(action)
             self.present(allert, animated: true, completion: nil)
         } else {
-            uploadData()
+            DispatchQueue.main.async {
+                self.uploadData()
+            }
+            //todo reload after upload
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
             navigationController?.pushViewController(vc, animated: true)
             //todo delegate?
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "new"), object: nil)
         }
     }
     
