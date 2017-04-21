@@ -23,10 +23,23 @@ class ShareViewController: UIViewController {
                 
                 guard let cellList = value["cellList"] as? Array<Dictionary<String, Any>> else { continue }
                 
-                for cell in cellList {
-                    FIRDatabase.database().reference().child("pocketList").child(uid!).updateChildValues(cell)
-                    //todo fix new user condition
-                }
+                FIRDatabase.database().reference().child("pocketList").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        
+                        for cell in cellList {
+                            FIRDatabase.database().reference().child("pocketList").child(uid!).updateChildValues(cell)
+                            
+                        }
+                        
+                    } else {
+                        
+                        for cell in cellList {
+                            FIRDatabase.database().reference().child("pocketList").child(uid!).updateChildValues(cell)
+                            
+                        }
+                    }
+                })
+                
             }
         })
         

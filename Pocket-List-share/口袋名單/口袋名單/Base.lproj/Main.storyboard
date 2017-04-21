@@ -693,7 +693,7 @@
         <scene sceneID="0n3-dM-QQD">
             <objects>
                 <collectionViewController storyboardIdentifier="SitesCollectionViewController" id="vgz-HL-dAb" customClass="SitesCollectionViewController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lJT-rU-dXB">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lJT-rU-dXB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -703,16 +703,7 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fKM-52-3gl">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="vgz-HL-dAb" id="GPa-Qx-5xO"/>
                             <outlet property="delegate" destination="vgz-HL-dAb" id="cEl-rL-Vmq"/>
@@ -722,24 +713,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPN-Hd-yUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4961" y="97"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="GVG-so-dH0">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gN7-qw-mIJ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WNB-8V-QUl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Ky6-S0-L3l" kind="relationship" relationship="rootViewController" id="Adx-Ag-epx"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bih-gH-s4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3326" y="-736"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Jen-QU-bHF">

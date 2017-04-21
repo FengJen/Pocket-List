@@ -218,6 +218,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         cell.layer.shadowRadius = 10
         cell.layer.shadowOffset = CGSize.zero
         if self.isEditing == false {
+            
             guard let url = cellList[indexPath.row].url else { return }
             if let getUrl = URL(string: url) {
                 let safariViewController = SFSafariViewController(url: getUrl, entersReaderIfAvailable: true)
