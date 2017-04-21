@@ -79,7 +79,8 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             CellDataManager.shared.cellArray = cellArray
             
             self.collectionView?.reloadData()
-        
+            //todo reload single cell
+            //self.collectionView?.reloadItems(at: <#T##[IndexPath]#>)        
             
         }
 
@@ -289,8 +290,11 @@ extension Array where Element:Equatable {
     }
 }
 
-extension FoodCollectionViewController: Step1ViewControllerDelegete {
-    func isUploaded() {
-        self.collectionView?.reloadData()
-    }
-}
+//extension FoodCollectionViewController: Step1ViewControllerDelegete, DidReceivePackage {
+//    func isUploaded() {
+//        self.collectionView?.reloadData()
+//    }
+//    func didReceive(uploadSuccess: Bool) {
+//        self.collectionView?.reloadData()
+//    }
+//}

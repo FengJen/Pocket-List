@@ -9,6 +9,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     let foodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController") as! FoodCollectionViewController
     let sitesCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController") as! SitesCollectionViewController
+    
     let editButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(setEdit))
     
     override func viewDidLoad() {
@@ -19,6 +20,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         addNewBarButton()
         let editButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(setEdit))
         self.navigationItem.rightBarButtonItem = editButton
+        
     }
     func setEdit() {
         self.isEditing = true
@@ -170,4 +172,20 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     }
     
     
+}
+
+extension ParentViewController: DidReceivePackage {
+    func didReceive(shareVC: ShareViewController, uploadSuccess: Bool) {
+        
+//        shareVC.delegate = self
+        if uploadSuccess == true {
+            CellDataManager.shared.getCellData(completion: { (value) in
+                guard let newCells = value else { return }
+                self.foodCollectionViewController.cellList = newCells
+            })
+            foodCollectionViewController.collectionView?.reloadData()
+            self.tabBarController?.selectedIndex = 0
+
+        }
+    }
 }

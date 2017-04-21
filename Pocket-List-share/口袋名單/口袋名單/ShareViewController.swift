@@ -9,11 +9,24 @@
 import UIKit
 import Firebase
 
+protocol DidReceivePackage: class {
+    func didReceive(shareVC: ShareViewController, uploadSuccess: Bool)
+}
+
 class ShareViewController: UIViewController {
     
     @IBOutlet weak var sharingKey: UITextField!
     
+    weak var delegate: DidReceivePackage?
+    
+    weak var delegate2: UIViewController?
+    
     @IBAction func receive(_ sender: Any) {
+        
+        delegate2?.viewDidLoad()
+        
+        //
+        
         guard let text = sharingKey.text else { return }
         FIRDatabase.database().reference().child("package").queryOrdered(byChild: "packageID").queryEqual(toValue: text).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let newCells = snapshot.value as? [String: Any] else { return }
@@ -37,13 +50,16 @@ class ShareViewController: UIViewController {
                             FIRDatabase.database().reference().child("pocketList").child(uid!).updateChildValues(cell)
                             
                         }
+                        
+                        
                     }
+                    self.delegate?.didReceive(shareVC: self, uploadSuccess: true)
                 })
-                
             }
         })
         
-                self.tabBarController?.selectedIndex = 0
+        
+                
     }
     
     func alert() {
@@ -74,8 +90,13 @@ class ShareViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        guard let controller = tabBarController?.viewControllers?[0] as? ItemsNavigationController else { return }
+        
+        guard let parentViewController = controller.viewControllers[0] as? ParentViewController else { return }
+        
+        self.delegate = parentViewController
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,3 +104,6 @@ class ShareViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
+// let vc = StoryBoard
+// vc.delegate = self
+// self.show(vc, animation: true)
