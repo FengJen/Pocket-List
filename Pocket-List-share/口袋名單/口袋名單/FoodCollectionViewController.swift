@@ -202,11 +202,11 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                 guard let cellArray = valew else { return }
                 CellDataManager.shared.cellArray = cellArray
                 self.cellList = cellArray
-                
-            }
-            
                 self.collectionView!.reloadData()
                 self.isEditing = false
+            }
+            
+            
         }
 
         //cellList = CellDataManager.shared.cellArray
