@@ -14,7 +14,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     override func viewDidLoad() {
         setUp()
-        
+        headerStyle()
         super.viewDidLoad()
         newButton()
         addNewBarButton()
@@ -63,17 +63,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StepsViewController")
         navigationController?.pushViewController(vc, animated: true)
     }
-        
-////    }
-////    @IBAction func editMode(sender: AnyObject) {
-////        self.setEditing(!self.editing, animated: true)
-////        let newButton = UIBarButtonItem(barButtonSystemItem: (self.editing) ? .Done : .Edit, target: self, action: #selector(editMode(_:)))
-////        self.navigationItem.setLeftBarButtonItem(newButton, animated: true)
-////    }
-//    
-////    func pressSelectButton() {
-////   
-//    }
+
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
@@ -154,9 +144,8 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
 
         let sendAction = UIAlertAction(title: "Send", style: .default, handler: { action -> Void in
             
-            //uiactivitycontroller
-            
-           //todo don't pass as array?
+            // todo uiactivitycontroller
+    
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         
@@ -171,7 +160,37 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func headerStyle() {
+        
+        
+         settings.style.buttonBarItemBackgroundColor = UIColor.blue
+        
+         // buttonBar minimumInteritemSpacing value, note that button bar extends from UICollectionView
+         //settings.style.buttonBarMinimumInteritemSpacing: CGFloat?
+         // buttonBar minimumLineSpacing value
+         //settings.style.buttonBarMinimumLineSpacing: CGFloat?
+         // buttonBar flow layout left content inset value
+         //settings.style.buttonBarLeftContentInset: CGFloat?
+         // buttonBar flow layout right content inset value
+         //settings.style.buttonBarRightContentInset: CGFloat?
+         
+         // selected bar view is created programmatically so it's important to set up the following 2 properties properly
+         settings.style.selectedBarBackgroundColor = UIColor.black
+         settings.style.selectedBarHeight = 5
+         
+         // each buttonBar item is a UICollectionView cell of type ButtonBarViewCell
+         //settings.style.buttonBarItemBackgroundColor: UIColor?
+         settings.style.buttonBarItemFont = UIFont.systemFont(ofSize: 18)
+         // helps to determine the cell width, it represent the space before and after the title label
+         settings.style.buttonBarItemLeftRightMargin = 8
+         settings.style.buttonBarItemTitleColor = UIColor.blue
+         // in case the barView items do not fill the screen width this property stretch the cells to fill the screen
+         settings.style.buttonBarItemsShouldFillAvailiableWidth = true
+         // only used if button bar is created programmatically and not using storyboards or nib files as recommended.
+         //public var buttonBarHeight: CGFloat?
+        
+    }
+
 }
 
 extension ParentViewController: DidReceivePackage {

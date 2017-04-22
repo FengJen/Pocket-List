@@ -38,22 +38,10 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
 //            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
 //            navigationController?.pushViewController(vc, animated: true)
-            
-            
-//            self.create(self.uploadData(), completion: {
-//                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
-//                navigationController?.pushViewController(vc, animated: true)
-//            })
-            
-            
-           
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "new"), object: nil)
+
         }
     }
-    
-    func create (_: () -> Void , completion: () -> Void) {
-    
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,12 +81,13 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
+        
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             
             //imageView.frame = CGRect(x: 0, y: 0, width: pickedImage.size.width, height: pickedImage.size.height)
             
             imageView.image = pickedImage
-            
+            // default image picker
             imageView.contentMode = .scaleAspectFit
         }
             dismiss(animated: true, completion: nil)
@@ -129,9 +118,9 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key] as [String : Any]
                     userRef.setValue(value)
               
-                    let foodController = self.navigationController?.childViewControllers[0].childViewControllers[0] as? FoodCollectionViewController
+                    //let foodController = self.navigationController?.childViewControllers[0].childViewControllers[0] as? FoodCollectionViewController
                 
-                    foodController?.collectionView?.reloadData()
+                   // foodController?.collectionView?.reloadData()
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
                     self.navigationController?.pushViewController(vc, animated: true)
 //                _ = self.navigationController?.popToRootViewController(animated: true)
@@ -145,14 +134,6 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         }
         
     }
-    
-    //MARK: upload to firebase
-    /*func uploadData(value: [String : Any]) {
-        if let uid = Constants.uid {
-        
-        
-        }
-    }*/
     
     // MARK: handle keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

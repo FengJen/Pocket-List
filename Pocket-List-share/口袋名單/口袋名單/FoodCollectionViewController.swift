@@ -19,7 +19,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     
     override func viewDidLoad() {
         
-        headerStyle()
         super.viewDidLoad()
         getValue()
         setUp()
@@ -27,42 +26,14 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
         //getValue loadlist
-        NotificationCenter.default.addObserver(self, selector: #selector(getValue), name: NSNotification.Name(rawValue: "load"), object: nil)
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "new"), object: nil, queue: nil) { (Notification) in
-            self.loadEditValue()
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(loadEditValue), name: NSNotification.Name(rawValue: "load"), object: nil)
+//        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "new"), object: nil, queue: nil) { (Notification) in
+//            self.loadEditValue()
+//        }
     }
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "load"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "new"), object: nil)
-    }
-    func headerStyle() {
-        /*
-        settings.style.buttonBarBackgroundColor: UIColor?
-        // buttonBar minimumInteritemSpacing value, note that button bar extends from UICollectionView
-        settings.style.buttonBarMinimumInteritemSpacing: CGFloat?
-        // buttonBar minimumLineSpacing value
-        settings.style.buttonBarMinimumLineSpacing: CGFloat?
-        // buttonBar flow layout left content inset value
-        settings.style.buttonBarLeftContentInset: CGFloat?
-        // buttonBar flow layout right content inset value
-        settings.style.buttonBarRightContentInset: CGFloat?
-        
-        // selected bar view is created programmatically so it's important to set up the following 2 properties properly
-        settings.style.selectedBarBackgroundColor = UIColor.blackColor()
-        settings.style.selectedBarHeight: CGFloat = 5
-        
-        // each buttonBar item is a UICollectionView cell of type ButtonBarViewCell
-        settings.style.buttonBarItemBackgroundColor: UIColor?
-        settings.style.buttonBarItemFont = UIFont.systemFontOfSize(18)
-        // helps to determine the cell width, it represent the space before and after the title label
-        settings.style.buttonBarItemLeftRightMargin: CGFloat = 8
-        settings.style.buttonBarItemTitleColor: UIColor?
-        // in case the barView items do not fill the screen width this property stretch the cells to fill the screen
-        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
-        // only used if button bar is created programmatically and not using storyboards or nib files as recommended.
-        public var buttonBarHeight: CGFloat?
- */
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "new"), object: nil)
     }
     
     func setUp() {
@@ -79,8 +50,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             CellDataManager.shared.cellArray = cellArray
             
             self.collectionView?.reloadData()
-            //todo reload single cell
-            //self.collectionView?.reloadItems(at: <#T##[IndexPath]#>)        
             
         }
 
@@ -165,6 +134,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
             cell.myImageView.alpha = 1
+            
             cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
             cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
             cell.myImageView.image = cellList[indexPath.row].image
@@ -173,12 +143,14 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
         return UICollectionViewCell()
     }
-    // todo cellback
+    
+    var selectedButtonIndexpath: [IndexPath] = []
     func preformCellEditView(sender: UIButton) {
         let button = sender
         if isEditing == false {
             if let cell = button.superview?.superview as? ItemCollectionViewCell,
                let indexPath = collectionView?.indexPath(for: cell) {
+                selectedButtonIndexpath.append(indexPath)
             guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CellDetailViewController") as? CellDetailViewController else { return }
                 vc.cell = self.cellList[(indexPath.row)]
             self.navigationController?.pushViewController(vc, animated: true)
@@ -290,11 +262,9 @@ extension Array where Element:Equatable {
     }
 }
 
-//extension FoodCollectionViewController: Step1ViewControllerDelegete, DidReceivePackage {
-//    func isUploaded() {
-//        self.collectionView?.reloadData()
-//    }
-//    func didReceive(uploadSuccess: Bool) {
-//        self.collectionView?.reloadData()
-//    }
-//}
+extension FoodCollectionViewController: DidEditCell {
+    func didEditCell() {
+        loadEditValue()
+        
+    }
+}

@@ -9,9 +9,11 @@
 import UIKit
 import FirebaseStorage
 import Firebase
-//protocol ChangeCellDataDelegate {
-//    func changeCell(newCell: CellModel)
-//}
+
+protocol DidEditCell: class {
+    func didEditCell()
+}
+
 class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var cell = CellModel()
    
@@ -25,20 +27,24 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     @IBOutlet weak var doneButton: UIButton!
     
-    //var delegate: ChangeCellDataDelegate?
+    weak var delegate: DidEditCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         //setImageView()
+        guard let foodViewController = self.navigationController?.viewControllers[0] as? FoodCollectionViewController else { return }
+        print(foodViewController)
+        self.delegate = foodViewController
+        
+        //todo asign to delegate
     }
     
     func setUp() {
         editTitle.text = cell.title
         editUrl.text = cell.url
         content.text = cell.content
-        imageView.image = cell.image
-        
+        imageView.image = cell.image        
         
         doneButton.layer.cornerRadius = 22
     }
@@ -119,10 +125,11 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
 //            })
         
 //        }
-    
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-        
-        performSegue(withIdentifier: "unwindSegue", sender: sender)
+            delegate?.didEditCell()
+            _ = self.navigationController?.popToRootViewController(animated: true)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+//        
+//        performSegue(withIdentifier: "unwindSegue", sender: sender)
         
     }
 

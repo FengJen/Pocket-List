@@ -5,8 +5,9 @@ class StepsViewController: UIPageViewController, UIPageViewControllerDataSource 
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         //let step1VC = storyBoard.instantiateViewController(withIdentifier: "step1")
         let step1VC = storyBoard.instantiateViewController(withIdentifier: "Step1ViewController")
-        let step2VC = storyBoard.instantiateViewController(withIdentifier: "Step2ViewController")
-        return [step1VC, step2VC]
+        //let step2VC = storyBoard.instantiateViewController(withIdentifier: "Step2ViewController")
+        //return [step1VC, step2VC]
+        return [step1VC]
     }()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

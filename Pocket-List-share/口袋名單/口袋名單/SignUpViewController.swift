@@ -38,8 +38,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                             }
                         })
                         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                        let tabBarController = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
-                        UIApplication.shared.keyWindow?.rootViewController = tabBarController
+                        let parentViewController = storyBoard.instantiateViewController(withIdentifier: "ParentViewController")
+                        UIApplication.shared.keyWindow?.rootViewController = parentViewController
                     } else {
                         let alerController = UIAlertController(title: "error", message: error?.localizedDescription, preferredStyle: .alert)
                         let action = UIAlertAction(title: "ok", style: .cancel, handler: nil)

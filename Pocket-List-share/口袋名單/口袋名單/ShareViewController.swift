@@ -19,13 +19,7 @@ class ShareViewController: UIViewController {
     
     weak var delegate: DidReceivePackage?
     
-    weak var delegate2: UIViewController?
-    
     @IBAction func receive(_ sender: Any) {
-        
-        delegate2?.viewDidLoad()
-        
-        //
         
         guard let text = sharingKey.text else { return }
         FIRDatabase.database().reference().child("package").queryOrdered(byChild: "packageID").queryEqual(toValue: text).observeSingleEvent(of: .value, with: { (snapshot) in
