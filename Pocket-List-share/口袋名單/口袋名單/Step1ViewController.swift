@@ -6,8 +6,15 @@ protocol Step1ViewControllerDelegete: class {
     func isUploaded()
 }
 
-class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+enum FoodType {
+    case america
+    case japaness
+    case dessert
+    case italy
+}
+
+class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    let foodTypes: [FoodType] = [.america, .dessert, .italy, .japaness]
     var some: String = ""
     weak var delegate: Step1ViewControllerDelegete?
     
@@ -18,7 +25,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet weak var imageView: UIImageView!
     let ref = FIRDatabase.database().reference().child("pocketList")
     let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
-    
+    //let defaultImageRef =
     
     @IBAction func doneButton(_ sender: Any) {
         if temperaryTitle.text == "" {
@@ -61,12 +68,14 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         imagePicker.sourceType = .photoLibrary
         
+        
+        
         present(imagePicker, animated: true, completion: nil)
     }
     
     func setImageView() {
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(pickImage))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(alertSheet))
         
         imageView.addGestureRecognizer(tap)
         
@@ -77,6 +86,56 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         imageView.tintColor = UIColor.white
         
         imageView.contentMode = .scaleAspectFit
+    }
+    
+    func defaultImage() {
+        
+        let fullScreenSize  = UIScreen.main.bounds.size
+        let defaultImagePicker = UIPickerView(frame: CGRect(x: 0, y: fullScreenSize.height * 0.3, width: fullScreenSize.width * 0.8, height: 150))
+        self.view.addSubview(defaultImagePicker)
+        defaultImagePicker.delegate = self
+        defaultImagePicker.dataSource = self
+        
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        FIRDatabase.database().reference().child("defaultImage").child("food").observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let downUrl = snapshot as? [String: Any] else { return }
+            
+        })
+        switch row {
+        //case 0: imageView.image =
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return foodTypes.count
+    }
+    
+    func alertSheet() {
+        let alterController = UIAlertController(title: "選擇圖片", message: "選擇圖片來源", preferredStyle: .actionSheet)
+        let fromPhoto = UIAlertAction(title: "從相簿選取", style: .default) { (UIAlertAction) in
+            self.pickImage()
+        }
+        let fromDefault = UIAlertAction(title: "選擇內建圖片", style: .default) { (UIAlertAction) in
+            //switch self.foodTypes {
+            //case FoodType.america:
+            //}
+        }
+
+        let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alterController.addAction(fromPhoto)
+        alterController.addAction(fromDefault)
+        alterController.addAction(cancel)
+        self.present(alterController, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -132,7 +191,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             })
          
         }
-        
+
     }
     
     // MARK: handle keyboard
