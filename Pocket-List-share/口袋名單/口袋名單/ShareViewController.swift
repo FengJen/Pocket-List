@@ -15,7 +15,9 @@ protocol DidReceivePackage: class {
 
 class ShareViewController: UIViewController {
     
+    @IBOutlet weak var receiveButton: UIButton!
     @IBOutlet weak var sharingKey: UITextField!
+    @IBOutlet weak var logoutButton: UIButton!
     
     weak var delegate: DidReceivePackage?
     
@@ -85,7 +87,7 @@ class ShareViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUp()
         guard let controller = tabBarController?.viewControllers?[0] as? ItemsNavigationController else { return }
         
         guard let parentViewController = controller.viewControllers[0] as? ParentViewController else { return }
@@ -94,6 +96,10 @@ class ShareViewController: UIViewController {
 
     }
     
+    func setUp() {
+        logoutButton.layer.cornerRadius = 23
+        receiveButton.layer.cornerRadius = 23
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

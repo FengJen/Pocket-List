@@ -21,7 +21,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        cellTitle.backgroundColor = UIColor.yellow
+        //cellTitle.backgroundColor = UIColor.yellow
         cellTitle.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
         
         //cellTitle.layer.cornerRadius = 15

@@ -29,8 +29,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     { (user, error) in
                         if error == nil {
                             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                            let parentVC = storyBoard.instantiateViewController(withIdentifier: "ParentViewController")
-                            UIApplication.shared.keyWindow?.rootViewController = parentVC
+                            let tabBarController = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
+                            UIApplication.shared.keyWindow?.rootViewController = tabBarController
                         } else {
                             let alerController = UIAlertController(title: "error", message: error?.localizedDescription, preferredStyle: .alert)
                             let action = UIAlertAction(title: "ok", style: .cancel, handler: nil)

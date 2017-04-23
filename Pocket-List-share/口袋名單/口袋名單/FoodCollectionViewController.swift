@@ -136,6 +136,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
             cell.myImageView.alpha = 1
             
             cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
+            cell.cellTitle.tintColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)
             cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
             cell.myImageView.image = cellList[indexPath.row].image
             return cell

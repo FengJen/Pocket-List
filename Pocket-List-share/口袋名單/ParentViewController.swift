@@ -163,7 +163,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     func headerStyle() {
         
         
-         settings.style.buttonBarItemBackgroundColor = UIColor.blue
+         //settings.style.buttonBarItemBackgroundColor = UIColor.blue
         
          // buttonBar minimumInteritemSpacing value, note that button bar extends from UICollectionView
          //settings.style.buttonBarMinimumInteritemSpacing: CGFloat?
@@ -175,7 +175,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
          //settings.style.buttonBarRightContentInset: CGFloat?
          
          // selected bar view is created programmatically so it's important to set up the following 2 properties properly
-         settings.style.selectedBarBackgroundColor = UIColor.black
+         settings.style.selectedBarBackgroundColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)
          settings.style.selectedBarHeight = 5
          
          // each buttonBar item is a UICollectionView cell of type ButtonBarViewCell
