@@ -91,21 +91,31 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     func defaultImage() {
         
         let fullScreenSize  = UIScreen.main.bounds.size
-        let defaultImagePicker = UIPickerView(frame: CGRect(x: 0, y: fullScreenSize.height * 0.3, width: fullScreenSize.width * 0.8, height: 150))
+        let defaultImagePicker = UIPickerView(frame: CGRect(x: 0, y: fullScreenSize.height * 0.3, width: fullScreenSize.width * 0.8, height: 200))
         self.view.addSubview(defaultImagePicker)
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
         
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker)
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
+//        
+//        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+//        toolBar.isUserInteractionEnabled = true
+//        
+//        imageView.inputAccessoryView = toolBar
+        
+//        textField1.inputView = picker
+//        textField1.inputAccessoryView = toolBar
+        
     }
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return
-//    }
-    
-//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-//        
-//        //            return self.imageView
-//        
-//    }
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         var rowString = String()

@@ -12,14 +12,22 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var confirmPassword: UITextField!
+    
     @IBOutlet weak var email: UITextField!
 
     @IBOutlet weak var password: UITextField!
     
     @IBOutlet weak var registerButton: UIButton!
+    
     @IBAction func creatUser(_ sender: Any) {
         if email.text == "" || password.text == "" {
-            let alertController = UIAlertController(title: "error", message: "Please enter password and email", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "錯誤", message: "請輸入帳號密碼", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ok", style: .cancel, handler: nil)
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
+        } else if confirmPassword.text != password.text {
+            let alertController = UIAlertController(title: "請再次確認密碼", message: "兩次輸入密碼不同", preferredStyle: .alert)
             let action = UIAlertAction(title: "ok", style: .cancel, handler: nil)
             alertController.addAction(action)
             self.present(alertController, animated: true, completion: nil)
