@@ -53,9 +53,6 @@ class CellDataManager {
                         value.append(cellModel)
                          completion(value)
                     })
-                    
-                
-            
             }
             
         })

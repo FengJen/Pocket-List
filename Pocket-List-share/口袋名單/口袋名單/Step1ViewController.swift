@@ -97,27 +97,116 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         defaultImagePicker.dataSource = self
         
     }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return
-    }
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return
+//    }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//        
+//        //            return self.imageView
+//        
+//    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        FIRDatabase.database().reference().child("defaultImage").child("food").observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let downUrl = snapshot as? [String: Any] else { return }
-            
-        })
+        var rowString = String()
+        
         switch row {
-        //case 0: imageView.image =
+        case 0:
+            rowString = "美式料理"
+            
+        case 1:
+            rowString = "義式料理"
+            
+        case 2:
+            rowString = "日式料理"
+            
+        case 3:
+            rowString = "甜點"
+
+        default:
+            rowString = "其他"
+
+        
+            
+            
         }
+        return rowString
+
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        FIRDatabase.database().reference().child("defaultImage").child("food").observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let downLoadUrl = snapshot.value as? [String: Any] else { return }
+                guard let dessert = downLoadUrl["dessert"] as? String,
+                      let italy = downLoadUrl["italy"] as? String,
+                      let japan = downLoadUrl["Japan"] as? String,
+                      let america = downLoadUrl["america"] as? String,
+                      let other = downLoadUrl["other"] as? String else { return }
+    
+            
+    
+                switch row {
+                case 0:
+                    
+                    let storageRef = FIRStorage.storage().reference(forURL: america)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    guard let americaData = data else { return }
+                    let americaPic = UIImage(data: americaData)
+                    self.imageView.image = americaPic
+                    }
+    
+                case 1:
+                    
+                    let storageRef = FIRStorage.storage().reference(forURL: italy)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                        guard let italyData = data else { return }
+                        let italyPic = UIImage(data: italyData)
+                        self.imageView.image = italyPic
+                    }
+    
+                case 2:
+                    
+                    let storageRef = FIRStorage.storage().reference(forURL: japan)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                        guard let japanData = data else { return }
+                        let japanPic = UIImage(data: japanData)
+                        self.imageView.image = japanPic
+                    }
+    
+                case 3:
+                    
+                    let storageRef = FIRStorage.storage().reference(forURL: dessert)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                        guard let dessertData = data else { return }
+                        let dessertPic = UIImage(data: dessertData)
+                        self.imageView.image = dessertPic
+                    }
+    
+                default:
+                    
+                    let storageRef = FIRStorage.storage().reference(forURL: other)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                        guard let otherData = data else { return }
+                        let otherPic = UIImage(data: otherData)
+                        self.imageView.image = otherPic
+                    }
+                    
+                }
+//                let myView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.bounds.width - 30, height: 60))
+                
+            })
+
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 1
+        return foodTypes.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return foodTypes.count
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 60
     }
     
     func alertSheet() {
@@ -126,9 +215,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             self.pickImage()
         }
         let fromDefault = UIAlertAction(title: "選擇內建圖片", style: .default) { (UIAlertAction) in
-            //switch self.foodTypes {
-            //case FoodType.america:
-            //}
+            self.defaultImage()
         }
 
         let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
