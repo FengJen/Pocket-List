@@ -112,7 +112,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Food")
+        return IndicatorInfo(title: "口袋名單")
     }
 
     override func didReceiveMemoryWarning() {

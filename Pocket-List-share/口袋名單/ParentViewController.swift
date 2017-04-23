@@ -32,7 +32,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
-        return [foodCollectionViewController, sitesCollectionViewController]
+        return [foodCollectionViewController]
     }
     
     func setUp() {

@@ -96,7 +96,23 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
 //    }
     @IBAction func editData(_ sender: UIButton) {
         guard let text = editTitle.text, let url = editUrl.text, let content = content.text else { return }
-        
+        if text == "" {
+            
+            let allert = UIAlertController(title: "您還未輸入標題", message: "請在輸入新增項目的標題", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            allert.addAction(action)
+            self.present(allert, animated: true, completion: nil)
+        } else if url == "" {
+            let allert = UIAlertController(title: "您還未輸入網址", message: "請複製貼上想儲存的網址（例如google map網址）", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            allert.addAction(action)
+            self.present(allert, animated: true, completion: nil)
+        } else if UIApplication.shared.canOpenURL(URL(string: url)!) == false {
+            let allert = UIAlertController(title: "請檢查您的網址", message: "此網址非“https://”連線，將無法打開網頁", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            allert.addAction(action)
+            self.present(allert, animated: true, completion: nil)
+        } else {
         guard let cellAutoID = self.cell.autoID, let uid = FIRAuth.auth()?.currentUser?.uid else { return }
         let editRef = FIRDatabase.database().reference().child("pocketList").child(uid).child(cellAutoID)
         
@@ -130,7 +146,7 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
 //        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
 //        
 //        performSegue(withIdentifier: "unwindSegue", sender: sender)
-        
+        }
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

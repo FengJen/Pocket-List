@@ -42,6 +42,11 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             allert.addAction(action)
             self.present(allert, animated: true, completion: nil)
+        } else if UIApplication.shared.canOpenURL(URL(string: website.text!)!) == false {
+            let allert = UIAlertController(title: "請檢查您的網址", message: "此網址非“https://”連線，將無法打開網頁", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            allert.addAction(action)
+            self.present(allert, animated: true, completion: nil)
         } else {
    
             self.uploadData() // upload to firebase
@@ -51,7 +56,6 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
 
         }
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
