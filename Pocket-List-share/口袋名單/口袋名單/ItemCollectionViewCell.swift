@@ -22,7 +22,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         //cellTitle.backgroundColor = UIColor.yellow
-        cellTitle.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
+        cellTitle.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
         
         //cellTitle.layer.cornerRadius = 15
     }

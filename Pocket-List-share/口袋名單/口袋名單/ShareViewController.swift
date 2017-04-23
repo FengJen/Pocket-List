@@ -97,8 +97,8 @@ class ShareViewController: UIViewController {
     }
     
     func setUp() {
-        logoutButton.layer.cornerRadius = 23
-        receiveButton.layer.cornerRadius = 23
+        logoutButton.layer.cornerRadius = 20
+        receiveButton.layer.cornerRadius = 20
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -16,13 +16,16 @@ enum FoodType {
 class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     let foodTypes: [FoodType] = [.america, .dessert, .italy, .japaness]
     var some: String = ""
+    
+    let defaultImagePicker = UIPickerView()
     weak var delegate: Step1ViewControllerDelegete?
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var temperaryTitle: UITextField!
     @IBOutlet weak var website: UITextField!
     @IBOutlet weak var contentView: UITextView!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!    
+    @IBOutlet weak var doneButton: UIButton!
     let ref = FIRDatabase.database().reference().child("pocketList")
     let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
     //let defaultImageRef =
@@ -53,7 +56,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     override func viewDidLoad() {
         super.viewDidLoad()
         setImageView()
-        
+        doneButton.layer.cornerRadius = 20
         imageView.contentMode = .center
     }
     
@@ -89,31 +92,33 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     func defaultImage() {
-        
         let fullScreenSize  = UIScreen.main.bounds.size
-        let defaultImagePicker = UIPickerView(frame: CGRect(x: 0, y: fullScreenSize.height * 0.3, width: fullScreenSize.width * 0.8, height: 200))
+        defaultImagePicker.frame = (frame: CGRect(x: 0, y: fullScreenSize.height - 340, width: fullScreenSize.width, height: 340))
+        
         self.view.addSubview(defaultImagePicker)
+        defaultImagePicker.backgroundColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
         
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.tintColor = UIColor.blue
         toolBar.sizeToFit()
+        defaultImagePicker.addSubview(toolBar)
         
-//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker)
-//        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
-//        
-//        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-//        toolBar.isUserInteractionEnabled = true
-//        
-//        imageView.inputAccessoryView = toolBar
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
+  
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
         
-//        textField1.inputView = picker
-//        textField1.inputAccessoryView = toolBar
-        
+    }
+    
+    func donePicker() {
+        print(12345)
+        defaultImagePicker.removeFromSuperview()
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -133,11 +138,11 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         case 3:
             rowString = "甜點"
 
-        default:
+        case 4:
             rowString = "其他"
-
         
-            
+        default:
+            print("out of range")
             
         }
         return rowString
@@ -151,8 +156,6 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                       let japan = downLoadUrl["Japan"] as? String,
                       let america = downLoadUrl["america"] as? String,
                       let other = downLoadUrl["other"] as? String else { return }
-    
-            
     
                 switch row {
                 case 0:

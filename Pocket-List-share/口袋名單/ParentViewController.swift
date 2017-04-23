@@ -161,20 +161,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     }
     
     func headerStyle() {
-        
-        
-         //settings.style.buttonBarItemBackgroundColor = UIColor.blue
-        
-         // buttonBar minimumInteritemSpacing value, note that button bar extends from UICollectionView
-         //settings.style.buttonBarMinimumInteritemSpacing: CGFloat?
-         // buttonBar minimumLineSpacing value
-         //settings.style.buttonBarMinimumLineSpacing: CGFloat?
-         // buttonBar flow layout left content inset value
-         //settings.style.buttonBarLeftContentInset: CGFloat?
-         // buttonBar flow layout right content inset value
-         //settings.style.buttonBarRightContentInset: CGFloat?
-         
-         // selected bar view is created programmatically so it's important to set up the following 2 properties properly
+ 
          settings.style.selectedBarBackgroundColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)
          settings.style.selectedBarHeight = 5
          
@@ -186,8 +173,6 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
          settings.style.buttonBarItemTitleColor = UIColor.blue
          // in case the barView items do not fill the screen width this property stretch the cells to fill the screen
          settings.style.buttonBarItemsShouldFillAvailiableWidth = true
-         // only used if button bar is created programmatically and not using storyboards or nib files as recommended.
-         //public var buttonBarHeight: CGFloat?
         
     }
 

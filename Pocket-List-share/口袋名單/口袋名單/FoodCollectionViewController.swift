@@ -134,11 +134,12 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
             cell.myImageView.alpha = 1
-            
+            cell.cellTitle.layer.cornerRadius = 15
             cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
-            cell.cellTitle.tintColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)
+            cell.cellTitle.tintColor = UIColor.black
             cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)
             cell.myImageView.image = cellList[indexPath.row].image
+            cell.myImageView.layer.cornerRadius = 15
             return cell
             }
         
