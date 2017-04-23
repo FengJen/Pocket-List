@@ -143,7 +143,7 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
 //        }
             delegate?.didEditCell()
             _ = self.navigationController?.popToRootViewController(animated: true)
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
 //        
 //        performSegue(withIdentifier: "unwindSegue", sender: sender)
         }

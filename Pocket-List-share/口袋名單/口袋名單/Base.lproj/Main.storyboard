@@ -498,7 +498,7 @@
         <scene sceneID="h2e-Wj-K1V">
             <objects>
                 <navigationController storyboardIdentifier="ItemsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="MzC-KV-sNL" customClass="ItemsNavigationController" customModule="口袋名單" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="名單" image="001-pocket" id="WBh-iT-2Sx"/>
+                    <tabBarItem key="tabBarItem" title="名單" image="002-pocket" id="WBh-iT-2Sx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F4E-QD-22q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -518,7 +518,7 @@
         <scene sceneID="cdn-rL-HxA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vSb-gN-gC0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="接收" image="002-inbox" id="dCy-K7-zu4"/>
+                    <tabBarItem key="tabBarItem" title="接收" image="001-download" id="dCy-K7-zu4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yX7-bC-QNJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -781,7 +781,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="001-pocket" width="16" height="16"/>
-        <image name="002-inbox" width="16" height="16"/>
+        <image name="001-download" width="32" height="32"/>
+        <image name="002-pocket" width="32" height="32"/>
     </resources>
 </document>
