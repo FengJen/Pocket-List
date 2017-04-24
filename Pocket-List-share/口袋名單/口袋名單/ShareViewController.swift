@@ -27,10 +27,11 @@ class ShareViewController: UIViewController {
         FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
             guard let email = emailSnapshot.value as? [String: Any] else { return }
             guard let myEmail = email["email"] as? String else { return }
-            print(myEmail)
+            
+        
             //guard let text = sharingKey.text else { return }
             FIRDatabase.database().reference().child("package").queryOrdered(byChild: "receiverEmail").queryEqual(toValue: myEmail).observeSingleEvent(of: .value, with: { (snapshot) in
-                
+            if snapshot.exists() {
                 for child in snapshot.children {
                     
                     guard let item = child as? FIRDataSnapshot else { return }
@@ -72,7 +73,12 @@ class ShareViewController: UIViewController {
                 alertController.addAction(accept)
                 alertController.addAction(decline)
                 self.present(alertController, animated: true, completion: nil)
-   
+                } else {
+                    let altercontroller = UIAlertController(title: "錯誤", message: "請在傳送方送出後再按接收按鈕，或確認傳送email正確", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "ok", style: .default, handler: nil)
+                    altercontroller.addAction(okAction)
+                    self.present(altercontroller, animated: true, completion: nil)
+                }
             })
         })
     }
@@ -123,6 +129,3 @@ class ShareViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
-// let vc = StoryBoard
-// vc.delegate = self
-// self.show(vc, animation: true)
