@@ -62,13 +62,31 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerButton.layer.cornerRadius = 22
+
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        self.view.endEditing(true)
         return true
     }
-
+    
+    private func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        
+        if textView == password {
+            
+            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            
+        }
+        
+        return true
+        
+    }
+    
+    private func textViewDidEndEditing(_ textView: UITextView) {
+        
+        self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

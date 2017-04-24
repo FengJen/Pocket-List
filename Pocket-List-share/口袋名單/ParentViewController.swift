@@ -140,7 +140,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
                 ] as [String : Any]
             packageRef.setValue(value)
         })
-        
+        // todo email = nil?
         let alertController = UIAlertController(title: "This is your sharing key", message: "Send the key to the receiver: \(packageRef.key)", preferredStyle: .alert)
 
         let sendAction = UIAlertAction(title: "Send", style: .default, handler: { action -> Void in

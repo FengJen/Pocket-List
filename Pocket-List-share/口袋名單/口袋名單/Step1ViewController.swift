@@ -11,10 +11,12 @@ enum FoodType {
     case japaness
     case dessert
     case italy
+    case chinese
+    case other
 }
 
 class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    let foodTypes: [FoodType] = [.america, .dessert, .italy, .japaness]
+    let foodTypes: [FoodType] = [.america, .dessert, .italy, .japaness, .chinese, .other]
     var some: String = ""
     
     let defaultImagePicker = UIPickerView()
@@ -27,8 +29,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet weak var imageView: UIImageView!    
     @IBOutlet weak var doneButton: UIButton!
     let ref = FIRDatabase.database().reference().child("pocketList")
-    let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
-    //let defaultImageRef =
+    //let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
+    let image = #imageLiteral(resourceName: "tray-icon")
     
     @IBAction func doneButton(_ sender: Any) {
         if temperaryTitle.text == "" {
@@ -50,9 +52,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         } else {
    
             self.uploadData() // upload to firebase
-            
-//            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
-//            navigationController?.pushViewController(vc, animated: true)
+            let button = sender as? UIButton
+            button?.isEnabled = false
 
         }
     }
@@ -62,8 +63,18 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         setImageView()
         doneButton.layer.cornerRadius = 20
         imageView.contentMode = .center
+//        self.contentView.delegate = self
+//        self.website.delegate = self
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
     }
     
+//    deinit {
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+//    }
+ 
     //MARK: pick image
     func pickImage() {
         
@@ -141,8 +152,11 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
         case 3:
             rowString = "甜點"
-
+            
         case 4:
+            rowString = "中式料理"
+
+        case 5:
             rowString = "其他"
         
         default:
@@ -159,6 +173,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                       let italy = downLoadUrl["italy"] as? String,
                       let japan = downLoadUrl["Japan"] as? String,
                       let america = downLoadUrl["america"] as? String,
+                      let chinese = downLoadUrl["Chinese"] as? String,
                       let other = downLoadUrl["other"] as? String else { return }
     
                 switch row {
@@ -197,8 +212,18 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         let dessertPic = UIImage(data: dessertData)
                         self.imageView.image = dessertPic
                     }
+                    
+                case 4:
+                    
+                    let storageRef = FIRStorage.storage().reference(forURL: chinese)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                        guard let chineseData = data else { return }
+                        let chinesePic = UIImage(data: chineseData)
+                        self.imageView.image = chinesePic
+                    }
+
     
-                default:
+                case 5:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: other)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
@@ -206,10 +231,11 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         let otherPic = UIImage(data: otherData)
                         self.imageView.image = otherPic
                     }
-                    
+                default:
+                    print("default error")
                 }
-//                let myView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.bounds.width - 30, height: 60))
-                
+            
+            
             })
 
     }
@@ -304,14 +330,54 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == website {
-            let move = CGPoint(x: 0, y: 250)
-            scrollView.setContentOffset(move, animated: true)
-        }
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        let move = CGPoint(x: 0, y: 0)
-        scrollView.setContentOffset(move, animated: true)
-    }
 }
+
+//extension Step1ViewController: UITextViewDelegate {
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        if (text == "\n") {
+//            textView.resignFirstResponder()
+//            return false
+//        }
+//        return true
+//    }
+
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        contentView = textView
+//    }
+//    
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        contentView = nil
+//
+//    }
+//    
+//    func keyboardWasShown(notification: NSNotification){
+//        //Need to calculate keyboard exact size due to Apple suggestions
+//        self.scrollView.isScrollEnabled = true
+//        var info = notification.userInfo!
+//        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+//        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+//        
+//        self.scrollView.contentInset = contentInsets
+//        self.scrollView.scrollIndicatorInsets = contentInsets
+//        
+//        var aRect : CGRect = self.view.frame
+//        aRect.size.height -= keyboardSize!.height
+//        if let activeField = self.contentView {
+//            if (!aRect.contains(activeField.frame.origin)){
+//                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+//            }
+//        }
+//    }
+//    
+//    func keyboardWillBeHidden(notification: NSNotification){
+//        //Once keyboard disappears, restore original positions
+//        var info = notification.userInfo!
+//        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+//        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+//        self.scrollView.contentInset = contentInsets
+//        self.scrollView.scrollIndicatorInsets = contentInsets
+//        self.view.endEditing(true)
+//        self.scrollView.isScrollEnabled = false
+//    }
+    
+//}

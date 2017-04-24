@@ -34,7 +34,7 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
         setUp()
         //setImageView()
         guard let foodViewController = self.navigationController?.viewControllers[0] as? FoodCollectionViewController else { return }
-        print(foodViewController)
+        
         self.delegate = foodViewController
         
         //todo asign to delegate
@@ -152,6 +152,24 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    private func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        
+        if textView == content {
+            
+            self.view.bounds = CGRect(x: 0, y: 250, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            
+        }
+        
+        return true
+        
+    }
+    
+    private func textViewDidEndEditing(_ textView: UITextView) {
+        
+        self.view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        
     }
     
     override func didReceiveMemoryWarning() {

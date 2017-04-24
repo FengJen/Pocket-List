@@ -19,14 +19,14 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWh-t7-yTC">
-                        <rect key="frame" x="10" y="185" width="242" height="45"/>
+                        <rect key="frame" x="10" y="195" width="242" height="40"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="45" id="tY3-UU-1Dd"/>
+                            <constraint firstAttribute="height" constant="40" id="tY3-UU-1Dd"/>
                         </constraints>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p5D-BV-JFl">
-                        <rect key="frame" x="10" y="10" width="242" height="165"/>
+                        <rect key="frame" x="10" y="10" width="242" height="180"/>
                     </imageView>
                 </subviews>
             </view>
@@ -36,9 +36,9 @@
                 <constraint firstItem="p5D-BV-JFl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="QQF-nu-AES"/>
                 <constraint firstItem="p5D-BV-JFl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="S2j-bh-Ixx"/>
                 <constraint firstAttribute="trailing" secondItem="PWh-t7-yTC" secondAttribute="trailing" constant="10" id="a48-Xr-6DA"/>
-                <constraint firstAttribute="bottom" secondItem="PWh-t7-yTC" secondAttribute="bottom" constant="10" id="ekF-Fu-j4t"/>
+                <constraint firstAttribute="bottom" secondItem="PWh-t7-yTC" secondAttribute="bottom" constant="5" id="ekF-Fu-j4t"/>
                 <constraint firstAttribute="trailing" secondItem="p5D-BV-JFl" secondAttribute="trailing" constant="10" id="hYe-2H-TvJ"/>
-                <constraint firstItem="PWh-t7-yTC" firstAttribute="top" secondItem="p5D-BV-JFl" secondAttribute="bottom" constant="10" id="o1b-TB-bH9"/>
+                <constraint firstItem="PWh-t7-yTC" firstAttribute="top" secondItem="p5D-BV-JFl" secondAttribute="bottom" constant="5" id="o1b-TB-bH9"/>
             </constraints>
             <size key="customSize" width="262" height="240"/>
             <connections>
