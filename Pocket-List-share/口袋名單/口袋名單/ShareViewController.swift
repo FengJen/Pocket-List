@@ -47,16 +47,12 @@ class ShareViewController: UIViewController {
                             
                         }
                         
-                        
                     }
                     self.delegate?.didReceive(shareVC: self, uploadSuccess: true)
                 })
             }
         })
         
-        //
-
-                
     }
     
     func alert() {
