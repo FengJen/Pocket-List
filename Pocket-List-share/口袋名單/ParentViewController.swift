@@ -119,46 +119,66 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         var cellPackage: [Any] = []
         let uid = FIRAuth.auth()?.currentUser?.uid
         let packageRef = FIRDatabase.database().reference().child("package").childByAutoId()
-        for cellID in shareIDs {
-            FIRDatabase.database().reference().child("pocketList").child(uid!).queryOrdered(byChild: "cellID").queryEqual(toValue: cellID).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                //print(snapshot.value)
-                guard let snap = snapshot.value as? [String: Any] else { return }
-                cellPackage.append(snap)
-                                
-            })
-        }
-        FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
-            guard let email = emailSnapshot.value as? [String: Any] else { return }
-            guard let senderEmail = email["email"] as? String else { return }
-            
-            let value = [
-                "senderEmail": senderEmail,
-                //"receiverEmail": inputText,
-                "cellList": cellPackage,
-                "packageID": packageRef.key
-                ] as [String : Any]
-            packageRef.setValue(value)
+        let alertController = UIAlertController(title: "請輸入接收者email", message: "分享後請接收方進入接收頁面下載", preferredStyle: .alert)
+        
+        alertController.addTextField(configurationHandler: { (UITextField) in
+            UITextField.placeholder = "接收者email"
         })
-        // todo email = nil?
-        let alertController = UIAlertController(title: "請輸入接收者email", message: "將此段序號傳送給朋友: ”\(packageRef.key)“，並在分想頁面輸入", preferredStyle: .alert)
-
         let sendAction = UIAlertAction(title: "Send", style: .default, handler: { action -> Void in
+            guard let receiverEmail = alertController.textFields?[0].text else { return }
+            if self.isValidEmail(testStr: receiverEmail) == false {
+                let errorAlertController = UIAlertController(title: "錯誤", message: "email格式錯誤", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                errorAlertController.addAction(okAction)
+                self.present(errorAlertController, animated: true, completion: nil)
+            } else if self.isValidEmail(testStr: receiverEmail) == true {
             
-            // todo uiactivitycontroller
-    
+                for cellID in shareIDs {
+                    FIRDatabase.database().reference().child("pocketList").child(uid!).queryOrdered(byChild: "cellID").queryEqual(toValue: cellID).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        guard let snap = snapshot.value as? [String: Any] else { return }
+                        cellPackage.append(snap)
+                        
+                    })
+                }
+                FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
+                    guard let email = emailSnapshot.value as? [String: Any] else { return }
+                    guard let senderEmail = email["email"] as? String else { return }
+                    
+                    let value = [
+                        "senderEmail": senderEmail,
+                        "receiverEmail": receiverEmail,
+                        "cellList": cellPackage,
+                        "packageID": packageRef.key
+                        ] as [String : Any]
+                    packageRef.setValue(value)
+                })
+            
+            }
+            
+            
         })
+
+        // todo email = nil?
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         
         alertController.addAction(sendAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
+
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
     }
     
     func headerStyle() {
