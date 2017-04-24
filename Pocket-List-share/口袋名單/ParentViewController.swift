@@ -141,7 +141,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
             packageRef.setValue(value)
         })
         // todo email = nil?
-        let alertController = UIAlertController(title: "This is your sharing key", message: "Send the key to the receiver: \(packageRef.key)", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "您的分享序號", message: "將此段序號傳送給朋友: ”\(packageRef.key)“，並在分想頁面輸入", preferredStyle: .alert)
 
         let sendAction = UIAlertAction(title: "Send", style: .default, handler: { action -> Void in
             

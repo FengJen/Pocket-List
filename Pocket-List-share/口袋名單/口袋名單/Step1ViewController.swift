@@ -63,6 +63,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         setImageView()
         doneButton.layer.cornerRadius = 20
         imageView.contentMode = .center
+        defaultImagePicker.delegate = self
+        defaultImagePicker.dataSource = self
 //        self.contentView.delegate = self
 //        self.website.delegate = self
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -114,27 +116,9 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         defaultImagePicker.backgroundColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
-        
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor.blue
-        toolBar.sizeToFit()
-        defaultImagePicker.addSubview(toolBar)
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
-  
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: true)
-        toolBar.isUserInteractionEnabled = true
-        
+
     }
     
-    func donePicker() {
-        print(12345)
-        defaultImagePicker.removeFromSuperview()
-    }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
@@ -235,7 +219,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     print("default error")
                 }
             
-            
+                pickerView.removeFromSuperview()
             })
 
     }
