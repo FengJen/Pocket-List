@@ -28,7 +28,7 @@ class ShareViewController: UIViewController {
             guard let email = emailSnapshot.value as? [String: Any] else { return }
             guard let myEmail = email["email"] as? String else { return }
             
-        
+            // todo query by time
             //guard let text = sharingKey.text else { return }
             FIRDatabase.database().reference().child("package").queryOrdered(byChild: "receiverEmail").queryEqual(toValue: myEmail).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {

@@ -41,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pocket-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ncz-hw-Vvl">
-                                <rect key="frame" x="127.66666666666669" y="252" width="159" height="149"/>
+                                <rect key="frame" x="128" y="216" width="159" height="149"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="159" id="Br6-I0-p92"/>
                                     <constraint firstAttribute="height" constant="149" id="P1d-K7-qq4"/>
@@ -60,7 +60,7 @@
                             <constraint firstItem="g42-jn-O3N" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="30" id="OCp-Lv-3wW"/>
                             <constraint firstItem="bvW-RI-IOu" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="X8U-Ew-rae"/>
                             <constraint firstItem="9Cc-MM-oFR" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aA2-2w-hKY"/>
-                            <constraint firstItem="ncz-hw-Vvl" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="252" id="djO-XX-5rM"/>
+                            <constraint firstItem="ncz-hw-Vvl" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="216" id="djO-XX-5rM"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="g42-jn-O3N" secondAttribute="bottom" constant="135.5" id="pgQ-12-S4l"/>
                             <constraint firstItem="9Cc-MM-oFR" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="80" id="ryA-7g-vbK"/>
                             <constraint firstItem="bvW-RI-IOu" firstAttribute="top" secondItem="g42-jn-O3N" secondAttribute="bottom" constant="8" symbolic="YES" id="vrq-1L-drq"/>
