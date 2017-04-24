@@ -110,7 +110,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     func defaultImage() {
         let fullScreenSize  = UIScreen.main.bounds.size
-        defaultImagePicker.frame = (frame: CGRect(x: 0, y: fullScreenSize.height - 250, width: fullScreenSize.width, height: 250))
+        defaultImagePicker.frame = (frame: CGRect(x: 0, y: fullScreenSize.height - 250, width: fullScreenSize.width, height: 250)) as! CGRect
         
         self.view.addSubview(defaultImagePicker)
         defaultImagePicker.backgroundColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)

@@ -16,7 +16,7 @@ protocol DidReceivePackage: class {
 class ShareViewController: UIViewController {
     
     @IBOutlet weak var receiveButton: UIButton!
-    @IBOutlet weak var sharingKey: UITextField!
+    
     @IBOutlet weak var logoutButton: UIButton!
     
     weak var delegate: DidReceivePackage?
