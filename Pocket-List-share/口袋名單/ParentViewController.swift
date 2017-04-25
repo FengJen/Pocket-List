@@ -7,9 +7,9 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
-    let foodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController") as! FoodCollectionViewController
-    let sitesCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController") as! SitesCollectionViewController
-    
+    let foodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController") as? FoodCollectionViewController
+    //let vc2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController") as? SitesCollectionViewController
+    //guard let foodCollectionViewController = vc1 else { return }
     let editButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(setEdit))
     
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
-        return [foodCollectionViewController]
+        return [foodCollectionViewController!]
     }
     
     func setUp() {
@@ -69,7 +69,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         
         self.newBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
-        foodCollectionViewController.isEditing = true
+        foodCollectionViewController?.isEditing = true
 
         if editing == true {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -84,16 +84,16 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     func cancel() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
-        foodCollectionViewController.isEditing = false
+        foodCollectionViewController?.isEditing = false
         self.tabBarController?.tabBar.isHidden = false
         self.newBar.isHidden = true
-        for indexPath in foodCollectionViewController.selectedIndexPaths {
-        guard let cell = foodCollectionViewController.collectionView?.cellForItem(at: indexPath) as? ItemCollectionViewCell else { return }
-            foodCollectionViewController.collectionView?.deselectItem(at: indexPath, animated: true)
+        for indexPath in (foodCollectionViewController?.selectedIndexPaths)! {
+        guard let cell = foodCollectionViewController?.collectionView?.cellForItem(at: indexPath) as? ItemCollectionViewCell else { return }
+            foodCollectionViewController?.collectionView?.deselectItem(at: indexPath, animated: true)
             cell.myImageView.alpha = 1
         }
-        for cellID in foodCollectionViewController.selectedAutoIDs {
-        foodCollectionViewController.selectedAutoIDs.remove(cellID)
+        for cellID in (foodCollectionViewController?.selectedAutoIDs)! {
+        foodCollectionViewController?.selectedAutoIDs.remove(cellID)
         }
     }
     
@@ -107,15 +107,15 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     func deleteItems() {
 
-        let deleteID = foodCollectionViewController.selectedAutoIDs
-        foodCollectionViewController.deleteItems(at: deleteID)
-        foodCollectionViewController.isEditing = false
+        guard let deleteID = foodCollectionViewController?.selectedAutoIDs else { return }
+        foodCollectionViewController?.deleteItems(at: deleteID)
+        foodCollectionViewController?.isEditing = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
       
     }
     
     func shareItems() {
-        let shareIDs = foodCollectionViewController.selectedAutoIDs
+        guard let shareIDs = foodCollectionViewController?.selectedAutoIDs else { return }
         var cellPackage: [Any] = []
         let uid = FIRAuth.auth()?.currentUser?.uid
         let packageRef = FIRDatabase.database().reference().child("package").childByAutoId()
@@ -206,8 +206,8 @@ extension ParentViewController: DidReceivePackage {
         if uploadSuccess == true {
             CellDataManager.shared.getCellData(completion: { (value) in
                 guard let newCells = value else { return }
-                self.foodCollectionViewController.cellList = newCells
-                self.foodCollectionViewController.collectionView?.reloadData()
+                self.foodCollectionViewController?.cellList = newCells
+                self.foodCollectionViewController?.collectionView?.reloadData()
                 self.tabBarController?.selectedIndex = 0
             })
         
