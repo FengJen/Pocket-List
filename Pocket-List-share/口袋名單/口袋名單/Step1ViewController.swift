@@ -319,19 +319,13 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                let content = self.contentView.text,
                let imageURL = storeMetaData?.downloadURL()?.absoluteString {
                let userRef = self.ref.child(uid).childByAutoId()
+               //let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key, "imageUuid": imageName] as [String : Any]
                let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key] as [String : Any]
                     userRef.setValue(value)
               
-                    //let foodController = self.navigationController?.childViewControllers[0].childViewControllers[0] as? FoodCollectionViewController
-                
-                   // foodController?.collectionView?.reloadData()
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
                     self.navigationController?.pushViewController(vc, animated: true)
-//                _ = self.navigationController?.popToRootViewController(animated: true)
-                //self.navigationController?.popViewController(animated: true)
-//                  print(self.navigationController?.childViewControllers[0].childViewControllers[0])
-//                    self.delegate = foodController
-//                    self.delegate?.isUploaded()
+                    //todo handle rootviewcontroller
                 }
             })
          

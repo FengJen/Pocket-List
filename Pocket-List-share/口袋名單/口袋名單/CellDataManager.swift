@@ -40,8 +40,6 @@ class CellDataManager {
 //                    value.append(cellModel)
 //
 //                })
-                
-                
                     storageRef.data(withMaxSize: (1 * 1024 * 1024), completion: { (data, error) in
                         if error != nil {
                             print(error?.localizedDescription ?? "")

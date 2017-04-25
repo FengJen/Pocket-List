@@ -166,22 +166,43 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     func deleteItems(at autoID: [String]) {
         
         for autoID in selectedAutoIDs {
-            ref.child("pocketList").child(uid!).child(autoID).removeValue(completionBlock: { (error, newRef) in
+            ref.child("pocketList").child(uid!).child(autoID).removeValue(completionBlock: { (error, deleteRef) in
                 if error != nil {
                     print(error ?? "12345")
                 }
-                newRef.removeValue()
+                //print("----------\(deleteRef)------------")
+                
+                //deleteRef.removeValue()
+                
             })
-                        
         }
-        CellDataManager.shared.getCellData { (value) in
-            guard let cellArray = value else { return }
-            CellDataManager.shared.cellArray = cellArray
-            self.cellList = cellArray
-            self.collectionView!.reloadData()
-            self.isEditing = false
-        }
-        //cellList = CellDataManager.shared.cellArray
+//           ref.child("pocketList").child(uid!).child(autoID).observeSingleEvent(of: .value, with: { (snapshot) in
+//            guard let value = snapshot.value as? [String: Any] else { return }
+//            guard let uuid = value["imageUuid"] as? String else {
+//                print("castfail")
+//                return }
+//            let storageRef = FIRStorage.storage().reference(withPath: uuid)
+//            storageRef.delete(completion: { (error) in
+//                if error != nil {
+//                    print("delete storage error")
+//                }
+//            })
+//           })
+            CellDataManager.shared.getCellData { (value) in
+                
+                guard let cellArray = value else {
+                self.cellList = []
+                self.collectionView?.reloadData()
+                self.isEditing = false
+                return }
+                CellDataManager.shared.cellArray = cellArray
+                self.cellList = cellArray
+                self.collectionView!.reloadData()
+                self.isEditing = false
+            }
+        //bug 不能刪到沒東西
+       
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
