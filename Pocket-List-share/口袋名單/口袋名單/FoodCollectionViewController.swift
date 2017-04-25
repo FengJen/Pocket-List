@@ -168,21 +168,19 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         for autoID in selectedAutoIDs {
             ref.child("pocketList").child(uid!).child(autoID).removeValue(completionBlock: { (error, newRef) in
                 if error != nil {
-                    print(error ?? "")
+                    print(error ?? "12345")
                 }
+                newRef.removeValue()
             })
-            
-            CellDataManager.shared.getCellData { (valew) in
-                guard let cellArray = valew else { return }
-                CellDataManager.shared.cellArray = cellArray
-                self.cellList = cellArray
-                self.collectionView!.reloadData()
-                self.isEditing = false
-            }
-            
-            
+                        
         }
-
+        CellDataManager.shared.getCellData { (value) in
+            guard let cellArray = value else { return }
+            CellDataManager.shared.cellArray = cellArray
+            self.cellList = cellArray
+            self.collectionView!.reloadData()
+            self.isEditing = false
+        }
         //cellList = CellDataManager.shared.cellArray
     }
     

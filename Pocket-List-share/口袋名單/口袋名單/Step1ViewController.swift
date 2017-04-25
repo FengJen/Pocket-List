@@ -30,8 +30,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet weak var imageView: UIImageView!    
     @IBOutlet weak var doneButton: UIButton!
     let ref = FIRDatabase.database().reference().child("pocketList")
-    //let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
-    let image = #imageLiteral(resourceName: "tray-icon")
+    
+    let image = #imageLiteral(resourceName: "table-1719371_1280")
     
     @IBAction func doneButton(_ sender: Any) {
         if temperaryTitle.text == "" {
