@@ -204,7 +204,7 @@ extension ParentViewController: DidReceivePackage {
         
 //        shareVC.delegate = self
         if uploadSuccess == true {
-            CellDataManager.shared.getCellData(completion: { (value) in
+            CellDataManager.shared.getCellData(completion: { (value, true) in
                 guard let newCells = value else { return }
                 self.foodCollectionViewController?.cellList = newCells
                 self.foodCollectionViewController?.collectionView?.reloadData()

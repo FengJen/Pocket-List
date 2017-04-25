@@ -11,7 +11,7 @@ class CellDataManager {
     
     //typealias editData = (_ value: String) -> Void
     
-    func getCellData(completion: @escaping (_ value: [CellModel]?) -> Void) {
+    func getCellData(completion: @escaping (_ value: [CellModel]?, _ exist: Bool) -> Void) {
         var value: [CellModel] = [] //?
         let uid = FIRAuth.auth()?.currentUser?.uid
         //.queryOrdered(byChild: "order")
@@ -49,10 +49,12 @@ class CellDataManager {
                         let picture = UIImage(data: imageData)
                         let cellModel = CellModel(autoID: autoID, title: title, url: url, order: order, content: content, image: picture)
                         value.append(cellModel)
-                         completion(value)
+                         completion(value, true)
                     })
             }
-            
+            if snapshot.exists() == false {
+                completion([], false)
+            }
         })
     }
     

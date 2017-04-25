@@ -44,7 +44,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     func getValue() {
         
-        CellDataManager.shared.getCellData { (value) in
+        CellDataManager.shared.getCellData { (value, true) in
             guard let cellArray = value else { return }
             self.cellList = cellArray
             CellDataManager.shared.cellArray = cellArray
@@ -56,7 +56,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     func loadEditValue() {
         
-        CellDataManager.shared.getCellData { (value) in
+        CellDataManager.shared.getCellData { (value, true) in
             guard let newCell = value else { return }
             self.cellList = newCell
             
@@ -188,19 +188,23 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 //                }
 //            })
 //           })
-            CellDataManager.shared.getCellData { (value) in
+            CellDataManager.shared.getCellData { (value, true) in
                 
                 guard let cellArray = value else {
-                self.cellList = []
-                self.collectionView?.reloadData()
-                self.isEditing = false
+//                self.cellList = []
+//                self.collectionView?.reloadData()
+//                self.isEditing = false
                 return }
                 CellDataManager.shared.cellArray = cellArray
                 self.cellList = cellArray
                 self.collectionView!.reloadData()
                 self.isEditing = false
             }
-        //bug 不能刪到沒東西
+        
+            CellDataManager.shared.getCellData { (value, false) in
+                self.collectionView?.reloadData()
+                self.isEditing = false
+            }
        
         
     }
