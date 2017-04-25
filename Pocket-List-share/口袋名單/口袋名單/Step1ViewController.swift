@@ -63,7 +63,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         super.viewDidLoad()
         setImageView()
         doneButton.layer.cornerRadius = 20
-        imageView.contentMode = .center
+        //imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
 //        self.contentView.delegate = self
@@ -220,6 +221,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 case 5:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: thai)
+                    print(thai)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
                         guard let thaiData = data else { return }
                         let thaiPic = UIImage(data: thaiData)
