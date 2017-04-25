@@ -213,7 +213,7 @@
 				TargetAttributes = {
 					848509B51E7FCC4F00A9770B = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7ZBV2AY3CK;
+						DevelopmentTeam = MN2W9A4J94;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -471,10 +471,10 @@
 			baseConfigurationReference = 93A59B7A40731FBBE3F116C9 /* Pods-口袋名單.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7ZBV2AY3CK;
+				DEVELOPMENT_TEAM = MN2W9A4J94;
 				INFOPLIST_FILE = "口袋名單/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "appworks.Pocket-List";
+				PRODUCT_BUNDLE_IDENTIFIER = tw.appworks.PocketList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -485,10 +485,10 @@
 			baseConfigurationReference = 25098106847774A39FDBF6B0 /* Pods-口袋名單.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7ZBV2AY3CK;
+				DEVELOPMENT_TEAM = MN2W9A4J94;
 				INFOPLIST_FILE = "口袋名單/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "appworks.Pocket-List";
+				PRODUCT_BUNDLE_IDENTIFIER = tw.appworks.PocketList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
