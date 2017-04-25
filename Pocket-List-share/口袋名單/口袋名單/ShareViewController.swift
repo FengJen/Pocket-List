@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Crashlytics
 
 protocol DidReceivePackage: class {
     func didReceive(shareVC: ShareViewController, uploadSuccess: Bool)
@@ -40,7 +41,7 @@ class ShareViewController: UIViewController {
                     guard let email = value["senderEmail"] as? String else { return }
                     self.senderEmail = email
                 }
-                print(self.senderEmail)
+                
                 let alertController = UIAlertController(title: "確認傳送來源", message: "\(self.senderEmail)想要和你分享他的口袋名單", preferredStyle: .alert)
                 guard let newCells = snapshot.value as? [String: Any] else { return }
                 let accept = UIAlertAction(title: "同意", style: .default) { (action) in
@@ -83,21 +84,6 @@ class ShareViewController: UIViewController {
         })
     }
     
-    func alert() {
-        let alertController = UIAlertController(title: "Check receive items", message: "\("someone") wants to send \("") to you", preferredStyle: .alert)
-        alertController.addTextField { (textFeild) in
-            textFeild.placeholder = "Enter sharing key from your friend here"
-        }
-        let accept = UIAlertAction(title: "Accept", style: .default) { (action) in
-            
-        }
-        let decline = UIAlertAction(title: "Decline", style: .destructive, handler: nil)
-        //todo delete package in 5mins?
-        alertController.addAction(accept)
-        alertController.addAction(decline)
-        self.present(alertController, animated: true, completion: nil)
-    
-    }
     @IBAction func logOut(_ sender: Any) {
         if FIRAuth.auth()?.currentUser != nil {
             do {
@@ -117,12 +103,22 @@ class ShareViewController: UIViewController {
         guard let parentViewController = controller.viewControllers[0] as? ParentViewController else { return }
         
         self.delegate = parentViewController
+        //
+//        let button = UIButton(type: .roundedRect)
+//        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
+//        button.setTitle("Crash", for: [])
+//        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
+//        view.addSubview(button)
 
     }
     
+//    @IBAction func crashButtonTapped(_ sender: AnyObject) {
+//        Crashlytics.sharedInstance().crash()
+//    }
+    
     func setUp() {
-        logoutButton.layer.cornerRadius = 20
-        receiveButton.layer.cornerRadius = 20
+        logoutButton.layer.cornerRadius = 18
+        receiveButton.layer.cornerRadius = 18
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

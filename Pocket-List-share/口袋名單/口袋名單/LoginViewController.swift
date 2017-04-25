@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var email: UITextField!
     
@@ -48,7 +49,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setUp()
         // Do any additional setup after loading the view.
+       
+
     }
+   
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
