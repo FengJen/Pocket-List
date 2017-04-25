@@ -8,6 +8,8 @@ protocol Step1ViewControllerDelegete: class {
 
 enum FoodType {
     case america
+    case korea
+    case thai
     case japaness
     case dessert
     case italy
@@ -16,13 +18,12 @@ enum FoodType {
 }
 
 class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    let foodTypes: [FoodType] = [.america, .dessert, .italy, .japaness, .chinese, .other]
+    let foodTypes: [FoodType] = [.america, .dessert, .italy, .japaness, .chinese, .korea, .thai, .other]
     var some: String = ""
     
     let defaultImagePicker = UIPickerView()
     weak var delegate: Step1ViewControllerDelegete?
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var temperaryTitle: UITextField!
     @IBOutlet weak var website: UITextField!
     @IBOutlet weak var contentView: UITextView!
@@ -135,12 +136,18 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             rowString = "日式料理"
             
         case 3:
-            rowString = "甜點"
+            rowString = "中式料理"
             
         case 4:
-            rowString = "中式料理"
-
+            rowString = "韓式料理"
+            
         case 5:
+            rowString = "泰式料理"
+            
+        case 6:
+            rowString = "甜點"
+            
+        case 7:
             rowString = "其他"
         
         default:
@@ -157,7 +164,9 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                       let italy = downLoadUrl["italy"] as? String,
                       let japan = downLoadUrl["Japan"] as? String,
                       let america = downLoadUrl["america"] as? String,
+                      let korea = downLoadUrl["korea"] as? String,
                       let chinese = downLoadUrl["Chinese"] as? String,
+                      let thai = downLoadUrl["thai"] as? String,
                       let other = downLoadUrl["other"] as? String else { return }
     
                 switch row {
@@ -209,12 +218,31 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
                 case 5:
                     
+                    let storageRef = FIRStorage.storage().reference(forURL: korea)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                        guard let koreaData = data else { return }
+                        let koreaPic = UIImage(data: koreaData)
+                        self.imageView.image = koreaPic
+                    }
+                    
+                case 6:
+                    
+                    let storageRef = FIRStorage.storage().reference(forURL: thai)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                        guard let thaiData = data else { return }
+                        let thaiPic = UIImage(data: thaiData)
+                        self.imageView.image = thaiPic
+                    }
+                    
+                case 7:
+                    
                     let storageRef = FIRStorage.storage().reference(forURL: other)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
                         guard let otherData = data else { return }
                         let otherPic = UIImage(data: otherData)
                         self.imageView.image = otherPic
                     }
+                    
                 default:
                     print("default error")
                 }
