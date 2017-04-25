@@ -177,6 +177,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     guard let americaData = data else { return }
                     let americaPic = UIImage(data: americaData)
                     self.imageView.image = americaPic
+                    self.imageView.contentMode = .scaleAspectFit
                     }
     
                 case 1:
@@ -199,15 +200,6 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
                 case 3:
                     
-                    let storageRef = FIRStorage.storage().reference(forURL: dessert)
-                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
-                        guard let dessertData = data else { return }
-                        let dessertPic = UIImage(data: dessertData)
-                        self.imageView.image = dessertPic
-                    }
-                    
-                case 4:
-                    
                     let storageRef = FIRStorage.storage().reference(forURL: chinese)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
                         guard let chineseData = data else { return }
@@ -216,7 +208,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     }
 
     
-                case 5:
+                case 4:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: korea)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
@@ -225,13 +217,22 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         self.imageView.image = koreaPic
                     }
                     
-                case 6:
+                case 5:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: thai)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
                         guard let thaiData = data else { return }
                         let thaiPic = UIImage(data: thaiData)
                         self.imageView.image = thaiPic
+                    }
+                    
+                case 6:
+                    
+                    let storageRef = FIRStorage.storage().reference(forURL: dessert)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                        guard let dessertData = data else { return }
+                        let dessertPic = UIImage(data: dessertData)
+                        self.imageView.image = dessertPic
                     }
                     
                 case 7:
