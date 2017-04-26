@@ -110,8 +110,10 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         guard let deleteID = foodCollectionViewController?.selectedAutoIDs else { return }
         foodCollectionViewController?.deleteItems(at: deleteID)
         foodCollectionViewController?.isEditing = false
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
-      
+        newBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
     }
     
     func shareItems() {
@@ -165,6 +167,9 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         alertController.addAction(sendAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
+        newBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+        
 
     }
     

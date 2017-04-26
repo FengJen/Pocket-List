@@ -190,11 +190,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
 //           })
             CellDataManager.shared.getCellData { (value, true) in
                 
-                guard let cellArray = value else {
-//                self.cellList = []
-//                self.collectionView?.reloadData()
-//                self.isEditing = false
-                return }
+                guard let cellArray = value else { return }
                 CellDataManager.shared.cellArray = cellArray
                 self.cellList = cellArray
                 self.collectionView!.reloadData()
