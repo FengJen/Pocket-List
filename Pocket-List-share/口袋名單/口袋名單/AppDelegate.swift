@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         Fabric.with([Crashlytics.self])
         IQKeyboardManager.sharedManager().enable = true
-        FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+        FIRAuth.auth()?.addStateDidChangeListener({ (_, user) in
             let loginView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
             let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
-            if user != nil  {
+            if user != nil {
                 self.window?.rootViewController = tabBarController
                 self.window?.makeKeyAndVisible()
             } else if user == nil {
@@ -45,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Crashlytics.sharedInstance().setUserIdentifier("12345")
         Crashlytics.sharedInstance().setUserName("Test User")
     }
-
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

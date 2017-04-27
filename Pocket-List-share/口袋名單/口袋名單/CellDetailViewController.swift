@@ -48,7 +48,7 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
         doneButton.layer.cornerRadius = 22
     }
-    //MARK: pick image
+    // MARK: pick image
 //    func pickImage() {
 //        
 //        let imagePicker = UIImagePickerController()

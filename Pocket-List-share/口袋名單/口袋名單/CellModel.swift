@@ -10,4 +10,3 @@ struct CellModel {
     var image: UIImage?
     //var imageID: String?
 }
-

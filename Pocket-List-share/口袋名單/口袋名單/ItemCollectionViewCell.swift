@@ -10,8 +10,6 @@ import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
     
-    
-    
     @IBOutlet weak var cellTitle: UIButton!
 
     @IBOutlet weak var myImageView: UIImageView!
@@ -26,6 +24,5 @@ class ItemCollectionViewCell: UICollectionViewCell {
         
         //cellTitle.layer.cornerRadius = 15
     }
-    
     
 }

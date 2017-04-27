@@ -108,7 +108,9 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     func deleteItems() {
 
         guard let deleteID = foodCollectionViewController?.selectedAutoIDs else { return }
-        foodCollectionViewController?.deleteItems(at: deleteID)
+        foodCollectionViewController?.removeImageStorage(at: deleteID, completion: { (true) in
+            foodCollectionViewController?.deleteItem()
+        })
         foodCollectionViewController?.isEditing = false
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
@@ -126,7 +128,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         alertController.addTextField(configurationHandler: { (UITextField) in
             UITextField.placeholder = "接收者email"
         })
-        let sendAction = UIAlertAction(title: "Send", style: .default, handler: { action -> Void in
+        let sendAction = UIAlertAction(title: "Send", style: .default, handler: { _ -> Void in
             guard let receiverEmail = alertController.textFields?[0].text else { return }
             if self.isValidEmail(testStr: receiverEmail) == false {
                 let errorAlertController = UIAlertController(title: "錯誤", message: "email格式錯誤", preferredStyle: .alert)
@@ -158,7 +160,6 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
             
             }
             
-            
         })
 
         // todo email = nil?
@@ -169,7 +170,6 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         self.present(alertController, animated: true, completion: nil)
         newBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
-        
 
     }
     
@@ -178,7 +178,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func isValidEmail(testStr:String) -> Bool {
+    func isValidEmail(testStr: String) -> Bool {
         // print("validate calendar: \(testStr)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
@@ -209,13 +209,12 @@ extension ParentViewController: DidReceivePackage {
         
 //        shareVC.delegate = self
         if uploadSuccess == true {
-            CellDataManager.shared.getCellData(completion: { (value, true) in
+            CellDataManager.shared.getCellData(completion: { (value, _) in
                 guard let newCells = value else { return }
                 self.foodCollectionViewController?.cellList = newCells
                 self.foodCollectionViewController?.collectionView?.reloadData()
                 self.tabBarController?.selectedIndex = 0
             })
-        
 
         }
     }

@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                         let ref = FIRDatabase.database().reference()
                         let userReference = ref.child("userEmail").child(uid)
                         let values = ["email": email]
-                        userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                        userReference.updateChildValues(values, withCompletionBlock: { (err, _) in
                             if err != nil {
                                 print(err ?? "")
                                 return

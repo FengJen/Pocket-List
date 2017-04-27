@@ -5,6 +5,7 @@ import FirebaseDatabase
 import SafariServices
 
 
+
 class FoodCollectionViewController: UICollectionViewController, UINavigationControllerDelegate, IndicatorInfoProvider {
     
     let ref = FIRDatabase.database().reference()
@@ -44,7 +45,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     func getValue() {
         
-        CellDataManager.shared.getCellData { (value, true) in
+        CellDataManager.shared.getCellData { (value, _) in
             guard let cellArray = value else { return }
             self.cellList = cellArray
             CellDataManager.shared.cellArray = cellArray
@@ -56,7 +57,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     func loadEditValue() {
         
-        CellDataManager.shared.getCellData { (value, true) in
+        CellDataManager.shared.getCellData { (value, _) in
             guard let newCell = value else { return }
             self.cellList = newCell
             
@@ -125,7 +126,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellList.count
     }
@@ -163,48 +163,62 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     var selectedAutoIDs: [String] = []
     var selectedIndexPaths: [IndexPath] = []
             //todo delete image storage
-    func deleteItems(at autoID: [String]) {
+    func removeImageStorage(at autoID: [String], completion: (_ success: Bool) -> Void) {
         
         for autoID in selectedAutoIDs {
-            ref.child("pocketList").child(uid!).child(autoID).removeValue(completionBlock: { (error, deleteRef) in
-                if error != nil {
-                    print(error ?? "12345")
+            ref.child("pocketList").child(uid!).child(autoID).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let value = snapshot.value as? [String: Any] else {
+                //print(snapshot)
+                //print(snapshot.value)
+                return
                 }
-                //print("----------\(deleteRef)------------")
-                
-                //deleteRef.removeValue()
-                
+                //print(snapshot)
+                //print(snapshot.value)
+                guard let uuid = value["imageUuid"] as? String else {
+                    print("castfail")
+                    return }
+                let storageRef = FIRStorage.storage().reference(withPath: "\(uuid).jpg")
+                storageRef.delete(completion: { (error) in
+                    if error != nil {
+                        print("delete storage error")
+                    }
+                    print("delete success")
+                })
             })
+            
+            
         }
-//           ref.child("pocketList").child(uid!).child(autoID).observeSingleEvent(of: .value, with: { (snapshot) in
-//            guard let value = snapshot.value as? [String: Any] else { return }
-//            guard let uuid = value["imageUuid"] as? String else {
-//                print("castfail")
-//                return }
-//            let storageRef = FIRStorage.storage().reference(withPath: uuid)
-//            storageRef.delete(completion: { (error) in
-//                if error != nil {
-//                    print("delete storage error")
-//                }
-//            })
-//           })
-            CellDataManager.shared.getCellData { (value, true) in
-                
-                guard let cellArray = value else { return }
-                CellDataManager.shared.cellArray = cellArray
-                self.cellList = cellArray
-                self.collectionView!.reloadData()
-                self.isEditing = false
-            }
         
-            CellDataManager.shared.getCellData { (value, false) in
-                self.collectionView?.reloadData()
-                self.isEditing = false
-            }
-       
+            completion(true)
         
     }
     
+    func deleteItem() {
+        for autoID in selectedAutoIDs {
+        removeImageStorage(at: selectedAutoIDs, completion: { (true) in
+            ref.child("pocketList").child(uid!).child(autoID).removeValue(completionBlock: { (error, _) in
+                if error != nil {
+                    print(error ?? "12345")
+                }
+                
+                CellDataManager.shared.getCellData { (value, _) in
+                    
+                    guard let cellArray = value else { return }
+                    CellDataManager.shared.cellArray = cellArray
+                    self.cellList = cellArray
+                    self.collectionView!.reloadData()
+                    self.isEditing = false
+                }
+                
+                CellDataManager.shared.getCellData { (_, _) in
+                    self.collectionView?.reloadData()
+                    self.isEditing = false
+                }
+                
+                })
+            })
+        }
+    }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell else { return }
         cell.layer.shadowColor = UIColor.gray.cgColor
@@ -265,7 +279,7 @@ extension FoodCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension Array where Element:Equatable {
-    public mutating func remove(_ item:Element ) {
+    public mutating func remove(_ item: Element ) {
         var index = 0
         while index < self.count {
             if self[index] == item {
@@ -276,7 +290,7 @@ extension Array where Element:Equatable {
         }
     }
     
-    public func array( removing item:Element ) -> [Element] {
+    public func array( removing item: Element ) -> [Element] {
         var result = self
         result.remove( item )
         return result

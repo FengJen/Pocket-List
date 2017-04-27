@@ -79,7 +79,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
 //        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 //    }
  
-    //MARK: pick image
+    // MARK: pick image
     func pickImage() {
         
         let imagePicker = UIImagePickerController()
@@ -89,8 +89,6 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         imagePicker.allowsEditing = true
         
         imagePicker.sourceType = .photoLibrary
-        
-        
         
         present(imagePicker, animated: true, completion: nil)
     }
@@ -120,7 +118,6 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         defaultImagePicker.dataSource = self
 
     }
-    
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
@@ -174,7 +171,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 case 0:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: america)
-                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
                     guard let americaData = data else { return }
                     let americaPic = UIImage(data: americaData)
                     self.imageView.image = americaPic
@@ -184,7 +181,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 case 1:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: italy)
-                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
                         guard let italyData = data else { return }
                         let italyPic = UIImage(data: italyData)
                         self.imageView.image = italyPic
@@ -193,7 +190,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 case 2:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: japan)
-                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
                         guard let japanData = data else { return }
                         let japanPic = UIImage(data: japanData)
                         self.imageView.image = japanPic
@@ -202,17 +199,16 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 case 3:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: chinese)
-                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
                         guard let chineseData = data else { return }
                         let chinesePic = UIImage(data: chineseData)
                         self.imageView.image = chinesePic
                     }
-
     
                 case 4:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: korea)
-                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
                         guard let koreaData = data else { return }
                         let koreaPic = UIImage(data: koreaData)
                         self.imageView.image = koreaPic
@@ -222,7 +218,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     
                     let storageRef = FIRStorage.storage().reference(forURL: thai)
                     print(thai)
-                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
                         guard let thaiData = data else { return }
                         let thaiPic = UIImage(data: thaiData)
                         self.imageView.image = thaiPic
@@ -231,7 +227,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 case 6:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: dessert)
-                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
                         guard let dessertData = data else { return }
                         let dessertPic = UIImage(data: dessertData)
                         self.imageView.image = dessertPic
@@ -240,7 +236,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 case 7:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: other)
-                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
                         guard let otherData = data else { return }
                         let otherPic = UIImage(data: otherData)
                         self.imageView.image = otherPic
@@ -269,10 +265,10 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     
     func alertSheet() {
         let alterController = UIAlertController(title: "選擇圖片", message: "選擇圖片來源", preferredStyle: .actionSheet)
-        let fromPhoto = UIAlertAction(title: "從相簿選取", style: .default) { (UIAlertAction) in
+        let fromPhoto = UIAlertAction(title: "從相簿選取", style: .default) { (_) in
             self.pickImage()
         }
-        let fromDefault = UIAlertAction(title: "選擇內建圖片", style: .default) { (UIAlertAction) in
+        let fromDefault = UIAlertAction(title: "選擇內建圖片", style: .default) { (_) in
             self.defaultImage()
         }
 
@@ -284,7 +280,6 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             
@@ -319,8 +314,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                let content = self.contentView.text,
                let imageURL = storeMetaData?.downloadURL()?.absoluteString {
                let userRef = self.ref.child(uid).childByAutoId()
-               //let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key, "imageUuid": imageName] as [String : Any]
-               let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key] as [String : Any]
+               let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key, "imageUuid": imageName] as [String : Any]
+               //let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key] as [String : Any]
                     userRef.setValue(value)
               
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")

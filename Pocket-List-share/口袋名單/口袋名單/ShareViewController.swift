@@ -44,7 +44,7 @@ class ShareViewController: UIViewController {
                 
                 let alertController = UIAlertController(title: "確認傳送來源", message: "\(self.senderEmail)想要和你分享他的口袋名單", preferredStyle: .alert)
                 guard let newCells = snapshot.value as? [String: Any] else { return }
-                let accept = UIAlertAction(title: "同意", style: .default) { (action) in
+                let accept = UIAlertAction(title: "同意", style: .default) { (_) in
                     for newCell in newCells {
                         let uid = FIRAuth.auth()?.currentUser?.uid
                         guard let value = newCell.value as? [String: AnyObject] else { continue }

@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var email: UITextField!
     
@@ -26,8 +25,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.present(alertController, animated: true, completion: nil)
         } else {
             if let email = email.text, let password = password.text {
-                FIRAuth.auth()?.signIn(withEmail: email, password: password, completion:
-                    { (user, error) in
+                FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (_, error) in
                         if error == nil {
                             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                             let tabBarController = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
@@ -45,15 +43,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         
-        
         super.viewDidLoad()
         setUp()
         // Do any additional setup after loading the view.
-       
 
     }
-   
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -79,9 +73,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         signinButton.layer.cornerRadius = 5
         
         //signinButton.layer.cornerRadius = signinButton.frame.width/2
-        
-        
-        
         
         //signinButton.layer.shadowColor = UIColor.white.cgColor
         //signinButton.layer.shadowRadius = 3
