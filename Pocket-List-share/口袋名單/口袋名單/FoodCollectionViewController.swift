@@ -13,8 +13,6 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     var cellList = [CellModel]()
     var longPressGesture = UILongPressGestureRecognizer()
     
-    //var itemArray = NSMutableArray()
-    
     let itemPerRow: CGFloat = 2
     let sectionInsets = UIEdgeInsets(top: 76.0, left: 10.0, bottom: 50.0, right: 10.0)
     
@@ -26,15 +24,13 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
         
         let nib = UINib(nibName: "ItemCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "ItemCollectionViewCell")
-        //getValue loadlist
+        
         NotificationCenter.default.addObserver(self, selector: #selector(loadEditValue), name: NSNotification.Name(rawValue: "load"), object: nil)
-//        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "new"), object: nil, queue: nil) { (Notification) in
-//            self.loadEditValue()
-//        }
+
     }
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "load"), object: nil)
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "new"), object: nil)
+
     }
     
     func setUp() {
@@ -113,7 +109,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "口袋名單")
+        return IndicatorInfo(title: "Food")
     }
 
     override func didReceiveMemoryWarning() {
@@ -147,6 +143,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     var selectedButtonIndexpath: [IndexPath] = []
+    
     func preformCellEditView(sender: UIButton) {
         let button = sender
         if isEditing == false {
@@ -162,16 +159,12 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     
     var selectedAutoIDs: [String] = []
     var selectedIndexPaths: [IndexPath] = []
-            //todo delete image storage
+    
     func removeImageStorage(at autoID: [String], completion: (_ success: Bool) -> Void) {
         
         for autoID in selectedAutoIDs {
             ref.child("pocketList").child(uid!).child(autoID).observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let value = snapshot.value as? [String: Any] else {
-                //print(snapshot)
-                //print(snapshot.value)
-                return
-                }
+                guard let value = snapshot.value as? [String: Any] else { return }
                 //print(snapshot)
                 //print(snapshot.value)
                 guard let uuid = value["imageUuid"] as? String else {
@@ -294,12 +287,5 @@ extension Array where Element:Equatable {
         var result = self
         result.remove( item )
         return result
-    }
-}
-
-extension FoodCollectionViewController: DidEditCell {
-    func didEditCell() {
-        loadEditValue()
-        
     }
 }

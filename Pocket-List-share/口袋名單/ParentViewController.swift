@@ -8,8 +8,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var deleteButton: UIButton!
     
     let foodCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController") as? FoodCollectionViewController
-    //let vc2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController") as? SitesCollectionViewController
-    //guard let foodCollectionViewController = vc1 else { return }
+    let sitesCollectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController") as? SitesCollectionViewController
     let editButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(setEdit))
     
     override func viewDidLoad() {
@@ -32,7 +31,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
-        return [foodCollectionViewController!]
+        return [foodCollectionViewController!, sitesCollectionViewController!]
     }
     
     func setUp() {

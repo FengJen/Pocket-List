@@ -10,10 +10,6 @@ import UIKit
 import FirebaseStorage
 import Firebase
 
-protocol DidEditCell: class {
-    func didEditCell()
-}
-
 class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var cell = CellModel()
    
@@ -27,17 +23,11 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     @IBOutlet weak var doneButton: UIButton!
     
-    weak var delegate: DidEditCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        //setImageView()
-        guard let foodViewController = self.navigationController?.viewControllers[0] as? FoodCollectionViewController else { return }
-        
-        self.delegate = foodViewController
-        
-        //todo asign to delegate
+
     }
     
     func setUp() {
@@ -141,7 +131,7 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
 //            })
         
 //        }
-            delegate?.didEditCell()
+            
             _ = self.navigationController?.popToRootViewController(animated: true)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
 //        

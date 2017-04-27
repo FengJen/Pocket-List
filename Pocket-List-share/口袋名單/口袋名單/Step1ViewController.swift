@@ -6,22 +6,14 @@ protocol Step1ViewControllerDelegete: class {
     func isUploaded()
 }
 
-enum FoodType {
-    case america
-    case korea
-    case thai
-    case japaness
-    case dessert
-    case italy
-    case chinese
-    case other
-}
+
 
 class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    let foodTypes: [FoodType] = [.america, .dessert, .italy, .japaness, .chinese, .korea, .thai, .other]
+    let foodTypes: [String] = ["america", "dessert", "italy", "japaness", "chinese", "korea", "thai", "other"]
     var some: String = ""
     
     let defaultImagePicker = UIPickerView()
+    let classPicker = UIPickerView()
     weak var delegate: Step1ViewControllerDelegete?
     
     @IBOutlet weak var temperaryTitle: UITextField!
@@ -29,9 +21,10 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet weak var contentView: UITextView!
     @IBOutlet weak var imageView: UIImageView!    
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var chooseClassField: UITextField!
     let ref = FIRDatabase.database().reference().child("pocketList")
     
-    let image = #imageLiteral(resourceName: "table-1719371_1280")
+    let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
     
     @IBAction func doneButton(_ sender: Any) {
         if temperaryTitle.text == "" {
@@ -50,7 +43,12 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             allert.addAction(action)
             self.present(allert, animated: true, completion: nil)
-        } else {
+        } else if chooseClassField.text != "Food" && chooseClassField.text != "Site" {
+            let allert = UIAlertController(title: "類別名稱錯誤", message: "請選擇“Food”或是“Site”", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            allert.addAction(action)
+            self.present(allert, animated: true, completion: nil)
+        }else {
    
             self.uploadData() // upload to firebase
             let button = sender as? UIButton
@@ -67,6 +65,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         imageView.contentMode = .scaleAspectFit
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
+        chooseClassField.inputView = classPicker
+        classPicker.delegate = self
 //        self.contentView.delegate = self
 //        self.website.delegate = self
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -122,7 +122,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         var rowString = String()
-        
+        if pickerView == defaultImagePicker {
         switch row {
         case 0:
             rowString = "美式料理"
@@ -152,10 +152,21 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             print("out of range")
             
         }
+        } else if pickerView == classPicker {
+            switch row {
+            case 0:
+                rowString = "Food"
+            case 1:
+                rowString = "Site"
+            default:
+                print(123)
+            }
+        }
         return rowString
 
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == defaultImagePicker {
         FIRDatabase.database().reference().child("defaultImage").child("food").observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let downLoadUrl = snapshot.value as? [String: Any] else { return }
                 guard let dessert = downLoadUrl["dessert"] as? String,
@@ -243,16 +254,35 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     }
                     
                 default:
-                    print("default error")
+                    let storageRef = FIRStorage.storage().reference(forURL: other)
+                    storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
+                        guard let otherData = data else { return }
+                        let otherPic = UIImage(data: otherData)
+                        self.imageView.image = otherPic
+                    }
                 }
             
-                pickerView.removeFromSuperview()
             })
+        } else if pickerView == classPicker {
+            switch row {
+            case 0: chooseClassField.text = "Food"
+            case 1: chooseClassField.text = "Site"
+            default: chooseClassField.text = "Food"
+            }
+        }
+        //pickerView.removeFromSuperview()
+
 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == defaultImagePicker {
         return foodTypes.count
+        } else if pickerView == classPicker {
+        return 2
+        } else {
+        return 0
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -283,10 +313,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             
-            //imageView.frame = CGRect(x: 0, y: 0, width: pickedImage.size.width, height: pickedImage.size.height)
-            
             imageView.image = pickedImage
-            // default image picker
+            
             imageView.contentMode = .scaleAspectFit
         }
             dismiss(animated: true, completion: nil)
@@ -302,6 +330,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         let storageRef = FIRStorage.storage().reference().child("\(imageName).jpg")
         let metaData = FIRStorageMetadata()
         metaData.contentType = "image/jpg"
+        
         if let uploadData = UIImageJPEGRepresentation(imageView.image!, 0.1) {
         storageRef.put(uploadData, metadata: nil, completion: { (storeMetaData, error) in
                 if error != nil {
@@ -309,11 +338,12 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     return
                 }
             if let uid = FIRAuth.auth()?.currentUser?.uid,
+               let whatClass = self.chooseClassField.text,
                let url = self.website.text,
                let title = self.temperaryTitle.text,
                let content = self.contentView.text,
                let imageURL = storeMetaData?.downloadURL()?.absoluteString {
-               let userRef = self.ref.child(uid).childByAutoId()
+               let userRef = self.ref.child(uid).child(whatClass).childByAutoId()
                let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key, "imageUuid": imageName] as [String : Any]
                //let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key] as [String : Any]
                     userRef.setValue(value)
@@ -328,60 +358,5 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
 
     }
     
-    // MARK: handle keyboard
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
     
 }
-
-//extension Step1ViewController: UITextViewDelegate {
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        if (text == "\n") {
-//            textView.resignFirstResponder()
-//            return false
-//        }
-//        return true
-//    }
-
-//    func textViewDidBeginEditing(_ textView: UITextView) {
-//        contentView = textView
-//    }
-//    
-//    func textViewDidEndEditing(_ textView: UITextView) {
-//        contentView = nil
-//
-//    }
-//    
-//    func keyboardWasShown(notification: NSNotification){
-//        //Need to calculate keyboard exact size due to Apple suggestions
-//        self.scrollView.isScrollEnabled = true
-//        var info = notification.userInfo!
-//        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-//        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
-//        
-//        self.scrollView.contentInset = contentInsets
-//        self.scrollView.scrollIndicatorInsets = contentInsets
-//        
-//        var aRect : CGRect = self.view.frame
-//        aRect.size.height -= keyboardSize!.height
-//        if let activeField = self.contentView {
-//            if (!aRect.contains(activeField.frame.origin)){
-//                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
-//            }
-//        }
-//    }
-//    
-//    func keyboardWillBeHidden(notification: NSNotification){
-//        //Once keyboard disappears, restore original positions
-//        var info = notification.userInfo!
-//        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-//        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
-//        self.scrollView.contentInset = contentInsets
-//        self.scrollView.scrollIndicatorInsets = contentInsets
-//        self.view.endEditing(true)
-//        self.scrollView.isScrollEnabled = false
-//    }
-    
-//}
