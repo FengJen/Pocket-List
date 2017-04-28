@@ -44,7 +44,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             allert.addAction(action)
             self.present(allert, animated: true, completion: nil)
-        } else if chooseClassField.text != "Food" && chooseClassField.text != "Site" {
+        } else if chooseClassField.text != "美食" && chooseClassField.text != "景點" {
             let allert = UIAlertController(title: "類別名稱錯誤", message: "請選擇“美食”或是“景點”", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             allert.addAction(action)
@@ -70,7 +70,9 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         chooseClassField.inputView = classPicker
         classPicker.delegate = self
         
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hidePickerView))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
         
     }
     
@@ -118,8 +120,9 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
 
     }
     
-    func selectPic() {
-        print(12345)
+    func hidePickerView() {
+        //self.view.endEditing(true)
+        defaultImagePicker.removeFromSuperview()
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -247,9 +250,9 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             
         } else if pickerView == classPicker {
             switch row {
-            case 1: chooseClassField.text = "Food"
-            case 2: chooseClassField.text = "Site"
-            default: chooseClassField.text = "Food"
+            case 1: chooseClassField.text = "美食"
+            case 2: chooseClassField.text = "景點"
+            default: chooseClassField.text = "景點"
             }
         }
         //pickerView.removeFromSuperview()

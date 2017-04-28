@@ -41,7 +41,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     func getValue() {
         
-        CellDataManager.shared.getCellData(whatClass: "Food") { (value, _) in
+        CellDataManager.shared.getCellData(whatClass: "美食") { (value, _) in
             guard let cellArray = value else { return }
             self.cellList = cellArray
             CellDataManager.shared.cellArray = cellArray
@@ -53,7 +53,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     func loadEditValue() {
         
-        CellDataManager.shared.getCellData(whatClass: "Food") { (value, _) in
+        CellDataManager.shared.getCellData(whatClass: "美食") { (value, _) in
             guard let newCell = value else { return }
             self.cellList = newCell
             
@@ -194,7 +194,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                     print(error ?? "12345")
                 }
                 
-                CellDataManager.shared.getCellData(whatClass: "Food") { (value, _) in
+                CellDataManager.shared.getCellData(whatClass: "美食") { (value, _) in
                     
                     guard let cellArray = value else { return }
                     CellDataManager.shared.cellArray = cellArray
@@ -203,7 +203,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                     self.isEditing = false
                 }
                 
-                CellDataManager.shared.getCellData(whatClass: "Food") { (_, _) in
+                CellDataManager.shared.getCellData(whatClass: "美食") { (_, _) in
                     self.collectionView?.reloadData()
                     self.isEditing = false
                 }
