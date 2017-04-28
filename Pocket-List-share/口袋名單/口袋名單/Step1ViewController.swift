@@ -9,10 +9,11 @@ protocol Step1ViewControllerDelegete: class {
 
 
 class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    let foodTypes: [String] = ["america", "dessert", "italy", "japaness", "chinese", "korea", "thai", "other"]
+    let foodTypes: [String] = ["請選擇", "美式料理", "義式料理", "日式料理", "中式料理", "韓式料理", "泰式料理", "甜點", "其他"]
     var some: String = ""
     
     let defaultImagePicker = UIPickerView()
+    let doneButtonInPicker = UIButton()
     let classPicker = UIPickerView()
     weak var delegate: Step1ViewControllerDelegete?
     
@@ -44,7 +45,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             allert.addAction(action)
             self.present(allert, animated: true, completion: nil)
         } else if chooseClassField.text != "Food" && chooseClassField.text != "Site" {
-            let allert = UIAlertController(title: "類別名稱錯誤", message: "請選擇“Food”或是“Site”", preferredStyle: .alert)
+            let allert = UIAlertController(title: "類別名稱錯誤", message: "請選擇“美食”或是“景點”", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             allert.addAction(action)
             self.present(allert, animated: true, completion: nil)
@@ -53,6 +54,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             self.uploadData() // upload to firebase
             let button = sender as? UIButton
             button?.isEnabled = false
+            
 
         }
     }
@@ -67,18 +69,11 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         defaultImagePicker.dataSource = self
         chooseClassField.inputView = classPicker
         classPicker.delegate = self
-//        self.contentView.delegate = self
-//        self.website.delegate = self
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        
         
     }
     
-//    deinit {
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-//    }
- 
     // MARK: pick image
     func pickImage() {
         
@@ -109,57 +104,41 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     
     func defaultImage() {
+        //todo dismiss pickerview
         let fullScreenSize  = UIScreen.main.bounds.size
         defaultImagePicker.frame = CGRect(x: 0, y: fullScreenSize.height - 250, width: fullScreenSize.width, height: 250)
         
-        self.view.addSubview(defaultImagePicker)
-        defaultImagePicker.backgroundColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)
+                defaultImagePicker.backgroundColor = UIColor.lightGray
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
+        
+        self.view.addSubview(defaultImagePicker)
+  
+        
 
+    }
+    
+    func selectPic() {
+        print(12345)
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         var rowString = String()
         if pickerView == defaultImagePicker {
-        switch row {
-        case 0:
-            rowString = "美式料理"
-            
-        case 1:
-            rowString = "義式料理"
-            
-        case 2:
-            rowString = "日式料理"
-            
-        case 3:
-            rowString = "中式料理"
-            
-        case 4:
-            rowString = "韓式料理"
-            
-        case 5:
-            rowString = "泰式料理"
-            
-        case 6:
-            rowString = "甜點"
-            
-        case 7:
-            rowString = "其他"
-        
-        default:
-            print("out of range")
-            
-        }
+            rowString = foodTypes[row]
+
         } else if pickerView == classPicker {
             switch row {
+                
             case 0:
-                rowString = "Food"
+                rowString = "請選擇"
             case 1:
-                rowString = "Site"
-            default:
-                print(123)
+                rowString = "美食"
+            case 2:
+                rowString = "景點"
+            default: break
+                //print(123)
             }
         }
         return rowString
@@ -167,7 +146,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == defaultImagePicker {
-        FIRDatabase.database().reference().child("defaultImage").child("food").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            FIRDatabase.database().reference().child("defaultImage").child("food").observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let downLoadUrl = snapshot.value as? [String: Any] else { return }
                 guard let dessert = downLoadUrl["dessert"] as? String,
                       let italy = downLoadUrl["italy"] as? String,
@@ -179,7 +159,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                       let other = downLoadUrl["other"] as? String else { return }
     
                 switch row {
-                case 0:
+                case 1:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: america)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
@@ -189,7 +169,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     self.imageView.contentMode = .scaleAspectFit
                     }
     
-                case 1:
+                case 2:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: italy)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
@@ -198,7 +178,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         self.imageView.image = italyPic
                     }
     
-                case 2:
+                case 3:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: japan)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
@@ -207,7 +187,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         self.imageView.image = japanPic
                     }
     
-                case 3:
+                case 4:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: chinese)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
@@ -216,7 +196,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         self.imageView.image = chinesePic
                     }
     
-                case 4:
+                case 5:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: korea)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
@@ -225,7 +205,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         self.imageView.image = koreaPic
                     }
                     
-                case 5:
+                case 6:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: thai)
                     print(thai)
@@ -235,7 +215,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         self.imageView.image = thaiPic
                     }
                     
-                case 6:
+                case 7:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: dessert)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
@@ -244,7 +224,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                         self.imageView.image = dessertPic
                     }
                     
-                case 7:
+                case 8:
                     
                     let storageRef = FIRStorage.storage().reference(forURL: other)
                     storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, _) -> Void in
@@ -263,10 +243,12 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                 }
             
             })
+            
+            
         } else if pickerView == classPicker {
             switch row {
-            case 0: chooseClassField.text = "Food"
-            case 1: chooseClassField.text = "Site"
+            case 1: chooseClassField.text = "Food"
+            case 2: chooseClassField.text = "Site"
             default: chooseClassField.text = "Food"
             }
         }
@@ -279,7 +261,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         if pickerView == defaultImagePicker {
         return foodTypes.count
         } else if pickerView == classPicker {
-        return 2
+        return 3
         } else {
         return 0
         }
@@ -342,9 +324,10 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                let url = self.website.text,
                let title = self.temperaryTitle.text,
                let content = self.contentView.text,
+               
                let imageURL = storeMetaData?.downloadURL()?.absoluteString {
-               let userRef = self.ref.child(uid).child(whatClass).childByAutoId()
-               let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key, "imageUuid": imageName] as [String : Any]
+               let userRef = self.ref.child(uid).childByAutoId()
+               let value = ["class": whatClass, "title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key, "imageUuid": imageName] as [String : Any]
                //let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key] as [String : Any]
                     userRef.setValue(value)
               
@@ -357,6 +340,5 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         }
 
     }
-    
-    
+        
 }

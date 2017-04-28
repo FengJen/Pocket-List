@@ -11,11 +11,11 @@ class CellDataManager {
     
     //typealias editData = (_ value: String) -> Void
     
-    func getCellData(completion: @escaping (_ value: [CellModel]?, _ exist: Bool) -> Void) {
+    func getCellData(whatClass: String, completion: @escaping (_ value: [CellModel]?, _ exist: Bool) -> Void) {
         var value: [CellModel] = [] //?
         let uid = FIRAuth.auth()?.currentUser?.uid
         //.queryOrdered(byChild: "order")
-        self.ref.child("pocketList").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("pocketList").child(uid!).queryOrdered(byChild: "class").queryEqual(toValue: whatClass).observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
                 guard let taskSnapshot = child as? FIRDataSnapshot else { return }
                 let autoID = taskSnapshot.key

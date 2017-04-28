@@ -41,7 +41,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     func getValue() {
         
-        CellDataManager.shared.getCellData { (value, _) in
+        CellDataManager.shared.getCellData(whatClass: "Food") { (value, _) in
             guard let cellArray = value else { return }
             self.cellList = cellArray
             CellDataManager.shared.cellArray = cellArray
@@ -53,7 +53,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     func loadEditValue() {
         
-        CellDataManager.shared.getCellData { (value, _) in
+        CellDataManager.shared.getCellData(whatClass: "Food") { (value, _) in
             guard let newCell = value else { return }
             self.cellList = newCell
             
@@ -109,7 +109,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Food")
+        return IndicatorInfo(title: "美食")
     }
 
     override func didReceiveMemoryWarning() {
@@ -194,7 +194,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                     print(error ?? "12345")
                 }
                 
-                CellDataManager.shared.getCellData { (value, _) in
+                CellDataManager.shared.getCellData(whatClass: "Food") { (value, _) in
                     
                     guard let cellArray = value else { return }
                     CellDataManager.shared.cellArray = cellArray
@@ -203,7 +203,7 @@ class FoodCollectionViewController: UICollectionViewController, UINavigationCont
                     self.isEditing = false
                 }
                 
-                CellDataManager.shared.getCellData { (_, _) in
+                CellDataManager.shared.getCellData(whatClass: "Food") { (_, _) in
                     self.collectionView?.reloadData()
                     self.isEditing = false
                 }

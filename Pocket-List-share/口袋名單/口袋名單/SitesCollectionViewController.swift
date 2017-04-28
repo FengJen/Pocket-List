@@ -47,7 +47,7 @@ class SitesCollectionViewController: UICollectionViewController, IndicatorInfoPr
     }
     func getValue() {
         
-        CellDataManager.shared.getCellData { (value, _) in
+        CellDataManager.shared.getCellData(whatClass: "Site") { (value, _) in
             guard let cellArray = value else { return }
             self.cellList = cellArray
             CellDataManager.shared.cellArray = cellArray
@@ -59,7 +59,7 @@ class SitesCollectionViewController: UICollectionViewController, IndicatorInfoPr
     }
     func loadEditValue() {
         
-        CellDataManager.shared.getCellData { (value, _) in
+        CellDataManager.shared.getCellData(whatClass: "Site") { (value, _) in
             guard let newCell = value else { return }
             self.cellList = newCell
             
@@ -86,7 +86,7 @@ class SitesCollectionViewController: UICollectionViewController, IndicatorInfoPr
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Sites")
+        return IndicatorInfo(title: "景點")
     }
     
     override func didReceiveMemoryWarning() {
@@ -170,7 +170,7 @@ class SitesCollectionViewController: UICollectionViewController, IndicatorInfoPr
                         print(error ?? "12345")
                     }
                     
-                    CellDataManager.shared.getCellData { (value, _) in
+                    CellDataManager.shared.getCellData(whatClass: "Site") { (value, _) in
                         
                         guard let cellArray = value else { return }
                         CellDataManager.shared.cellArray = cellArray
@@ -179,7 +179,7 @@ class SitesCollectionViewController: UICollectionViewController, IndicatorInfoPr
                         self.isEditing = false
                     }
                     
-                    CellDataManager.shared.getCellData { (_, _) in
+                    CellDataManager.shared.getCellData(whatClass: "Site") { (_, _) in
                         self.collectionView?.reloadData()
                         self.isEditing = false
                     }

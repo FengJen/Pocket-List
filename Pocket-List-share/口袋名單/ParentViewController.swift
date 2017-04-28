@@ -69,6 +69,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         self.newBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
         foodCollectionViewController?.isEditing = true
+        sitesCollectionViewController?.isEditing = true
 
         if editing == true {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -84,6 +85,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
         foodCollectionViewController?.isEditing = false
+        sitesCollectionViewController?.isEditing = false
         self.tabBarController?.tabBar.isHidden = false
         self.newBar.isHidden = true
         for indexPath in (foodCollectionViewController?.selectedIndexPaths)! {
@@ -94,6 +96,17 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         for cellID in (foodCollectionViewController?.selectedAutoIDs)! {
         foodCollectionViewController?.selectedAutoIDs.remove(cellID)
         }
+        
+        
+        for indexPath in (sitesCollectionViewController?.selectedIndexPaths)! {
+            guard let cell = sitesCollectionViewController?.collectionView?.cellForItem(at: indexPath) as? ItemCollectionViewCell else { return }
+            sitesCollectionViewController?.collectionView?.deselectItem(at: indexPath, animated: true)
+            cell.myImageView.alpha = 1
+        }
+        for cellID in (sitesCollectionViewController?.selectedAutoIDs)! {
+            sitesCollectionViewController?.selectedAutoIDs.remove(cellID)
+        }
+
     }
     
     func addNewBarButton() {
@@ -112,13 +125,20 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         })
         foodCollectionViewController?.isEditing = false
         
+        guard let siteDeleteID = sitesCollectionViewController?.selectedAutoIDs else { return }
+        sitesCollectionViewController?.removeImageStorage(at: siteDeleteID, completion: { (true) in
+            sitesCollectionViewController?.deleteItem()
+        })
+        foodCollectionViewController?.isEditing = false
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
         newBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
     }
     
     func shareItems() {
-        guard let shareIDs = foodCollectionViewController?.selectedAutoIDs else { return }
+        guard let foodShareIDs = foodCollectionViewController?.selectedAutoIDs, let siteShareIDs = sitesCollectionViewController?.selectedAutoIDs else { return }
+        let shareIDs = foodShareIDs + siteShareIDs
         var cellPackage: [Any] = []
         let uid = FIRAuth.auth()?.currentUser?.uid
         let packageRef = FIRDatabase.database().reference().child("package").childByAutoId()
@@ -208,12 +228,20 @@ extension ParentViewController: DidReceivePackage {
         
 //        shareVC.delegate = self
         if uploadSuccess == true {
-            CellDataManager.shared.getCellData(completion: { (value, _) in
+            CellDataManager.shared.getCellData(whatClass: "Food", completion: { (value, _) in
                 guard let newCells = value else { return }
                 self.foodCollectionViewController?.cellList = newCells
                 self.foodCollectionViewController?.collectionView?.reloadData()
                 self.tabBarController?.selectedIndex = 0
             })
+            
+            CellDataManager.shared.getCellData(whatClass: "Site", completion: { (value, _) in
+                guard let newCells = value else { return }
+                self.sitesCollectionViewController?.cellList = newCells
+                self.sitesCollectionViewController?.collectionView?.reloadData()
+                self.tabBarController?.selectedIndex = 0
+            })
+
 
         }
     }
