@@ -24,6 +24,9 @@ class StepsViewController: UIPageViewController, UIPageViewControllerDataSource 
         navigationController?.navigationBar.isTranslucent = false
         if let secondVC = viewcontrollerList.first {
             self.setViewControllers([secondVC], direction: .forward, animated: true, completion: nil)
+            
+            self.title = "新增名單"
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 51/255, green: 118/255, blue: 242/255, alpha: 1)]
         }
         
     }

@@ -27,7 +27,8 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-
+        self.title = "編輯名單"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 51/255, green: 118/255, blue: 242/255, alpha: 1)]
     }
     
     func setUp() {

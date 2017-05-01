@@ -109,7 +109,7 @@ class SitesCollectionViewController: UICollectionViewController, IndicatorInfoPr
     
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as? ItemCollectionViewCell {
             cell.myImageView.alpha = 1
-            cell.cellTitle.layer.cornerRadius = 15
+            
             cell.cellTitle.setTitle(cellList[indexPath.row].title, for: .normal)
             cell.cellTitle.tintColor = UIColor.black
             cell.cellTitle.addTarget(self, action: #selector(preformCellEditView), for: .touchUpInside)

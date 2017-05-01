@@ -12,6 +12,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     let editButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(setEdit))
     
     override func viewDidLoad() {
+        
         setUp()
         headerStyle()
         super.viewDidLoad()
@@ -20,6 +21,8 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         let editButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(setEdit))
         self.navigationItem.rightBarButtonItem = editButton
         
+        self.title = "口袋名單"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 51/255, green: 118/255, blue: 242/255, alpha: 1)]
     }
     func setEdit() {
         self.isEditing = true
@@ -31,7 +34,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
-        return [foodCollectionViewController!, sitesCollectionViewController!]
+        return [foodCollectionViewController!, sitesCollectionViewController! ]
     }
     
     func setUp() {

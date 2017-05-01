@@ -12,7 +12,7 @@ target '口袋名單' do
     pod 'Firebase/Database'
     pod 'XLPagerTabStrip', '~> 7.0'
     pod 'Firebase/Storage'
-	pod 'Fabric'
-	pod 'Crashlytics'
-	pod 'IQKeyboardManagerSwift'
+	  pod 'Fabric'
+	  pod 'Crashlytics'
+	  pod 'IQKeyboardManagerSwift'
 end

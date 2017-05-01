@@ -110,7 +110,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         let fullScreenSize  = UIScreen.main.bounds.size
         defaultImagePicker.frame = CGRect(x: 0, y: fullScreenSize.height - 250, width: fullScreenSize.width, height: 250)
         
-                defaultImagePicker.backgroundColor = UIColor.lightGray
+        defaultImagePicker.backgroundColor = UIColor(red: 210/255, green: 213/255, blue: 215/255, alpha: 1)
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
         
@@ -334,9 +334,23 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                //let value = ["title": title, "url": url, "order": CellDataManager.shared.cellArray.count, "content": content, "image": imageURL, "cellID": userRef.key] as [String : Any]
                     userRef.setValue(value)
               
-                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    //todo handle rootviewcontroller
+                //guard let parentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController") as? ParentViewController else { return }
+                
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
+                self.navigationController?.pushViewController(vc, animated: true)
+                //self.navigationController?.popToRootViewController(animated: true)
+
+
+//                let foodVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodCollectionViewController")
+//                let siteVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SitesCollectionViewController")
+//                    if self.chooseClassField.text == "美食" {
+//                        self.navigationController?.popToRootViewController(animated: true)
+//                        //self.show(foodVC, sender: self)
+//                        
+//                    } else if self.chooseClassField.text == "景點" {
+//                        
+//                        self.navigationController?.pushViewController(siteVC, animated: true)
+//                }
                 }
             })
          

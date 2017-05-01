@@ -22,7 +22,23 @@ class ItemCollectionViewCell: UICollectionViewCell {
         //cellTitle.backgroundColor = UIColor.yellow
         cellTitle.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
         
-        //cellTitle.layer.cornerRadius = 15
+        self.layer.cornerRadius = 10
+        self.cellTitle.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 10)
+        self.myImageView.roundCorners(corners: [.topLeft, .topRight], radius: 10)
+        
+        
     }
     
+    
+    
 }
+
+extension UIView {
+    func roundCorners(corners:UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
+    }
+}
+
