@@ -115,6 +115,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     func addNewBarButton() {
         newBar.backgroundColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)
         shareButton.setImage(#imageLiteral(resourceName: "Upload-50"), for: .normal)
+        
         shareButton.addTarget(self, action: #selector(shareItems), for: .touchUpInside)
         deleteButton.setImage(#imageLiteral(resourceName: "Trash-50"), for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteItems), for: .touchUpInside)

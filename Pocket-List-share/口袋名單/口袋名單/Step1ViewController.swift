@@ -22,7 +22,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet weak var contentView: UITextView!
     @IBOutlet weak var imageView: UIImageView!    
     @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var chooseClassField: UITextField!
+    
+    @IBOutlet weak var classSegment: UISegmentedControl!
     let ref = FIRDatabase.database().reference().child("pocketList")
     
     let image = #imageLiteral(resourceName: "images-icon").withRenderingMode(.alwaysTemplate)
@@ -44,12 +45,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             allert.addAction(action)
             self.present(allert, animated: true, completion: nil)
-        } else if chooseClassField.text != "美食" && chooseClassField.text != "景點" {
-            let allert = UIAlertController(title: "類別名稱錯誤", message: "請選擇“美食”或是“景點”", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            allert.addAction(action)
-            self.present(allert, animated: true, completion: nil)
-        }else {
+        } else {
    
             self.uploadData() // upload to firebase
             let button = sender as? UIButton
@@ -67,8 +63,9 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         imageView.contentMode = .scaleAspectFit
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
-        chooseClassField.inputView = classPicker
-        classPicker.delegate = self
+        
+        
+        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(hidePickerView))
         tap.cancelsTouchesInView = false
@@ -248,16 +245,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
             })
             
             
-        } else if pickerView == classPicker {
-            switch row {
-            case 1: chooseClassField.text = "美食"
-            case 2: chooseClassField.text = "景點"
-            default: chooseClassField.text = "景點"
-            }
         }
-        //pickerView.removeFromSuperview()
-
-
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -323,7 +311,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
                     return
                 }
             if let uid = FIRAuth.auth()?.currentUser?.uid,
-               let whatClass = self.chooseClassField.text,
+               let whatClass = self.classSegment.titleForSegment(at: self.classSegment.selectedSegmentIndex),
                let url = self.website.text,
                let title = self.temperaryTitle.text,
                let content = self.contentView.text,

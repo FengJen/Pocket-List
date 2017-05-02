@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var password: UITextField!
     
+    @IBOutlet weak var topPocket: UIView!
     @IBOutlet weak var pocketView: UIView!
     @IBOutlet weak var signinButton: UIButton!
     @IBAction func login(_ sender: Any) {
@@ -45,6 +46,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         setUp()
+        topPocket.layer.cornerRadius = 15
+        topPocket.layer.shadowColor = UIColor.black.cgColor
+        topPocket.layer.shadowOpacity = 1
+        topPocket.layer.shadowOffset = CGSize.zero
+        topPocket.layer.shadowRadius = 5
         // Do any additional setup after loading the view.
 
     }
