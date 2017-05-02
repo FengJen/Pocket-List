@@ -26,17 +26,17 @@ class ShareViewController: UIViewController {
     var senderEmail = ""
     @IBAction func receive(_ sender: Any) {
         FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
+            
+            
             guard let email = emailSnapshot.value as? [String: Any] else { return }
             guard let myEmail = email["email"] as? String else { return }
-            
-            // todo query by time
-            //guard let text = sharingKey.text else { return }
             FIRDatabase.database().reference().child("package").queryOrdered(byChild: "receiverEmail").queryEqual(toValue: myEmail).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
+                var packageKey = ""
                 for child in snapshot.children {
                     
                     guard let item = child as? FIRDataSnapshot else { return }
-                    
+                    packageKey = item.key
                     guard let value = item.value as? [String: Any] else { return }
                     guard let email = value["senderEmail"] as? String else { return }
                     self.senderEmail = email
@@ -66,11 +66,14 @@ class ShareViewController: UIViewController {
                                 }
                             }
                             self.delegate?.didReceive(shareVC: self, uploadSuccess: true)
+                            
+                            self.deletePackage(packageKey: packageKey)
                         })
                     }
                 }
                 let decline = UIAlertAction(title: "拒絕", style: .destructive, handler: nil)
-                //todo delete package in 5mins?
+                
+                self.deletePackage(packageKey: packageKey)
                 alertController.addAction(accept)
                 alertController.addAction(decline)
                 self.present(alertController, animated: true, completion: nil)
@@ -123,5 +126,9 @@ class ShareViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func deletePackage(packageKey: String) {
+        FIRDatabase.database().reference().child("package").child(packageKey).removeValue()
     }
 }

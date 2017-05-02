@@ -366,7 +366,7 @@
                                 </segments>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kjx-gf-TkN" firstAttribute="top" secondItem="P0C-zu-ug4" secondAttribute="bottom" constant="20" id="1Sh-Sv-wsV"/>
                             <constraint firstItem="juN-ex-rNv" firstAttribute="top" secondItem="kjx-gf-TkN" secondAttribute="bottom" constant="21" id="37t-h3-vfW"/>
@@ -607,8 +607,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5nW-7e-CyE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5nW-7e-CyE">
                                 <rect key="frame" x="16" y="357" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KrP-Wg-Ppz"/>
+                                </constraints>
                                 <color key="textColor" red="0.82345980405807495" green="0.83530658483505249" blue="0.8430173397064209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -627,6 +630,9 @@
                             </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v2q-ac-s2Y">
                                 <rect key="frame" x="16" y="404" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ikw-tS-KfH"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -648,14 +654,17 @@
                                     <action selector="editData:" destination="vTD-iG-TNQ" eventType="touchUpInside" id="ypV-b2-k4F"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7vx-mv-w4Q">
-                                <rect key="frame" x="16" y="66" width="343" height="238"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="7vx-mv-w4Q">
+                                <rect key="frame" x="16" y="66" width="343" height="260"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="260" id="950-og-BeV"/>
+                                </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="5nW-7e-CyE" firstAttribute="top" secondItem="7vx-mv-w4Q" secondAttribute="bottom" constant="31" id="0Rr-cq-AXQ"/>
                             <constraint firstItem="9tX-D8-441" firstAttribute="top" secondItem="cVR-Wu-HD9" secondAttribute="bottom" constant="27" id="7Dg-CY-t36"/>
-                            <constraint firstItem="5nW-7e-CyE" firstAttribute="top" secondItem="7vx-mv-w4Q" secondAttribute="bottom" constant="53" id="J3I-Bg-ukW"/>
                             <constraint firstItem="d6L-sQ-nus" firstAttribute="top" secondItem="v2q-ac-s2Y" secondAttribute="bottom" constant="16" id="KY7-6m-x3W"/>
                             <constraint firstItem="5nW-7e-CyE" firstAttribute="trailing" secondItem="u9E-Ml-wi3" secondAttribute="trailingMargin" id="Qfu-3f-yME"/>
                             <constraint firstItem="5nW-7e-CyE" firstAttribute="leading" secondItem="u9E-Ml-wi3" secondAttribute="leadingMargin" id="SG9-AA-meU"/>
