@@ -69,7 +69,7 @@ class ShareViewController: UIViewController {
                             self.delegate?.didReceive(shareVC: self, uploadSuccess: true)
                             // todo deletepackage after reload & move to parent
                             self.deletePackage(packageKey: packageKey)
-                            //self.show(parentVC, sender: self)
+                            self.tabBarController?.selectedIndex = 0
                         })
                         
                     }
