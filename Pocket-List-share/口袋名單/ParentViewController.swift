@@ -83,7 +83,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         }
         
     }
-    
+    //todo cancel after share
     func cancel() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
@@ -115,6 +115,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     func addNewBarButton() {
         newBar.backgroundColor = UIColor(red: 70/255, green: 195/255, blue: 219/255, alpha: 1)
         shareButton.setImage(#imageLiteral(resourceName: "Upload-50"), for: .normal)
+        
         shareButton.addTarget(self, action: #selector(shareItems), for: .touchUpInside)
         deleteButton.setImage(#imageLiteral(resourceName: "Trash-50"), for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteItems), for: .touchUpInside)
@@ -132,7 +133,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         sitesCollectionViewController?.removeImageStorage(at: siteDeleteID, completion: { (true) in
             sitesCollectionViewController?.deleteItem()
         })
-        foodCollectionViewController?.isEditing = false
+        sitesCollectionViewController?.isEditing = false
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
         newBar.isHidden = true
@@ -157,41 +158,46 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 errorAlertController.addAction(okAction)
                 self.present(errorAlertController, animated: true, completion: nil)
-            } else if self.isValidEmail(testStr: receiverEmail) == true {
-            
-                for cellID in shareIDs {
-                    FIRDatabase.database().reference().child("pocketList").child(uid!).queryOrdered(byChild: "cellID").queryEqual(toValue: cellID).observeSingleEvent(of: .value, with: { (snapshot) in
+            }
+            FIRDatabase.database().reference().child("userEmail").queryOrdered(byChild: "email").queryEqual(toValue: receiverEmail).observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.exists() {
+                    for cellID in shareIDs {
+                        FIRDatabase.database().reference().child("pocketList").child(uid!).queryOrdered(byChild: "cellID").queryEqual(toValue: cellID).observeSingleEvent(of: .value, with: { (snapshot) in
+                            
+                            guard let snap = snapshot.value as? [String: Any] else { return }
+                            cellPackage.append(snap)
+                            
+                        })
+                    }
+                    FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
+                        guard let email = emailSnapshot.value as? [String: Any] else { return }
+                        guard let senderEmail = email["email"] as? String else { return }
                         
-                        guard let snap = snapshot.value as? [String: Any] else { return }
-                        cellPackage.append(snap)
+                        let value = [
+                            "senderEmail": senderEmail,
+                            "receiverEmail": receiverEmail,
+                            "cellList": cellPackage,
+                            "packageID": packageRef.key
+                            ] as [String : Any]
+                        packageRef.setValue(value)
                         
                     })
+                } else {
+                    let alertController = UIAlertController(title: "無此用戶", message: "請檢查接收email是否正確", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
                 }
-                FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
-                    guard let email = emailSnapshot.value as? [String: Any] else { return }
-                    guard let senderEmail = email["email"] as? String else { return }
-                    
-                    let value = [
-                        "senderEmail": senderEmail,
-                        "receiverEmail": receiverEmail,
-                        "cellList": cellPackage,
-                        "packageID": packageRef.key
-                        ] as [String : Any]
-                    packageRef.setValue(value)
-                })
-            
-            }
+            })
             
         })
 
-        // todo email = nil?
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         
         alertController.addAction(sendAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
-        newBar.isHidden = true
-        tabBarController?.tabBar.isHidden = false
+       
 
     }
     

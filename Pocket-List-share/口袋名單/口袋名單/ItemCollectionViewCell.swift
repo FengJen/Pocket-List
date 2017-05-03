@@ -23,13 +23,26 @@ class ItemCollectionViewCell: UICollectionViewCell {
         cellTitle.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
         
         self.layer.cornerRadius = 10
-        self.cellTitle.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 10)
-        self.myImageView.roundCorners(corners: [.topLeft, .topRight], radius: 10)
         
+        
+        
+//        let maskPath = UIBezierPath(roundedRect: myImageView.bounds,
+//                                    byRoundingCorners: [.allCorners],
+//                                    cornerRadii: CGSize(width: 20.0, height: 20.0))
+//        
+//        let shape = CAShapeLayer()
+//        shape.path = maskPath.cgPath
+//        myImageView.layer.mask = shape
         
     }
     
-    
+    override func layoutSubviews() {
+        super .layoutSubviews()
+        // get frame
+        // layer != view
+        self.cellTitle.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 10)
+        self.myImageView.roundCorners(corners: [.topLeft, .topRight], radius: 10)
+    }
     
 }
 

@@ -36,7 +36,8 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
         editUrl.text = cell.url
         content.text = cell.content
         imageView.image = cell.image        
-        
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         doneButton.layer.cornerRadius = 22
     }
     // MARK: pick image
