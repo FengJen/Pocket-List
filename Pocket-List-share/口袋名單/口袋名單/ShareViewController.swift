@@ -25,6 +25,7 @@ class ShareViewController: UIViewController {
     let uid = FIRAuth.auth()?.currentUser?.uid
     var senderEmail = ""
     @IBAction func receive(_ sender: Any) {
+        let parentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParentViewController")
         FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
             
             
@@ -44,7 +45,7 @@ class ShareViewController: UIViewController {
                 
                 let alertController = UIAlertController(title: "確認傳送來源", message: "\(self.senderEmail)想要和你分享他的口袋名單", preferredStyle: .alert)
                 guard let newCells = snapshot.value as? [String: Any] else { return }
-                let accept = UIAlertAction(title: "同意", style: .default) { (_) in
+                let accept = UIAlertAction(title: "同意", style: .default) { (action) in
                     for newCell in newCells {
                         let uid = FIRAuth.auth()?.currentUser?.uid
                         guard let value = newCell.value as? [String: AnyObject] else { continue }
@@ -66,14 +67,19 @@ class ShareViewController: UIViewController {
                                 }
                             }
                             self.delegate?.didReceive(shareVC: self, uploadSuccess: true)
-                            
+                            // todo deletepackage after reload & move to parent
                             self.deletePackage(packageKey: packageKey)
+                            //self.show(parentVC, sender: self)
                         })
+                        
                     }
+                    
                 }
-                let decline = UIAlertAction(title: "拒絕", style: .destructive, handler: nil)
+                let decline = UIAlertAction(title: "拒絕", style: .destructive, handler: { (_) in
+                    self.deletePackage(packageKey: packageKey)
+                })
                 
-                self.deletePackage(packageKey: packageKey)
+                
                 alertController.addAction(accept)
                 alertController.addAction(decline)
                 self.present(alertController, animated: true, completion: nil)
