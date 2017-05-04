@@ -15,6 +15,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     let defaultImagePicker = UIPickerView()
     let doneButtonInPicker = UIButton()
     let classPicker = UIPickerView()
+    let gradientLayer = CAGradientLayer()
+    let skyBlue = UIColor(red: 117/255, green: 203/255, blue: 223/255, alpha: 1)
     weak var delegate: Step1ViewControllerDelegete?
     
     @IBOutlet weak var temperaryTitle: UITextField!
@@ -58,13 +60,20 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     override func viewDidLoad() {
         super.viewDidLoad()
         setImageView()
-        doneButton.layer.cornerRadius = 20
-        //imageView.clipsToBounds = true
+        doneButtonSetUp()
+        
+        
         imageView.contentMode = .scaleAspectFit
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
-        
-        
+//        self.view.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+        website.layer.borderColor = skyBlue.cgColor
+        website.layer.borderWidth = 2
+        website.attributedPlaceholder = NSAttributedString(string: "請輸入網址", attributes: [NSForegroundColorAttributeName: skyBlue])
+        temperaryTitle.layer.borderColor = skyBlue.cgColor
+        temperaryTitle.layer.borderWidth = 2
+        temperaryTitle.attributedPlaceholder = NSAttributedString(string: "請輸入標題", attributes: [NSForegroundColorAttributeName: skyBlue])
+        classSegment.tintColor = skyBlue
         
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(hidePickerView))
@@ -73,6 +82,20 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        gradientLayer.cornerRadius = 20
+    }
+   
+    func doneButtonSetUp() {
+                
+        gradientLayer.frame = self.doneButton.bounds
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradientLayer.colors = [UIColor(red: 117/255, green: 203/255, blue: 223/255, alpha: 1).cgColor, UIColor(red: 90/255, green: 120/255, blue: 191/255, alpha: 1).cgColor]
+        
+        self.doneButton.layer.addSublayer(gradientLayer)
+    }
     // MARK: pick image
     func pickImage() {
         

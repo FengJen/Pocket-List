@@ -146,6 +146,9 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         var cellPackage: [Any] = []
         let uid = FIRAuth.auth()?.currentUser?.uid
         let packageRef = FIRDatabase.database().reference().child("package").childByAutoId()
+        
+        
+        
         let alertController = UIAlertController(title: "請輸入接收者email", message: "分享後請接收方進入接收頁面下載", preferredStyle: .alert)
         
         alertController.addTextField(configurationHandler: { (UITextField) in
