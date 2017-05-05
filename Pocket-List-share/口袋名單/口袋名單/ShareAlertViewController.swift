@@ -70,7 +70,7 @@ class ShareAlertViewController: UIViewController {
     }
 
     func showSendingSuccessAlert() {
-        _ = SCLAlertView().showSuccess("傳送成功", subTitle: "收方進入接收頁面確認即可收到分您分享的名單")
+        _ = SCLAlertView().showSuccess("傳送成功", subTitle: "接收方進入接收頁面後，確認即可收到您的分享")
     }
     
     func isValidEmail(testStr: String) -> Bool {

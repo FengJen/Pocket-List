@@ -89,7 +89,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     }
    
     func doneButtonSetUp() {
-                
+        
         gradientLayer.frame = self.doneButton.bounds
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)

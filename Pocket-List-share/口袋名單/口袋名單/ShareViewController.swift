@@ -87,7 +87,7 @@ class ShareViewController: UIViewController {
                     }
                 }
                 
-                    alert.addButton("拒絕", backgroundColor: UIColor(red: 58/255, green: 101/255, blue: 185/255, alpha: 1), textColor: UIColor(red: 215/255, green: 97/255, blue: 86/255, alpha: 1), showDurationStatus: false, action: {
+                    alert.addButton("拒絕", backgroundColor: UIColor(red: 58/255, green: 101/255, blue: 185/255, alpha: 1), textColor: UIColor(red: 250/255, green: 102/255, blue: 90/255, alpha: 1), showDurationStatus: false, action: {
                         self.deletePackage(packageKey: packageKey)
 
                     })
