@@ -14,9 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var email: UITextField!
     
     @IBOutlet weak var password: UITextField!
-    
-    @IBOutlet weak var topPocket: UIView!
-    @IBOutlet weak var pocketView: UIView!
+    @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var signinButton: UIButton!
     @IBAction func login(_ sender: Any) {
         if email.text == "" || password.text == "" {
@@ -46,11 +44,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         setUp()
-        topPocket.layer.cornerRadius = 15
-        topPocket.layer.shadowColor = UIColor.black.cgColor
-        topPocket.layer.shadowOpacity = 1
-        topPocket.layer.shadowOffset = CGSize.zero
-        topPocket.layer.shadowRadius = 5
+        iconView.image = #imageLiteral(resourceName: "loginImage")
+    
         // Do any additional setup after loading the view.
 
     }
@@ -66,29 +61,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUp() {
-        let buttonImage = #imageLiteral(resourceName: "button-with-cross-stitch-icon")
-        signinButton.setImage(buttonImage, for: .normal)
+        //let buttonImage = #imageLiteral(resourceName: "button-with-cross-stitch-icon")
+        //signinButton.setImage(buttonImage, for: .normal)
 //        buttonImage
         
         signinButton.layer.masksToBounds = false
-        signinButton.setTitle("Login", for: .normal)
+        signinButton.setTitle("登 入", for: .normal)
         signinButton.layer.shadowColor = UIColor.gray.cgColor
         signinButton.layer.shadowOpacity = 1
         signinButton.layer.shadowOffset = CGSize(width: 0, height: 0)
         signinButton.layer.shadowRadius = 4
         signinButton.layer.cornerRadius = 5
+        //signinButton.backgroundColor = UIColor(red: 117/255, green: 203/255, blue: 223/255, alpha: 1)
+        signinButton.layer.cornerRadius = 20
+     
         
-        //signinButton.layer.cornerRadius = signinButton.frame.width/2
-        
-        //signinButton.layer.shadowColor = UIColor.white.cgColor
-        //signinButton.layer.shadowRadius = 3
-        //signinButton.layer.
-        
-        pocketView.layer.cornerRadius = 20
-        pocketView.layer.shadowColor = UIColor.black.cgColor
-        pocketView.layer.shadowOpacity = 1
-        pocketView.layer.shadowOffset = CGSize.zero
-        pocketView.layer.shadowRadius = 10
-    }
+        }
 
 }

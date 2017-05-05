@@ -23,7 +23,9 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     @IBOutlet weak var doneButton: UIButton!
     
+    let gradientLayer = CAGradientLayer()
     
+    let skyBlue = UIColor(red: 117/255, green: 203/255, blue: 223/255, alpha: 1)
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -33,12 +35,29 @@ class CellDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     func setUp() {
         editTitle.text = cell.title
+        editTitle.layer.borderWidth = 2
+        editTitle.layer.borderColor = skyBlue.cgColor
         editUrl.text = cell.url
+        editUrl.layer.borderWidth = 2
+        editUrl.layer.borderColor = skyBlue.cgColor
         content.text = cell.content
         imageView.image = cell.image        
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         doneButton.layer.cornerRadius = 22
+        
+        
+        gradientLayer.frame = self.doneButton.bounds
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradientLayer.colors = [UIColor(red: 117/255, green: 203/255, blue: 223/255, alpha: 1).cgColor, UIColor(red: 90/255, green: 120/255, blue: 191/255, alpha: 1).cgColor]
+        
+        self.doneButton.layer.addSublayer(gradientLayer)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        gradientLayer.cornerRadius = 20
     }
     // MARK: pick image
 //    func pickImage() {
