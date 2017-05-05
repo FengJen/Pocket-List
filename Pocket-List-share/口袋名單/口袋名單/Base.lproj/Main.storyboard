@@ -32,6 +32,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avJ-cW-JGv">
+                                <rect key="frame" x="37" y="563" width="303" height="75"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="還沒有帳號？申請新帳號">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="H1M-Iu-GGP"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJ1-cJ-a2K">
                                 <rect key="frame" x="121" y="499" width="133" height="40"/>
                                 <color key="backgroundColor" red="0.98125338554382324" green="0.88567984104156494" blue="0.29791134595870972" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -72,28 +82,20 @@
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="nOA-2T-ZyR">
-                                <rect key="frame" x="118" y="193" width="140" height="145"/>
+                                <rect key="frame" x="117" y="167" width="140" height="145"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="145" id="CTi-2F-Tay"/>
                                     <constraint firstAttribute="width" constant="140" id="jaQ-Qj-NVj"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avJ-cW-JGv">
-                                <rect key="frame" x="37" y="563" width="303" height="75"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="還沒有帳號？申請新帳號">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="H1M-Iu-GGP"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pJ1-cJ-a2K" firstAttribute="leading" secondItem="QpF-ns-giH" secondAttribute="leadingMargin" constant="105" id="0Li-mY-dWk"/>
-                            <constraint firstItem="dMb-M8-oAl" firstAttribute="top" secondItem="nOA-2T-ZyR" secondAttribute="bottom" priority="750" constant="40" id="0zA-R7-pGD"/>
+                            <constraint firstItem="dMb-M8-oAl" firstAttribute="top" secondItem="nOA-2T-ZyR" secondAttribute="bottom" priority="750" constant="66" id="0zA-R7-pGD"/>
+                            <constraint firstItem="Ghe-1x-U8m" firstAttribute="width" secondItem="dMb-M8-oAl" secondAttribute="width" id="4gE-sY-OfP"/>
                             <constraint firstItem="avJ-cW-JGv" firstAttribute="leading" secondItem="QpF-ns-giH" secondAttribute="leadingMargin" constant="21" id="6yN-mS-dUV"/>
+                            <constraint firstItem="Ghe-1x-U8m" firstAttribute="centerX" secondItem="QpF-ns-giH" secondAttribute="centerX" id="CMG-t2-SDp"/>
                             <constraint firstItem="gkB-dD-Uyw" firstAttribute="top" secondItem="v0N-ui-PNs" secondAttribute="bottom" constant="65" id="IJd-vb-f0d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="avJ-cW-JGv" secondAttribute="trailing" constant="19" id="KhL-ub-m9b"/>
                             <constraint firstItem="KY0-Lq-jfQ" firstAttribute="top" secondItem="pJ1-cJ-a2K" secondAttribute="bottom" constant="128" id="OeU-eV-TW5"/>
@@ -106,7 +108,8 @@
                             <constraint firstItem="pJ1-cJ-a2K" firstAttribute="centerX" secondItem="QpF-ns-giH" secondAttribute="centerX" id="lVF-ew-E3J"/>
                             <constraint firstAttribute="trailing" secondItem="Ghe-1x-U8m" secondAttribute="trailing" constant="59" id="pNy-k8-Pfq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pJ1-cJ-a2K" secondAttribute="trailing" constant="105" id="uM9-GL-Fb2"/>
-                            <constraint firstItem="nOA-2T-ZyR" firstAttribute="top" secondItem="gkB-dD-Uyw" secondAttribute="bottom" priority="750" constant="68" id="vyI-Gg-1L3"/>
+                            <constraint firstItem="dMb-M8-oAl" firstAttribute="centerX" secondItem="QpF-ns-giH" secondAttribute="centerX" id="vGf-bJ-js8"/>
+                            <constraint firstItem="nOA-2T-ZyR" firstAttribute="top" secondItem="gkB-dD-Uyw" secondAttribute="bottom" priority="750" constant="42" id="vyI-Gg-1L3"/>
                             <constraint firstItem="Ghe-1x-U8m" firstAttribute="leading" secondItem="QpF-ns-giH" secondAttribute="leading" constant="58" id="wok-EV-vnP"/>
                             <constraint firstItem="pJ1-cJ-a2K" firstAttribute="top" secondItem="Ghe-1x-U8m" secondAttribute="bottom" constant="36" id="xka-vb-MRS"/>
                             <constraint firstItem="Ghe-1x-U8m" firstAttribute="top" secondItem="dMb-M8-oAl" secondAttribute="bottom" constant="25" id="xnq-uu-nRk"/>

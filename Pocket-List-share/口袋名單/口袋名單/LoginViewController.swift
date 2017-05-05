@@ -45,7 +45,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setUp()
         iconView.image = #imageLiteral(resourceName: "loginImage")
-    
+        iconView.layer.shadowColor = UIColor.gray.cgColor
+        iconView.layer.shadowOpacity = 1
+        iconView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        iconView.layer.shadowRadius = 4
+        iconView.layer.cornerRadius = 5
         // Do any additional setup after loading the view.
 
     }
