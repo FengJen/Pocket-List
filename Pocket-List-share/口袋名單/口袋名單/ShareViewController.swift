@@ -52,8 +52,11 @@ class ShareViewController: UIViewController {
                 
                 guard let newCells = snapshot.value as? [String: Any] else { return }
                 
-                let alert = SCLAlertView()
-                alert.showInfo("確認傳送來源", subTitle: "\(self.senderEmail)想要和你分享他的口袋名單")
+                let appearance = SCLAlertView.SCLAppearance(
+                    showCloseButton: false
+                )
+                let alert = SCLAlertView(appearance: appearance)
+                
                 alert.addButton("同意") {
                     for newCell in newCells {
                         let uid = FIRAuth.auth()?.currentUser?.uid
@@ -76,20 +79,25 @@ class ShareViewController: UIViewController {
                                 }
                             }
                             self.delegate?.didReceive(shareVC: self, uploadSuccess: true)
-                            // todo deletepackage after reload & move to parent
                             self.deletePackage(packageKey: packageKey)
                             self.tabBarController?.selectedIndex = 0
+                            
                         })
                         
                     }
                 }
                 
-                    alert.addButton("拒絕", action: {
+                    alert.addButton("拒絕", backgroundColor: UIColor(red: 58/255, green: 101/255, blue: 185/255, alpha: 1), textColor: UIColor(red: 215/255, green: 97/255, blue: 86/255, alpha: 1), showDurationStatus: false, action: {
                         self.deletePackage(packageKey: packageKey)
-                    })
 
+                    })
+                
+                alert.showInfo("確認傳送來源", subTitle: "\(self.senderEmail)想要和你分享他的口袋名單")
+                
                 } else {
-                    self.alertController.showErrorAlert()
+                
+                    self.alertController.showNoPackageAlert()
+                
                 }
             })
         })

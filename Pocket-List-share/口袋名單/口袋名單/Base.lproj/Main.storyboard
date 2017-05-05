@@ -44,13 +44,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJ1-cJ-a2K">
                                 <rect key="frame" x="131" y="459" width="113" height="40"/>
-                                <color key="backgroundColor" red="0.94661458333333337" green="0.99112955729166663" blue="0.33050130808333339" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98125338554382324" green="0.88567984104156494" blue="0.29791134595870972" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="PF8-iL-AZs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Login">
-                                    <color key="titleColor" red="0.20265965163707733" green="0.46291139721870422" blue="0.94907104969024658" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -82,14 +82,14 @@
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nOA-2T-ZyR">
-                                <rect key="frame" x="116" y="152" width="143" height="132"/>
+                                <rect key="frame" x="116" y="152" width="143" height="147"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pJ1-cJ-a2K" firstAttribute="leading" secondItem="QpF-ns-giH" secondAttribute="leadingMargin" constant="115" id="0Li-mY-dWk"/>
                             <constraint firstItem="avJ-cW-JGv" firstAttribute="leading" secondItem="QpF-ns-giH" secondAttribute="leadingMargin" constant="73" id="6yN-mS-dUV"/>
-                            <constraint firstItem="dMb-M8-oAl" firstAttribute="top" secondItem="nOA-2T-ZyR" secondAttribute="bottom" constant="54" id="9OD-6Z-ggI"/>
+                            <constraint firstItem="dMb-M8-oAl" firstAttribute="top" secondItem="nOA-2T-ZyR" secondAttribute="bottom" constant="39" id="9OD-6Z-ggI"/>
                             <constraint firstItem="gkB-dD-Uyw" firstAttribute="top" secondItem="v0N-ui-PNs" secondAttribute="bottom" constant="45" id="IJd-vb-f0d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="avJ-cW-JGv" secondAttribute="trailing" constant="74" id="KhL-ub-m9b"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nOA-2T-ZyR" secondAttribute="trailing" constant="100" id="Nmc-7G-HDP"/>
@@ -134,7 +134,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="64L-kF-xBz">
                                 <rect key="frame" x="129.5" y="356" width="120" height="40"/>
-                                <color key="backgroundColor" red="0.94661458333333337" green="0.99112955729166663" blue="0.33050130808333339" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98125338554382324" green="0.88567984104156494" blue="0.29791134595870972" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="ikW-Sg-I5d"/>
                                     <constraint firstAttribute="height" constant="40" id="lq2-Qb-SPG"/>

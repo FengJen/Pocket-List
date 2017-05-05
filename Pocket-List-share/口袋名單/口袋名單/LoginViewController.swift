@@ -44,7 +44,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         setUp()
-        iconView.image = #imageLiteral(resourceName: "pocketList_icon")
+        iconView.image = #imageLiteral(resourceName: "loginImage")
+    
         // Do any additional setup after loading the view.
 
     }

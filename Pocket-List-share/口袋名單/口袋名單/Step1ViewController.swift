@@ -131,7 +131,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         let fullScreenSize  = UIScreen.main.bounds.size
         defaultImagePicker.frame = CGRect(x: 0, y: fullScreenSize.height - 250, width: fullScreenSize.width, height: 250)
         
-        defaultImagePicker.backgroundColor = UIColor(red: 210/255, green: 213/255, blue: 215/255, alpha: 1)
+        defaultImagePicker.backgroundColor = UIColor(red: 220/255, green: 223/255, blue: 225/255, alpha: 1)
         defaultImagePicker.delegate = self
         defaultImagePicker.dataSource = self
         
