@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
-        Fabric.with([Crashlytics.self])
+        
         IQKeyboardManager.sharedManager().enable = true
         FIRAuth.auth()?.addStateDidChangeListener({ (_, user) in
             let loginView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         // TODO: Move this to where you establish a user session
         self.logUser()
-
+        Fabric.with([Crashlytics.self])
         return true
     }
     //creashlytic

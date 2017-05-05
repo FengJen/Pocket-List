@@ -17,10 +17,24 @@ protocol DidReceivePackage: class {
 
 class ShareViewController: UIViewController {
     
+    let alertController = ReceiveAlertViewController()
     @IBOutlet weak var receiveButton: UIButton!
     
     @IBOutlet weak var logoutButton: UIButton!
     
+    @IBAction func alertTest(_ sender: Any) {
+        
+        let alert = SCLAlertView()
+        let text = alert.addTextField("請輸入接收者email")
+        alert.addButton("qq") { 
+            print(text.text ?? "")
+        }
+        alert.showWait("123", subTitle: "123")
+    }
+    func testFunc() {
+        print(123)
+    }
+    @IBOutlet weak var test: UIButton!
     let gradientLayer = CAGradientLayer()
     let logoutButtonLayer = CAGradientLayer()
     
@@ -49,12 +63,11 @@ class ShareViewController: UIViewController {
                     self.senderEmail = email
                 }
                 
-                
-                
-                
-                let alertController = UIAlertController(title: "確認傳送來源", message: "\(self.senderEmail)想要和你分享他的口袋名單", preferredStyle: .alert)
                 guard let newCells = snapshot.value as? [String: Any] else { return }
-                let accept = UIAlertAction(title: "同意", style: .default) { (action) in
+                
+                let alert = SCLAlertView()
+                alert.showInfo("確認傳送來源", subTitle: "\(self.senderEmail)想要和你分享他的口袋名單")
+                alert.addButton("同意") {
                     for newCell in newCells {
                         let uid = FIRAuth.auth()?.currentUser?.uid
                         guard let value = newCell.value as? [String: AnyObject] else { continue }
@@ -82,21 +95,14 @@ class ShareViewController: UIViewController {
                         })
                         
                     }
-                    
                 }
-                let decline = UIAlertAction(title: "拒絕", style: .destructive, handler: { (_) in
-                    self.deletePackage(packageKey: packageKey)
-                })
                 
-                
-                alertController.addAction(accept)
-                alertController.addAction(decline)
-                self.present(alertController, animated: true, completion: nil)
+                    alert.addButton("拒絕", action: {
+                        self.deletePackage(packageKey: packageKey)
+                    })
+
                 } else {
-                    let altercontroller = UIAlertController(title: "錯誤", message: "請在傳送方送出後再按接收按鈕，或確認傳送email正確", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "ok", style: .default, handler: nil)
-                    altercontroller.addAction(okAction)
-                    self.present(altercontroller, animated: true, completion: nil)
+                    self.alertController.showErrorAlert()
                 }
             })
         })
@@ -128,6 +134,8 @@ class ShareViewController: UIViewController {
         gradientLayer.colors = [UIColor(red: 117/255, green: 203/255, blue: 223/255, alpha: 1).cgColor, UIColor(red: 90/255, green: 120/255, blue: 191/255, alpha: 1).cgColor]
         
         self.receiveButton.layer.addSublayer(gradientLayer)
+        
+       
         //
 //        let button = UIButton(type: .roundedRect)
 //        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
@@ -142,12 +150,12 @@ class ShareViewController: UIViewController {
 //    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        gradientLayer.cornerRadius = 20
-        logoutButtonLayer.cornerRadius = 20
+        gradientLayer.cornerRadius = 16
+        logoutButtonLayer.cornerRadius = 16
     }
     
     func setUp() {
-        
+       
         logoutButtonLayer.frame = self.logoutButton.bounds
         logoutButtonLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
         logoutButtonLayer.endPoint = CGPoint(x: 1.0, y: 0.5)

@@ -28,7 +28,8 @@
 		84C124581E82900500B48360 /* Step2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124571E82900500B48360 /* Step2ViewController.swift */; };
 		84C1245A1E82901700B48360 /* Step1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C124591E82901700B48360 /* Step1ViewController.swift */; };
 		84C124601E82BACD00B48360 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1245F1E82BACD00B48360 /* ParentViewController.swift */; };
-		84F30A3E1EBAD124001AB76E /* ShareAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F30A3D1EBAD123001AB76E /* ShareAlert.swift */; };
+		84F30A401EBB1150001AB76E /* ReceiveAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F30A3F1EBB1150001AB76E /* ReceiveAlertViewController.swift */; };
+		84F30A441EBB300B001AB76E /* ShareAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F30A431EBB300B001AB76E /* ShareAlertViewController.swift */; };
 		F57526EE0E48334EBDA6EFD6 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7890F73A3897EF95423CE777 /* Pods_____.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +59,8 @@
 		84C124571E82900500B48360 /* Step2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step2ViewController.swift; sourceTree = "<group>"; };
 		84C124591E82901700B48360 /* Step1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step1ViewController.swift; sourceTree = "<group>"; };
 		84C1245F1E82BACD00B48360 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentViewController.swift; path = ../ParentViewController.swift; sourceTree = "<group>"; };
-		84F30A3D1EBAD123001AB76E /* ShareAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAlert.swift; sourceTree = "<group>"; };
+		84F30A3F1EBB1150001AB76E /* ReceiveAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveAlertViewController.swift; sourceTree = "<group>"; };
+		84F30A431EBB300B001AB76E /* ShareAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAlertViewController.swift; sourceTree = "<group>"; };
 		93A59B7A40731FBBE3F116C9 /* Pods-口袋名單.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-口袋名單.debug.xcconfig"; path = "Pods/Target Support Files/Pods-口袋名單/Pods-口袋名單.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				8489AEA11E815259007D88D9 /* ShareViewController.swift */,
+				84F30A3F1EBB1150001AB76E /* ReceiveAlertViewController.swift */,
 			);
 			name = sharePge;
 			sourceTree = "<group>";
@@ -148,7 +151,7 @@
 				847CBDA41E8A4BF2003E057A /* SitesCollectionViewController.swift */,
 				84A5D5B21E821E5300B05B22 /* ItemsNavigationController.swift */,
 				8489AE9F1E814EE6007D88D9 /* TabBarController.swift */,
-				84F30A3D1EBAD123001AB76E /* ShareAlert.swift */,
+				84F30A431EBB300B001AB76E /* ShareAlertViewController.swift */,
 			);
 			name = mainPage;
 			sourceTree = "<group>";
@@ -336,7 +339,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				84C124601E82BACD00B48360 /* ParentViewController.swift in Sources */,
-				84F30A3E1EBAD124001AB76E /* ShareAlert.swift in Sources */,
+				84F30A441EBB300B001AB76E /* ShareAlertViewController.swift in Sources */,
+				84F30A401EBB1150001AB76E /* ReceiveAlertViewController.swift in Sources */,
 				84A5D5B51E821EA500B05B22 /* StepsViewController.swift in Sources */,
 				843DA1C31E8919B300E7ECCA /* CellDataManager.swift in Sources */,
 				84C1245A1E82901700B48360 /* Step1ViewController.swift in Sources */,
