@@ -22,19 +22,6 @@ class ShareViewController: UIViewController {
     
     @IBOutlet weak var logoutButton: UIButton!
     
-    @IBAction func alertTest(_ sender: Any) {
-        
-        let alert = SCLAlertView()
-        let text = alert.addTextField("請輸入接收者email")
-        alert.addButton("qq") { 
-            print(text.text ?? "")
-        }
-        alert.showWait("123", subTitle: "123")
-    }
-    func testFunc() {
-        print(123)
-    }
-    @IBOutlet weak var test: UIButton!
     let gradientLayer = CAGradientLayer()
     let logoutButtonLayer = CAGradientLayer()
     

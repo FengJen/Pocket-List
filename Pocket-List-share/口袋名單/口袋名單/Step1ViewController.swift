@@ -16,9 +16,10 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     let doneButtonInPicker = UIButton()
     let classPicker = UIPickerView()
     let gradientLayer = CAGradientLayer()
-    let skyBlue = UIColor(red: 117/255, green: 203/255, blue: 223/255, alpha: 1)
+    let skyBlue = UIColor(red: 82/255, green: 128/255, blue: 242/255, alpha: 1)
     weak var delegate: Step1ViewControllerDelegete?
     
+    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var temperaryTitle: UITextField!
     @IBOutlet weak var website: UITextField!
     @IBOutlet weak var contentView: UITextView!
@@ -61,7 +62,7 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         super.viewDidLoad()
         setImageView()
         doneButtonSetUp()
-        
+        label.textColor = skyBlue
         
         imageView.contentMode = .scaleAspectFit
         defaultImagePicker.delegate = self

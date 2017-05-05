@@ -50,7 +50,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Login">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.20265965163707733" green="0.46291139721870422" blue="0.94907104969024658" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -386,6 +386,7 @@
                         <outlet property="contentView" destination="1Wf-9u-uEq" id="mRE-zx-hOJ"/>
                         <outlet property="doneButton" destination="s6I-t6-bXH" id="3iO-0m-wKk"/>
                         <outlet property="imageView" destination="k1y-2n-xej" id="H8z-Jd-sUL"/>
+                        <outlet property="label" destination="wH3-S1-HJs" id="W5o-VZ-cbH"/>
                         <outlet property="temperaryTitle" destination="P0C-zu-ug4" id="aGh-n1-5kB"/>
                         <outlet property="website" destination="kjx-gf-TkN" id="eE6-mt-oZf"/>
                     </connections>
@@ -438,26 +439,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TmI-mV-IPR">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="alertTest:" destination="vtJ-Yv-EjB" eventType="touchUpInside" id="VH5-IU-J4N"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.87058823529999996" green="0.95686274510000002" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="WBS-jP-CNJ" firstAttribute="top" secondItem="TmI-mV-IPR" secondAttribute="bottom" constant="75" id="5nZ-ix-DIn"/>
                             <constraint firstItem="WBS-jP-CNJ" firstAttribute="centerX" secondItem="eqm-3I-clj" secondAttribute="centerX" id="FNs-F6-w33"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TmI-mV-IPR" secondAttribute="trailing" constant="149" id="GBW-HZ-W7T"/>
                             <constraint firstItem="i8H-5M-zSm" firstAttribute="top" secondItem="WBS-jP-CNJ" secondAttribute="bottom" constant="50" id="PcN-Hm-N2f"/>
                             <constraint firstItem="WBS-jP-CNJ" firstAttribute="top" secondItem="o2n-MX-aco" secondAttribute="bottom" constant="109.5" id="Pfy-5A-bVW"/>
-                            <constraint firstItem="TmI-mV-IPR" firstAttribute="leading" secondItem="eqm-3I-clj" secondAttribute="leadingMargin" constant="148" id="UN4-qA-qv0"/>
                             <constraint firstItem="o2n-MX-aco" firstAttribute="top" secondItem="ZVD-n7-4io" secondAttribute="bottom" constant="130" id="YX0-v0-8w5"/>
                             <constraint firstItem="i8H-5M-zSm" firstAttribute="leading" secondItem="WBS-jP-CNJ" secondAttribute="leading" id="brC-Jw-eiI"/>
                             <constraint firstItem="E2d-C9-jZ5" firstAttribute="top" secondItem="i8H-5M-zSm" secondAttribute="bottom" constant="85" id="cWI-y9-PZC"/>
-                            <constraint firstItem="TmI-mV-IPR" firstAttribute="top" secondItem="o2n-MX-aco" secondAttribute="bottom" constant="4" id="cyH-sG-htB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="o2n-MX-aco" secondAttribute="trailing" constant="20" id="lvV-Wj-QrT"/>
                             <constraint firstItem="o2n-MX-aco" firstAttribute="leading" secondItem="eqm-3I-clj" secondAttribute="leadingMargin" constant="20" id="vVm-4I-9Oi"/>
                         </constraints>
@@ -466,7 +456,6 @@
                     <connections>
                         <outlet property="logoutButton" destination="i8H-5M-zSm" id="xbO-KD-zwg"/>
                         <outlet property="receiveButton" destination="WBS-jP-CNJ" id="QAW-Mh-WkC"/>
-                        <outlet property="test" destination="TmI-mV-IPR" id="sNw-9L-jcm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSE-DW-2qA" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -16,13 +16,17 @@ class ShareAlertViewController: UIViewController {
     }
 
     func showShareAlert(shareIDs: [String]) {
-        let alert = SCLAlertView()
-        let receiverEmailtextField = alert.addTextField("接收者email")
-        guard let receiverEmail = receiverEmailtextField.text else { return }
-        alert.showInfo("請輸入接收者email", subTitle: "分享後請接收方進入接收頁面下載")
-        alert.addButton("送出", target: self, selector: #selector(enterReceiverEmail))
-        alert.addButton("送出", action: {
         
+        let alert = SCLAlertView()
+        
+        let receiverEmailtextField = alert.addTextField("接收者email")
+        
+        
+        
+        //alert.addButton("送出", target: self, selector: #selector(enterReceiverEmail))
+        
+        alert.addButton("送出", action: {
+        guard let receiverEmail = receiverEmailtextField.text else { return }
             if self.isValidEmail(testStr: receiverEmail) == false {
                 self.showEmailFormateErrorAlert()
             } else if self.isValidEmail(testStr: receiverEmail) == true {
@@ -55,7 +59,7 @@ class ShareAlertViewController: UIViewController {
             })
             }
         })
-        
+        alert.showInfo("請輸入接收者email", subTitle: "分享後請接收方進入接收頁面下載")
     }
     
     func enterReceiverEmail() {
