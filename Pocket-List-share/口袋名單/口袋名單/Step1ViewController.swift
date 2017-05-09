@@ -168,6 +168,8 @@ class Step1ViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         return rowString
 
     }
+    
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == defaultImagePicker {
             

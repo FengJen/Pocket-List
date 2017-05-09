@@ -19,7 +19,7 @@ class ShareAlertViewController: UIViewController {
         
         let alert = SCLAlertView()
         
-        let receiverEmailtextField = alert.addTextField("接收者email")
+        let receiverEmailtextField = alert.addTextField("請輸入接收對象的email")
         
         alert.addButton("送出", action: {
         guard let receiverEmail = receiverEmailtextField.text else { return }
@@ -55,7 +55,7 @@ class ShareAlertViewController: UIViewController {
             })
             }
         })
-        alert.showInfo("請輸入接收者email", subTitle: "")
+        alert.showInfo("分享您的口袋名單", subTitle: "")
     }
     
     func enterReceiverEmail() {
