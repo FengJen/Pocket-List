@@ -83,7 +83,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         }
         
     }
-    
+    //todo cancel after share
     func cancel() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
@@ -133,7 +133,7 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
         sitesCollectionViewController?.removeImageStorage(at: siteDeleteID, completion: { (true) in
             sitesCollectionViewController?.deleteItem()
         })
-        foodCollectionViewController?.isEditing = false
+        sitesCollectionViewController?.isEditing = false
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(setEdit))
         newBar.isHidden = true
@@ -143,62 +143,14 @@ class ParentViewController: ButtonBarPagerTabStripViewController {
     func shareItems() {
         guard let foodShareIDs = foodCollectionViewController?.selectedAutoIDs, let siteShareIDs = sitesCollectionViewController?.selectedAutoIDs else { return }
         let shareIDs = foodShareIDs + siteShareIDs
-        var cellPackage: [Any] = []
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        let packageRef = FIRDatabase.database().reference().child("package").childByAutoId()
-        let alertController = UIAlertController(title: "請輸入接收者email", message: "分享後請接收方進入接收頁面下載", preferredStyle: .alert)
-        
-        alertController.addTextField(configurationHandler: { (UITextField) in
-            UITextField.placeholder = "接收者email"
-        })
-        let sendAction = UIAlertAction(title: "Send", style: .default, handler: { _ -> Void in
-            guard let receiverEmail = alertController.textFields?[0].text else { return }
-            if self.isValidEmail(testStr: receiverEmail) == false {
-                let errorAlertController = UIAlertController(title: "錯誤", message: "email格式錯誤", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                errorAlertController.addAction(okAction)
-                self.present(errorAlertController, animated: true, completion: nil)
-            } else if self.isValidEmail(testStr: receiverEmail) == true {
-            
-                for cellID in shareIDs {
-                    FIRDatabase.database().reference().child("pocketList").child(uid!).queryOrdered(byChild: "cellID").queryEqual(toValue: cellID).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        guard let snap = snapshot.value as? [String: Any] else { return }
-                        cellPackage.append(snap)
-                        
-                    })
-                }
-                FIRDatabase.database().reference().child("userEmail").child(uid!).observeSingleEvent(of: .value, with: { (emailSnapshot) in
-                    guard let email = emailSnapshot.value as? [String: Any] else { return }
-                    guard let senderEmail = email["email"] as? String else { return }
-                    
-                    let value = [
-                        "senderEmail": senderEmail,
-                        "receiverEmail": receiverEmail,
-                        "cellList": cellPackage,
-                        "packageID": packageRef.key
-                        ] as [String : Any]
-                    packageRef.setValue(value)
-                })
-            
-            }
-            
-        })
-
-        // todo email = nil?
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        
-        alertController.addAction(sendAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
-        newBar.isHidden = true
-        tabBarController?.tabBar.isHidden = false
-
+        let shareAlert = ShareAlertViewController()
+       
+        shareAlert.showShareAlert(shareIDs: shareIDs)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     func isValidEmail(testStr: String) -> Bool {

@@ -62,7 +62,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerButton.layer.cornerRadius = 22
-
+        registerButton.layer.masksToBounds = false
+        
+        registerButton.layer.shadowColor = UIColor.gray.cgColor
+        registerButton.layer.shadowOpacity = 1
+        registerButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        registerButton.layer.shadowRadius = 4
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -89,7 +95,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
 }
