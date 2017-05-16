@@ -1,7 +1,7 @@
 # Pocket List
 > You can save information of your favorite places as neat lists in this App. 
 > When you want to share some places to your friend, just simply select those items and 
-> enter your friends' email. Then they can recieve your sharing and the App will create the copy
+> enter your friends' email. Then they can receive your sharing and the App will create the copy
 > of items automatically.
 
 ## Feature
